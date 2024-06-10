@@ -2,17 +2,6 @@ import userModel from "../../models/userModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-
-/**
- * @module src/controllers/user/userController
- */
-
-/**
- * Retrieves all users based on the user's admin status.
- *
- * @param {object} userData - The user data to determine admin status.
- * @return {object} An object containing the retrieved users or an error.
- */
 async function getAll(userData) {
     try {
         if (userData.esAdmin == 1) {
@@ -31,13 +20,6 @@ async function getAll(userData) {
         return { error: error };
     }
 }
-
-/**
- * Retrieves a user by ID and returns the user data if found, otherwise an error object.
- *
- * @param {type} id - The ID used to retrieve the user.
- * @return {type} An object containing the user data if found, otherwise an error object.
- */
 async function getById(id) {
     try {
         const user = await userModel.findByPk(id);
@@ -54,12 +36,6 @@ async function getById(id) {
 
 }
 
-/**
- * Creates a new user with the provided userData.
- *
- * @param {object} userData - The data of the user to be created.
- * @return {object} An object containing the newly created user data.
- */
 async function create(userData) {
     try {
         const newuser = await userModel.create(userData);
@@ -70,15 +46,7 @@ async function create(userData) {
         return {error}
     }
 }
-
-
-/**
- * Registers a new user based on the provided user data.
- *
- * @param {object} userData - The data of the user to register.
- * @return {object} An object containing the newly registered user data or an error object.
- */
-async function registerUser(userData) {
+async function register(userData) {
     const {Name, Is_Admin, Email, Password, Password_repeat} = userData;
     try {
         if(!Email || !Password || !Password_repeat){
@@ -116,7 +84,8 @@ async function registerUser(userData) {
             User_id: maxUserId,
             Is_Admin: 0,
             Email,
-            Password:hash
+            Password:hash,
+            Is_Client:0
         }
         const newUser = await create(nuevoUser);
         console.log(newUser)
@@ -126,15 +95,6 @@ async function registerUser(userData) {
         return { error: "Ha habido un error en el en el registro" }
     }
 }
-
-
-/**
- * Asynchronous function to log in a user based on provided Email and Password.
- *
- * @param {string} Email - The email of the user trying to log in.
- * @param {string} Password - The password of the user trying to log in.
- * @return {object} An object containing user_id, esAdmin, and token if login is successful, otherwise an error message.
- */
 async function login(Email, Password) {
     try {
         if (!Email || !Password) {
@@ -148,12 +108,12 @@ async function login(Email, Password) {
 
         const result = await bcrypt.compare(Password, oldUser.Password);
         if (result) {
-            const token = jwt.sign({id:oldUser.user_id,email:oldUser.email},process.env.JWT_SECRET,{expiresIn: 60 * 60})
+            const token = jwt.sign({id:oldUser.user_id,email:oldUser.email},process.env.JWT_SECRET,{expiresIn: 60 * 60 * 24})
             console.log("EL TOKEN ES:", token)
             const user_id = oldUser.User_id;
             const esAdmin = oldUser.Is_Admin;
             //console.log("LOS DATOS SON", { user_id, esAdmin, token }); 
-            return { data: { user_id, esAdmin, token } };
+            return { user_id, esAdmin, token };
         } else {
             return { error: "La combinación de usuario y contraseña es errónea" };
         }
@@ -163,13 +123,6 @@ async function login(Email, Password) {
     }
 }
 
-
-/**
- * Retrieves a user by their email address.
- *
- * @param {string} Email - The email address of the user to retrieve.
- * @return {object} An object containing the user data if found, otherwise an error object.
- */
 async function getByEmail(Email){
     try {
         const user = await userModel.findOne({where:{Email:Email}})
@@ -181,51 +134,54 @@ async function getByEmail(Email){
     }
 }
 
-
-/**
- * Updates user information based on the provided ID and user data.
- *
- * @param {type} id - The ID of the user to update.
- * @param {type} userData - The data containing Name, Is_Admin, Email, Password, and Password_repeat.
- * @return {type} An object containing the updated user information or an error.
- */
 async function update(id, userData) {
     const {Name, Is_Admin, Email, Password, Password_repeat} = userData;
     try {
-        if(Password !== Password_repeat){
-            return {error:"las contraseñas no coinciden"};
+        // Validar contraseñas sólo si se proporcionan
+        if (Password || Password_repeat) {
+            if (Password !== Password_repeat) {
+                return {error: "Las contraseñas no coinciden"};
+            }
+            const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+            if (!passwordRegex.test(Password)) {
+                return {error: "La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número."};
+            }
         }
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(Email)) {
-            return {error:"El correo electrónico no es válido. Asegúrate de que esté en el formato correcto, como ejemplo@dominio.com."};                       
-        } 
-        const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-        if (!passwordRegex.test(Password)) {
-            return {error:"La contraseña debe tener al menos 8 carácteres, una mayúscula, una minúscula y un número."};                       
+
+        // Validar el correo electrónico sólo si se proporciona
+        if (Email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(Email)) {
+                return {error: "El correo electrónico no es válido. Asegúrate de que esté en el formato correcto, como ejemplo@dominio.com."};
+            }
         }
-        const hash = await bcrypt.hash(Password,10);
+
+        // Crear el objeto de usuario actualizado
         const nuevoUser = {};
         if (Name) nuevoUser.Name = Name;
-        if (Is_Admin) nuevoUser.Is_Admin = Is_Admin;
+        if (Is_Admin !== undefined) nuevoUser.Is_Admin = Is_Admin;  // Permitir falso explícito
         if (Email) nuevoUser.Email = Email;
-        if (Password) nuevoUser.Password = hash;
+        if (Password) {
+            const hash = await bcrypt.hash(Password, 10);
+            nuevoUser.Password = hash;
+        }
 
-        const usuario = await userModel.update(nuevoUser,{where: {User_id:id}});
+        // Verificar si hay campos para actualizar
+        if (Object.keys(nuevoUser).length === 0) {
+            return {error: "No hay campos válidos para actualizar."};
+        }
 
-        return {data:usuario};
+        // Realizar la actualización
+        const usuario = await userModel.update(nuevoUser, {where: {User_id: id}});
+
+        return {usuario, nuevoUser};
     } catch (error) {
-        console.log("ERROR ES:",error);
-        return {error}
+        console.log("ERROR ES:", error);
+        return {error};
     }
-   
 }
 
-/**
- * Retrieves a user by ID and removes them from the database.
- *
- * @param {type} id - The ID used to identify the user.
- * @return {type} An object containing the removed user data.
- */
+
 async function remove(id) {
     try {
         const usuario = await userModel.findByPk(id);
@@ -242,7 +198,7 @@ export {
     getAll,
     getById,
     login,
-    registerUser,
+    register,
     create,
     update,
     remove
@@ -253,7 +209,7 @@ export default {
     getAll,
     getById,
     login,
-    registerUser,
+    register,
     create,
     update,
     remove
