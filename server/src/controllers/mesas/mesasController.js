@@ -102,9 +102,9 @@ async function create(mesaData, id) {
 
 async function remove(id) {
     try {
-        const usuario = await mesasModel.findByPk(id);
-        await usuario.destroy();
-        return {data:usuario};
+        const mesa = await mesasModel.findByPk(id);
+        await mesa.destroy();
+        return {data:mesa};
     } catch (error) {
         console.error(error);
         return{error}
