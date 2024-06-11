@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `Bookitdb`.`User` (
   `Name` VARCHAR(45) NOT NULL,
   `Is_Admin` TINYINT NOT NULL,
   `Email` VARCHAR(45) NOT NULL,
-  `Password` VARCHAR(45) NOT NULL,
+  `Password` VARCHAR(80) NOT NULL,
   `Is_Client` TINYINT NOT NULL,
   PRIMARY KEY (`User_id`),
   UNIQUE INDEX `User_id_UNIQUE` (`User_id` ASC) VISIBLE)
