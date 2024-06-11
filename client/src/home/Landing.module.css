@@ -1,0 +1,41 @@
+.containerLanding{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    font-family: Alegreya;
+    color: white;
+    font-size: 9rem;
+}
+
+.background{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-image: url('../images/bgHome.jpg');
+    background-size:cover;
+}
+
+.Navbar{
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    gap: 1;
+    width: 100%;
+}
+
+.btnContainer{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    gap: 2rem;
+}
