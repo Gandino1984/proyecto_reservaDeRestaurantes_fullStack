@@ -1,49 +1,56 @@
 import jwt from "jsonwebtoken";
+import userController  from "../controllers/users/userController.js";
 
-/**
- * @module src/middelware/authMiddleWare
- */
-
-
-/**
- * A function to check if the token is correct and proceed to the next middleware.
- *
- * @param {object} req - The request object.
- * @param {object} res - The response object.
- * @param {function} next - The next middleware function.
- */
-function isTokenCorrect (req,res,next){
+const isAuthenticated = async(req,res,next)=>{
+    const authorization  = req.headers.authorization;
+    if(!authorization){
+        return res.status(401).json({error:"no hay token jwt"});
+    }
     try {
-        const authorization = req.headers.authorization;
-        if(!authorization){
-            return res.status(401).json({error:"no hay token jwt"});
-        }
         const token = authorization.split("Bearer ")[1];
         const decoded = jwt.verify(token,process.env.JWT_SECRET);
-        console.log(decoded);
+        const user = await userController.getById(decoded._id);
+        if(!user){
+            return res.status(400).json({error:"No existe el usuario"});
+        }
+        
+        req.user = user;
+        console.log("Se carga bien req user", req.user)
         next();
+        
     } catch (error) {
         console.error(error);
-        res.status(400).json({error:"error verificando token, puede haber caducado"});
+        return res.status(500).json({error:"ha habido un error"});
     }
+
 }
 
-/**
- * Checks if a session exists for the user, redirects to login if not, and calls the next middleware.
- *
- * @param {object} req - The request object.
- * @param {object} res - The response object.
- * @param {function} next - The next middleware function.
- * @return {void}
- */
-function hasSession(req,res,next){
-    const user = req.session.user;
-    console.log("session user",req.session);
-    if(!user){
-        return res.redirect("/user/login");
+const isAdmin = async(req,res,next)=>{
+    const authorization  =req.headers.authorization;
+    if(!authorization){
+        return res.status(401).json({error:"no hay token jwt"});
     }
-    next();
-}
-export{isTokenCorrect,hasSession};
+    try {
+        const token = authorization.split("Bearer ")[1];
+        const decoded =jwt.verify(token,process.env.JWT_SECRET);
+        const user = await userController.getById(decoded._id);
+        if(!user){
+            return res.status(400).json({error:"No existe el usuario"});
+        }
+        if(user.role !== "admin"){
+            return res.status(401).json({error:"No estás autorizado"});
+        }
+        req.user = user;
+        next();
+        
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({error:"ha habido un error"});
+    }
 
-export default {isTokenCorrect,hasSession};
+}
+
+export {
+    isAuthenticated,
+    isAdmin
+}
