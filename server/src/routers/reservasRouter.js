@@ -1,6 +1,6 @@
 import {Router} from "express";
 
-import reservasApiController from "../controllers/reservass/reservasApiController.js";
+import reservasApiController from "../controllers/reservas/reservasApiController.js";
 
 const router  = Router();
 
