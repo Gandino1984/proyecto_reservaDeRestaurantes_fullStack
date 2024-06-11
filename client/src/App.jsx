@@ -8,7 +8,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className='container'>
+      <div className={styles.container}>
         <Landing />
       </div>
       
