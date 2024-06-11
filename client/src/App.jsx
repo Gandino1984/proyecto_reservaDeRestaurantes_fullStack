@@ -1,14 +1,17 @@
 import React from 'react'
-import './App.css'
+import styles from './App.module.css'
 import Navbar from './navbar/Navbar.jsx'
 import {useNavigate, Link, BrowserRouter} from 'react-router-dom'
-
+import Landing from './home/Landing.jsx'
 
 function App() {
 
   return (
     <BrowserRouter>
-      <Navbar />
+      <div className='container'>
+        <Landing />
+      </div>
+      
     </BrowserRouter>
   )
 }
