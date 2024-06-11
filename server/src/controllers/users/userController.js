@@ -20,6 +20,7 @@ async function getAll(userData) {
         return { error: error };
     }
 }
+
 async function getById(id) {
     try {
         const user = await userModel.findByPk(id);
@@ -46,6 +47,7 @@ async function create(userData) {
         return {error}
     }
 }
+
 async function register(userData) {
     const {Name, Is_Admin, Email, Password, Password_repeat} = userData;
     try {
@@ -95,6 +97,7 @@ async function register(userData) {
         return { error: "Ha habido un error en el en el registro" }
     }
 }
+
 async function login(Email, Password) {
     try {
         if (!Email || !Password) {
@@ -180,7 +183,6 @@ async function update(id, userData) {
         return {error};
     }
 }
-
 
 async function remove(id) {
     try {
