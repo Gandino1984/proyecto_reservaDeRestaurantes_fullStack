@@ -15,12 +15,6 @@ const getById = async (req,res) =>{
     res.json({data:user});
 }
 
-const getByProperty=async(req,res)=>{
-    const {property,value}=req.query;
-    const users = await userController.getByProperty(property,value);
-    res.json({data:users})
-}
-
 const register = async(req,res)=>{
     const user = await userController.register(req.body);
     console.log("llego aqui")
@@ -40,10 +34,6 @@ const login = async(req,res) => {
     res.json({data})
 }
 
-const create = async(req,res)=>{
-    const user = await userController.create(req.body);
-    res.json({data:user})
-}
 
 const update = async(req,res)=>{
     const id = req.params.id;
@@ -66,10 +56,8 @@ async function logout(req,res){
 export default{
     getAll,
     getById,
-    getByProperty,
     login,
     register,
-    create,
     update,
     logout,
     remove
