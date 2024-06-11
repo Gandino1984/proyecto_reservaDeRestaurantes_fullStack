@@ -1,0 +1,17 @@
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    user-select: none;
+    font-size: 3rem;
+    padding-left: 3rem;
+    font-family: Alegreya;
+    color: white;
+}
+.containerNavbar{
+    width: 100%;
+    display: block;
+    align-items: center; 
+    justify-content: center;
+    padding-left: 3rem;
+}

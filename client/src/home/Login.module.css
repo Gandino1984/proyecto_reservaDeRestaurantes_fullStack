@@ -1,0 +1,50 @@
+.containerLogin {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:left;
+    flex-direction: column;
+    padding: .5rem;
+}
+
+h2{
+    padding-top: .5rem;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-family: Alegreya;
+    font-weight: 700;
+    /* font-size: 2rem; */
+}
+
+.formContainer{
+    background-color: white;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0rem 1rem 1rem 1rem;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+input[type="text"], input[type="password"]{
+    border: 2px solid var(--green);
+    color: var(--purple);
+    outline: none;
+    appearance: none;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    font-family: Roboto Condensed;
+    font-weight: 400;
+    letter-spacing: .05rem;
+    border-radius: 12px;
+}
+
+
+.btnContainer{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    gap: 2rem;
+}

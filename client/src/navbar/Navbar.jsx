@@ -1,9 +1,10 @@
 import React from 'react'
+import styles from './Navbar.module.css'
 
 function Navbar() {
   return (
-    <div>
-      
+    <div className={styles.containerNavbar}>
+        <p className={styles.title}>Book-it</p>
     </div>
   )
 }
