@@ -37,7 +37,7 @@ const isAdmin = async(req,res,next)=>{
         if(!user){
             return res.status(400).json({error:"No existe el usuario"});
         }
-        if(user.role !== "admin"){
+        if(user.isAdmin !== 1){
             return res.status(401).json({error:"No estás autorizado"});
         }
         req.user = user;
