@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createReserva } from "../../utils/reservaFetch";
 
 
@@ -6,9 +7,10 @@ const CreateReserva = ({onCreate})=>{
     const handleSubmit =async (e)=>{
         e.preventDefault();
         const name = e.target.name.value;
-        const description = e.target.description.value;
-        const daysToComplete = e.target.daysToComplete.value;
-        const data = {name,description,daysToComplete };
+        const numGuests = e.target.numGuests.value;
+        const reservationDate = e.target.reservationDate.value;
+        const reservationTime = e.target.reservationTime.value;
+        const data = {name,numGuests,reservationDate,reservationTime };
         console.log("name",data)
         const result = await createReserva(data);
         console.log("result",result)
@@ -18,10 +20,12 @@ const CreateReserva = ({onCreate})=>{
         <form action="" className="create-reserva" onSubmit={handleSubmit}>
             <label htmlFor="name" >Name</label>
             <input type="text" name="name"/>
-            <label htmlFor="description" >Description</label>
-            <textarea name="description"></textarea>
-            <label htmlFor="daysToComplete" >Days to complete</label>
-            <input type="number" name="daysToComplete"/>
+            <label htmlFor="numGuests" >Guests Number</label>
+            <input type="number" name="numGuests"/>
+            <label htmlFor="reservationDate" >Reservation Date</label>
+            <input type="number" name="reservationDate"/>
+            <label htmlFor="reservationTime" >Hour</label>
+            <input type="number" name="reservationTime"/>
             <button type="submit">Create</button>
         </form>
     )

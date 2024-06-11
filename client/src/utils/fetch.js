@@ -29,3 +29,5 @@ const fetchData = async (route, method, inputData = null) => {
         return ({ error: error.message });
     }
 };
+
+export default fetchData;
