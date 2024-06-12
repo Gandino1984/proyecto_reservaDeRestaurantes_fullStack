@@ -16,8 +16,8 @@ const getReservasByID = async (reservaID) => {
     return result;
 };
 
-const updateReserva = async (userID, userData) => {
-    const result = await fetchData(`/users/${reservaID}`, "put", reservaData);
+const updateReserva = async (reservaID, reservaData) => {
+    const result = await fetchData(`/reservas/${reservaID}`, "put", reservaData);
     return result;
 };
 
@@ -29,7 +29,7 @@ const createReserva = async(reservaData)=>{
     
     
 const deleteReserva = async(reservaID) =>{
-    const result = await fetchData("/users/"+reservaID,"delete");
+    const result = await fetchData("/reservas/"+reservaID,"delete");
     console.log(result);
     return result;
 }
