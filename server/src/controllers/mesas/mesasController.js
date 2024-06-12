@@ -36,7 +36,7 @@ async function getById(id) {
         if (!mesa) {
             return { error: "El mesa no existe" };
         }
-        return { data: mesa };
+        return mesa ;
     }
     catch (error) {
         console.error(error);
@@ -81,10 +81,10 @@ async function create(mesaData, id) {
     if (maxIdResult) {
         maxmesaId = maxIdResult.dataValues.Mesa_id +1;
     }
-    const sessionUserId = id
 
         try {
             const newmesa = await mesasModel.create({
+                Mesa_id:maxmesaId,
                 Restaurante_id:1,
                 Sillas,
             });

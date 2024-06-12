@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import sequelize from "../config/sequelize.js";
 import userModel from "./userModel.js";
 
-const RestauranteModel = sequelize.define("restaurante",
+const RestauranteModel = sequelize.define("Restaurante",
     {
         Restaurante_id:{
             type: DataTypes.INTEGER.UNSIGNED,
@@ -24,7 +24,11 @@ const RestauranteModel = sequelize.define("restaurante",
         User_id: {
             type: DataTypes.INTEGER,
             allowNull:false
-        }      
+        },
+        Tipo_Restaurante: {
+            type: DataTypes.STRING(45),
+            allowNull:false
+        }           
     }
 )
 
