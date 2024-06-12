@@ -4,47 +4,43 @@ import styles from './Login.module.css'
 
 function Login({userType}) {
 
-  const [user, setuser] = useState(userType);
-  console.log("Login:userType= ", userType)
-
-  const [userAction, setuserAction] = useState("login");
-
   const [clientIsLogin, setclientIsLogin] = useState(true);
   const [clientIsRegister, setclientIsRegister] = useState(false);
-
   const [restaurantIsLogin, setrestaurantIsLogin] = useState(false);
-  const [restaurantIsRegister, setrestaurantIsregister] = useState(false);
+  const [restaurantIsRegister, setrestaurantIsRegister] = useState(false);
 
-  // faltan comprobaciones aquí
-  useEffect((user, userAction) => {
-    if (user === "client") {
-        if(userAction === "login"){
-          setrestaurantIsLogin(false);
-          setrestaurantIsregister(false);
-          setclientIsLogin(true);
-          setclientIsRegister(false);  
-        }else{
-          setrestaurantIsLogin(false);
-          setrestaurantIsregister(false);
-          setclientIsLogin(false);
-          setclientIsRegister(true);
-        }  
-    }
-    if (user === "restaurant") {
-      if(userAction === "login"){
-        setrestaurantIsLogin(true);
-        setrestaurantIsregister(false);
-        setclientIsLogin(false);
-        setclientIsRegister(false);  
-      }else{
-        setrestaurantIsLogin(false);
-        setrestaurantIsregister(true);
-        setclientIsLogin(false);
-        setclientIsRegister(false);
-      }  
+  const [userAction, setUserAction] = useState(null);
+
+  function onChangeActionHandler(e){
+      if(e.target.value === "login" && userType === "client"){
+        setclientIsLogin(true)
+        setclientIsRegister(false)
+        setrestaurantIsLogin(false)
+        setrestaurantIsRegister(false)
+        setUserAction("login")
+      }
+      if(e.target.value === "register" && userType === "client"){
+        setclientIsLogin(false)
+        setclientIsRegister(true)
+        setrestaurantIsLogin(false)
+        setrestaurantIsRegister(false)
+        setUserAction("register")
+      }
+      if(e.target.value === "login" && userType === "restaurant"){
+        setclientIsLogin(false)
+        setclientIsRegister(false)
+        setrestaurantIsLogin(true)
+        setrestaurantIsRegister(false)
+        setUserAction("login")
+      }
+      if(e.target.value === "register" && userType === "restaurant"){
+        setclientIsLogin(false)
+        setclientIsRegister(true)
+        setrestaurantIsLogin(false)
+        setrestaurantIsRegister(false)
+        setUserAction("register")
+      }
   }
-
-  }, [user, userAction, clientIsLogin, clientIsRegister, restaurantIsLogin, restaurantIsRegister])
 
   return (
     <div className={styles.containerLogin}>
@@ -52,17 +48,26 @@ function Login({userType}) {
                           <div className={styles.menuContainer}>
                                 {userAction === "login" && <h2>Iniciar Sesión:</h2>}
                                 {userAction === "register" && <h2>Registrar Cuenta:</h2>}
-                                <div className={styles.radios} onChange={e=>setuserAction(e.target.value)}>
+                                <div className={styles.radios} onChange={e=>onChangeActionHandler(e)}>
                                     <input className={styles.radioOption} id="loginOption" name='userAction' type="radio" value="login" />
                                     <input className={styles.radioOption} id="registerOption" name='userAction' type="radio" value="register" />
                                 </div>
                           </div>
                           
-                          {clientIsLogin && <input type="text" id="clientName" name="clientName" placeholder="Nombre de cliente" />}
-                          {clientIsLogin && <input type="password" id="clientPasssword" name="clientPasssword" placeholder="Contraseña de cliente" />}
+                          {userType === "client" && 
+                            <div>
+                              <input type="text" id="clientName" name="clientName" placeholder="Nombre de cliente" />
+                              <input type="password" id="clientPasssword" name="clientPasssword" placeholder="Contraseña de cliente" />
+                            </div>}
                           {clientIsRegister && <input type="password" id="repeatClientPasssword" name="clientRepeatPasssword" placeholder="Repetir contraseña de cliente" />}
-                          {restaurantIsLogin && <input type="text" id="restaurantName" name="restaurantName" placeholder="Nombre de restaurante" />}
-                          {restaurantIsLogin && <input type="password" id="restaurantPasssword" name="restaurantPasssword" placeholder="Contraseña de restaurante" />}
+                          
+                          {userType === "restaurant" && 
+                            <div>
+                              <input type="text" id="restaurantName" name="restaurantName" placeholder="Nombre de restaurante" />
+                              <input type="password" id="restaurantPasssword" name="restaurantPasssword" placeholder="Contraseña de restaurante" />
+                            </div>
+                          }
+                          
                           {restaurantIsRegister && <input type="password" id="restaurantRepeatPasssword" name="restaurantRepeatPasssword" placeholder="Repetir contraseña de restaurante" />}
                           
                           <button className={styles.btn1}>ENTRAR</button>
