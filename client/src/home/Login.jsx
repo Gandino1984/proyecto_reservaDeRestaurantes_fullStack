@@ -13,25 +13,25 @@ function Login({userType}) {
 
   function onChangeActionHandler(e){
       if(e.target.value === "login" && userType === "client"){
+        setUserAction("login")
         setclientIsLogin(true)
         setclientIsRegister(false)
         setrestaurantIsLogin(false)
         setrestaurantIsRegister(false)
-        setUserAction("login")
       }
       if(e.target.value === "register" && userType === "client"){
+        setUserAction("register")
         setclientIsLogin(false)
         setclientIsRegister(true)
         setrestaurantIsLogin(false)
         setrestaurantIsRegister(false)
-        setUserAction("register")
       }
       if(e.target.value === "login" && userType === "restaurant"){
+        setUserAction("login")
         setclientIsLogin(false)
         setclientIsRegister(false)
         setrestaurantIsLogin(true)
         setrestaurantIsRegister(false)
-        setUserAction("login")
       }
       if(e.target.value === "register" && userType === "restaurant"){
         setclientIsLogin(false)
