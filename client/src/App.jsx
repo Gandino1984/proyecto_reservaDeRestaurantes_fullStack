@@ -7,12 +7,11 @@ import Landing from './home/Landing.jsx'
 function App() {
 
   return (
-    <BrowserRouter>
+    <>
       <div className={styles.container}>
         <Landing />
       </div>
-      
-    </BrowserRouter>
+    </>
   )
 }
 

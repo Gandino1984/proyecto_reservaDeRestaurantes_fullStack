@@ -1,17 +1,52 @@
+
+.containerNavbar{
+    width: 100%;
+    display: flex;
+    align-items: center; 
+    justify-content:left;
+    padding-left: 3rem;
+}
+
+.containerTitle{
+    /* width: 100%; */
+    display: flex;
+    align-items: center;
+    justify-content:left;
+}
+
 .title{
     display: flex;
     align-items: center;
     justify-content: left;
     user-select: none;
-    font-size: 3rem;
-    padding-left: 3rem;
+    font-size: 5rem;
+    /* padding-left: 3rem; */
     font-family: Alegreya;
     color: white;
 }
-.containerNavbar{
-    width: 100%;
-    display: block;
-    align-items: center; 
+
+.radioBtnsContainer{
+    position: relative;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    padding-left: 3rem;
+    user-select: none;
+}
+
+.labels{
+    /* position: absolute; */
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radios{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radioOption{
+    display: flex;
 }

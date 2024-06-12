@@ -6,7 +6,7 @@ import bg1 from '../images/bgHome.jpg'
 import Login from './Login.jsx'
 import Navbar from '../navbar/Navbar.jsx'
 
-function Landing() {
+function Landing(){
 
   return (
         <div className={styles.containerLanding}>
