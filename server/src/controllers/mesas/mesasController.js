@@ -36,7 +36,7 @@ async function getById(id) {
         if (!mesa) {
             return { error: "El mesa no existe" };
         }
-        return { data: mesa };
+        return mesa ;
     }
     catch (error) {
         console.error(error);
@@ -73,18 +73,18 @@ async function create(mesaData, id) {
     if (!Restaurante_id || !Sillas) {
         return { error: "Todos los campos son obligatorios" };
     }
-    const maxIdResult = await mesasModel.findOne({attributes: ['mesas_id'], order: [['mesas_id', 'DESC']]});
+    const maxIdResult = await mesasModel.findOne({attributes: ['Mesa_id'], order: [['Mesa_id', 'DESC']]});
     console.log("EL ID MAXIMO ES:",maxIdResult)
 
     let maxmesaId = null;
     
     if (maxIdResult) {
-        maxmesaId = maxIdResult.dataValues.mesas_id +1;
+        maxmesaId = maxIdResult.dataValues.Mesa_id +1;
     }
-    const sessionUserId = id
 
         try {
             const newmesa = await mesasModel.create({
+                Mesa_id:maxmesaId,
                 Restaurante_id:1,
                 Sillas,
             });

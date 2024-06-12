@@ -15,6 +15,17 @@ const getByProperty = async(req,res)=>{
     res.json({data:reservas})
 }
 
+const getReservasPorDiaYSillas = async (req, res) => {
+    const { restaurante, numeroSillas, dia } = req.params;
+    const { data, error } = await reservasController.getReservasPorDiaYSillas({ numeroSillas, dia, restaurante });
+
+    if (error) {
+        return res.status(500).json({ error });
+    }
+
+    res.json({ data });
+};
+
 const getById = async (req,res) =>{
     const id = req.params.id
     const reservas = await reservasController.getById(id);
@@ -43,6 +54,7 @@ export default{
     getAll,
     getById,
     getByProperty,
+    getReservasPorDiaYSillas,
     update,
     create,
     remove

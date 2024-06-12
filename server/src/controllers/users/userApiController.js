@@ -24,16 +24,18 @@ const register = async(req,res)=>{
     res.json({data:user})
 }
 
-const login = async(req,res) => {
+const login = async(req, res) => {
     const { Email, Password } = req.body;
     const data = await userController.login(Email, Password);
-    if(data.error){
-        return res.status(data.status).json({error:data.error});
+    
+    if(data.error) {
+        return res.status(data.status || 400).json({error: data.error});
     }
+    
     req.session.user = data;
-    console.log("req.session.user",req.session.user)
-    res.json({data})
-}
+    console.log("req.session.user", req.session.user);
+    res.status(200).json({data});
+};
 
 
 const update = async(req,res)=>{
