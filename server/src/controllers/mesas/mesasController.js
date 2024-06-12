@@ -73,13 +73,13 @@ async function create(mesaData, id) {
     if (!Restaurante_id || !Sillas) {
         return { error: "Todos los campos son obligatorios" };
     }
-    const maxIdResult = await mesasModel.findOne({attributes: ['mesas_id'], order: [['mesas_id', 'DESC']]});
+    const maxIdResult = await mesasModel.findOne({attributes: ['Mesa_id'], order: [['Mesa_id', 'DESC']]});
     console.log("EL ID MAXIMO ES:",maxIdResult)
 
     let maxmesaId = null;
     
     if (maxIdResult) {
-        maxmesaId = maxIdResult.dataValues.mesas_id +1;
+        maxmesaId = maxIdResult.dataValues.Mesa_id +1;
     }
     const sessionUserId = id
 

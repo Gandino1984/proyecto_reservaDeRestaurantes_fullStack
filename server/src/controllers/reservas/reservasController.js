@@ -1,4 +1,5 @@
-import ReservasModel from "../../models/ReservasModel.js";
+import ReservasModel from "../../models/reservasModel.js";
+import MesasModel from "../../models/mesasModel.js";
 import { Op } from 'sequelize'; 
 
 
@@ -30,6 +31,40 @@ const getByProperty = async(property,value) =>{
     }
 }
 
+
+
+const getReservasPorDiaYSillas = async ({ numeroSillas, dia, restaurante }) => {
+    try {
+        const mesas = await MesasModel.findAll({
+            where: {
+                Sillas: numeroSillas,
+                Restaurante_id: restaurante,
+            },
+            include: [{
+                model: ReservasModel,
+                as: "reservas", // Usamos el alias definido en la asociación
+                where: {
+                    Date: dia
+                },
+                required: false // Esto es importante si deseas obtener mesas incluso si no tienen reservas en la fecha dada
+            }]
+        });
+
+        const reservasDisponibles = mesas.map(mesa => {
+            return {
+                Mesa_id: mesa.Mesa_id,
+                Sillas: mesa.Sillas,
+                Reservas: mesa.reservas // Asegúrate de que este campo coincide con el alias definido
+            };
+        });
+
+        return { data: reservasDisponibles };
+    } catch (error) {
+        console.error("Error al obtener reservas:", error);
+        return { error: error.message };
+    }
+};
+
 async function getById(id) {
     try {
         const reserva = await ReservasModel.findByPk(id);
@@ -49,22 +84,22 @@ async function update(id, reservaData) {
     const {Date, Hora_Inicio, Hora_Final, Is_accepted, Mesa_Id, Name} = reservaData;
     try {
         // Crear el objeto de usuario actualizado
-        const nuevoreserva = {};
-        if (Date) nuevoreserva.Date = Date;
-        if (Hora_Inicio) nuevoreserva.Hora_Inicio = Hora_Inicio;
-        if (Hora_Final) nuevoreserva.Hora_Final = Hora_Final;
-        if (Is_accepted) nuevoreserva.Is_accepted = Is_accepted;
-        if (Mesa_Id) nuevoreserva.Mesa_Id = Mesa_Id;
-        if (Name) nuevoreserva.Name = Name;
+        const nuevoReserva = {};
+        if (Date) nuevoReserva.Date = Date;
+        if (Hora_Inicio) nuevoReserva.Hora_Inicio = Hora_Inicio;
+        if (Hora_Final) nuevoReserva.Hora_Final = Hora_Final;
+        if (Is_accepted) nuevoReserva.Is_accepted = Is_accepted;
+        if (Mesa_Id) nuevoReserva.Mesa_Id = Mesa_Id;
+        if (Name) nuevoReserva.Name = Name;
 
         // Verificar si hay campos para actualizar
-        if (Object.keys(nuevoreserva).length === 0) {
+        if (Object.keys(nuevoReserva).length === 0) {
             return {error: "No hay campos válidos para actualizar."};
         }
         // Realizar la actualización
-        const reserva = await ReservasModel.update(nuevoreserva, {where: {Reserva_id: id}});
+        const reserva = await ReservasModel.update(nuevoReserva, {where: {Reservas_id: id}});
 
-        return {reserva, nuevoreserva};
+        return {reserva, nuevoReserva};
     } catch (error) {
         console.log("ERROR ES:", error);
         return {error};
@@ -89,14 +124,14 @@ async function create(reservaData, id) {
     if (!timeRegex.test(Hora_Inicio) || !timeRegex.test(Hora_Final)) {
         return { error: "El formato de la hora es incorrecto. Debe ser HH:MM o HH:MM:SS" };
     }
-/*     const maxIdResult = await ReservasModel.findOne({attributes: ['Reservas_id'], order: [['Reservas_id', 'DESC']]});
+    const maxIdResult = await ReservasModel.findOne({attributes: ['Reservas_id'], order: [['Reservas_id', 'DESC']]});
     console.log("EL ID MAXIMO ES:",maxIdResult)
 
     let maxReservaId = null;
     
     if (maxIdResult) {
         maxReservaId = maxIdResult.dataValues.Reservas_id +1;
-    } */
+    }
     const sessionUserId = id
 
         try {
@@ -138,6 +173,7 @@ export {
     getAll,
     getById,
     getByProperty,
+    getReservasPorDiaYSillas,
     create,
     update,
     remove
@@ -148,6 +184,7 @@ export default {
     getAll,
     getById,
     getByProperty,
+    getReservasPorDiaYSillas,
     create,
     update,
     remove
