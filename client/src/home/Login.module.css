@@ -8,6 +8,7 @@
 }
 
 h2{
+    color: white;
     padding-top: .5rem;
     margin-block-start: 0;
     margin-block-end: 0;
@@ -17,15 +18,17 @@ h2{
 }
 
 .formContainer{
-    background-color: rgb(232, 232, 232);
-    border-radius: 12px;
+    /* outline: 1px solid var(--purple); */
+    background: linear-gradient(to bottom, #9d9c9c31, #827b78, #333330);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 0rem 1rem 1rem 1rem;
     gap: 1rem;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
 }
 
 input[type="text"], input[type="password"]{
@@ -41,10 +44,24 @@ input[type="text"], input[type="password"]{
     border-radius: 12px;
 }
 
+input:focus[type="text"], input:focus[type="password"]{
+    border: 2px solid var(--green);
+    color: var(--purple);
+    outline: none;
+    appearance: none;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    font-family: Roboto Condensed;
+    font-weight: 400;
+    letter-spacing: .05rem;
+    border-radius: 12px;
+}
+
 
 .btnContainer{
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content:center;
-    gap: 2rem;
+    /* gap: 2rem; */
 }
