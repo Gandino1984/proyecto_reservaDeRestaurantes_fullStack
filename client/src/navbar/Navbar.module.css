@@ -17,7 +17,7 @@
 .title{
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: center;
     user-select: none;
     font-size: 5rem;
     /* padding-left: 3rem; */
@@ -27,6 +27,7 @@
 
 .radioBtnsContainer{
     position: relative;
+    margin-left: 5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,19 +35,37 @@
 }
 
 .labels{
-    /* position: absolute; */
+    width: 100%;
+    position: absolute;
+    font-family: Roboto Condensed;
+    color: var(--green);
+    font-weight: 500;
     z-index: 5;
+    gap: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.labels label{
+    cursor: pointer;
+    color: var(--green);
+    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .radios{
+    width: 100%;
+    gap: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .radioOption{
+    opacity: 0;
+    cursor: pointer;
     display: flex;
 }
