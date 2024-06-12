@@ -101,30 +101,30 @@ async function register(userData) {
 async function login(Email, Password) {
     try {
         if (!Email || !Password) {
-            return { error: "Falta Email o contraseña" };
+            return { error: "Falta Email o contraseña", status: 400 };
         }
 
         const { data: oldUser } = await getByEmail(Email);
         if (!oldUser) {
-            return { error: "La combinación de usuario y contraseña es errónea" };
+            return { error: "La combinación de usuario y contraseña es errónea", status: 401 };
         }
 
         const result = await bcrypt.compare(Password, oldUser.Password);
         if (result) {
-            const token = jwt.sign({id:oldUser.user_id,email:oldUser.email},process.env.JWT_SECRET,{expiresIn: 60 * 60 * 24})
-            console.log("EL TOKEN ES:", token)
+            const token = jwt.sign({id: oldUser.User_id, email: oldUser.Email}, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 24 });
+            console.log("EL TOKEN ES:", token);
             const user_id = oldUser.User_id;
             const esAdmin = oldUser.Is_Admin;
-            //console.log("LOS DATOS SON", { user_id, esAdmin, token }); 
             return { user_id, esAdmin, token };
         } else {
-            return { error: "La combinación de usuario y contraseña es errónea" };
+            return { error: "La combinación de usuario y contraseña es errónea", status: 401 };
         }
     } catch (error) {
         console.error(error);
-        return { error: "Ha habido un error en el login" };
+        return { error: "Ha habido un error en el login", status: 500 };
     }
 }
+
 
 async function getByEmail(Email){
     try {
@@ -140,7 +140,8 @@ async function getByEmail(Email){
 async function update(id, userData) {
     const {Name, Is_Admin, Email, Password, Password_repeat} = userData;
     try {
-        // Validar contraseñas sólo si se proporcionan
+        // Validar contraseñas sólo si se proporcionan/* 
+        
         if (Password || Password_repeat) {
             if (Password !== Password_repeat) {
                 return {error: "Las contraseñas no coinciden"};
@@ -157,7 +158,7 @@ async function update(id, userData) {
             if (!emailRegex.test(Email)) {
                 return {error: "El correo electrónico no es válido. Asegúrate de que esté en el formato correcto, como ejemplo@dominio.com."};
             }
-        }
+        } 
 
         // Crear el objeto de usuario actualizado
         const nuevoUser = {};
