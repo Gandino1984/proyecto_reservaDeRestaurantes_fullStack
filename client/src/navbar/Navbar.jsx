@@ -1,7 +1,13 @@
 import React from 'react'
 import styles from './Navbar.module.css'
+import { useState } from 'react'
 
-function Navbar() {
+function Navbar({handleUserTypeSelection}) {
+
+  function onChangeRadiohandler(e){
+    handleUserTypeSelection(e);
+  }
+
   return (
     <>
         <div className={styles.containerNavbar}>
@@ -10,9 +16,9 @@ function Navbar() {
               </div>
         
               <div className={styles.radioBtnsContainer}>
-                    <div className={styles.radios}>
-                        <input id="clientOption" name='userType' type="radio" className={styles.radioOption} />
-                        <input id="restaurantOption" name='userType' type="radio" className={styles.radioOption} />
+                    <div className={styles.radios} onChange={e=>onChangeRadiohandler(e)}>
+                        <input className={styles.radioOption} id="clientOption" name='userType' type="radio" value="client" />
+                        <input className={styles.radioOption} id="restaurantOption" name='userType' type="radio" value="restaurant" />
                     </div>   
                     <div className={styles.labels}>
                         <label htmlFor="clientOption">CLIENTE</label>

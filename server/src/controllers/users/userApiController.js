@@ -35,7 +35,6 @@ const login = async(req,res) => {
     res.json({data})
 }
 
-
 const update = async(req,res)=>{
     const id = req.params.id;
     const user = await userController.update(id,req.body);
