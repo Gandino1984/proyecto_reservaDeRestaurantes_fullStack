@@ -70,3 +70,12 @@
     cursor: pointer;
     display: flex;
 }
+
+.activeLabel{
+    color: red;
+}
+
+.inactiveLabel{
+    color: gray;
+}
+

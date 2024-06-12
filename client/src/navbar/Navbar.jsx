@@ -8,6 +8,10 @@ function Navbar({handleUserTypeSelection}) {
     handleUserTypeSelection(e);
   }
 
+  function onClickLabel(e){
+
+  }
+
   return (
     <>
         <div className={styles.containerNavbar}>
@@ -16,14 +20,15 @@ function Navbar({handleUserTypeSelection}) {
               </div>
         
               <div className={styles.radioBtnsContainer}>
-                    <div className={styles.radios} onChange={e=>onChangeRadiohandler(e)}>
-                        <input className={styles.radioOption} id="clientOption" name='userType' type="radio" value="client" />
-                        <input className={styles.radioOption} id="restaurantOption" name='userType' type="radio" value="restaurant" />
-                    </div>   
                     <div className={styles.labels}>
-                        <label htmlFor="clientOption">CLIENTE</label>
-                        <label htmlFor="restaurantOption">RESTAURANTE</label>
-                    </div> 
+                        <label  htmlFor="clientOption">CLIENTE</label>
+                        <label  htmlFor="restaurantOption">RESTAURANTE</label>
+                    </div>                   
+                    <div className={styles.radios} onChange={e=>onChangeRadiohandler(e)}>
+                        <input className={styles.radioOption} value="client"  id="clientOption" name='userType' type="radio" />
+                        <input className={styles.radioOption} value="restaurant" id="restaurantOption" name='userType' type="radio" />
+                    </div>   
+                  
               </div>
         </div>
     </>

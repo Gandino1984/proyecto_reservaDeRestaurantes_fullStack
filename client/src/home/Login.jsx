@@ -9,7 +9,7 @@ function Login({userType}) {
   const [restaurantIsLogin, setrestaurantIsLogin] = useState(false);
   const [restaurantIsRegister, setrestaurantIsRegister] = useState(false);
 
-  const [userAction, setUserAction] = useState(null);
+  const [userAction, setUserAction] = useState("login");
 
   function onChangeActionHandler(e){
       if(e.target.value === "login" && userType === "client"){
@@ -35,9 +35,9 @@ function Login({userType}) {
       }
       if(e.target.value === "register" && userType === "restaurant"){
         setclientIsLogin(false)
-        setclientIsRegister(true)
+        setclientIsRegister(false)
         setrestaurantIsLogin(false)
-        setrestaurantIsRegister(false)
+        setrestaurantIsRegister(true)
         setUserAction("register")
       }
   }
@@ -49,8 +49,8 @@ function Login({userType}) {
                                 {userAction === "login" && <h2>Iniciar Sesión:</h2>}
                                 {userAction === "register" && <h2>Registrar Cuenta:</h2>}
                                 <div className={styles.radios} onChange={e=>onChangeActionHandler(e)}>
-                                    <input className={styles.radioOption} id="loginOption" name='userAction' type="radio" value="login" />
-                                    <input className={styles.radioOption} id="registerOption" name='userAction' type="radio" value="register" />
+                                    <input className={styles.radioOption} value="login" id="loginOption" name='userAction' type="radio"  />
+                                    <input className={styles.radioOption} value="register" id="registerOption" name='userAction' type="radio"  />
                                 </div>
                           </div>
                           
