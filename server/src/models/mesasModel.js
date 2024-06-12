@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/sequelize.js";
-
+import RestauranteModel from "./restauranteModel.js";
 
 const MesasModel = sequelize.define("mesas",
     {
@@ -19,9 +19,7 @@ const MesasModel = sequelize.define("mesas",
         }        
     }
 )
-/* mesasModel.belongsTo(userModel,{as:"usuario",foreignKey:"User_id"});
-userModel.hasMany(mesasModel,{foreignKey:"User_id"});
-mesasModel.belongsTo(weaponModel,{as:"arma",foreignKey:"Weapon_id"});
-weaponModel.hasMany(mesasModel,{foreignKey:"Weapon_id"}); */
+MesasModel.belongsTo(RestauranteModel,{as:"restaurante",foreignKey:"Restaurante_id"});
+RestauranteModel.hasMany(MesasModel,{foreignKey:"Restaurante_id"});
 
 export default MesasModel;

@@ -1,16 +1,16 @@
-import reservasModel from "../../models/reservasModel.js";
+import ReservasModel from "../../models/ReservasModel.js";
 import { Op } from 'sequelize'; 
 
 
 async function getAll(userData) {
     try {
         if (userData.esAdmin == 1) {
-            const users = await reservasModel.findAll();
+            const users = await ReservasModel.findAll();
             console.log("LAS RESERVAS MOSTRADAS SIENDO ADMIN SON:", users)
             return { data: users };
         }
         if (userData.esAdmin == 0) {
-            const user = await reservasModel.findOne({ where: { User_id: userData.user_id } });
+            const user = await ReservasModel.findOne({ where: { User_id: userData.user_id } });
             console.log("LAS RESERVAS MOSTRADAS SIENDO USUARIO SON:", user)
             return { data: [user] };
         }        
@@ -23,7 +23,7 @@ async function getAll(userData) {
 
 const getByProperty = async(property,value) =>{
     try {
-        const reserva = await reservasModel.find({[property]:value})
+        const reserva = await ReservasModel.find({[property]:value})
         return reserva;
     } catch (error) {
         return null;
@@ -32,7 +32,7 @@ const getByProperty = async(property,value) =>{
 
 async function getById(id) {
     try {
-        const reserva = await reservasModel.findByPk(id);
+        const reserva = await ReservasModel.findByPk(id);
         if (!reserva) {
             return { error: "El reserva no existe" };
         }
@@ -62,7 +62,7 @@ async function update(id, reservaData) {
             return {error: "No hay campos válidos para actualizar."};
         }
         // Realizar la actualización
-        const reserva = await reservasModel.update(nuevoreserva, {where: {Reserva_id: id}});
+        const reserva = await ReservasModel.update(nuevoreserva, {where: {Reserva_id: id}});
 
         return {reserva, nuevoreserva};
     } catch (error) {
@@ -89,7 +89,7 @@ async function create(reservaData, id) {
     if (!timeRegex.test(Hora_Inicio) || !timeRegex.test(Hora_Final)) {
         return { error: "El formato de la hora es incorrecto. Debe ser HH:MM o HH:MM:SS" };
     }
-/*     const maxIdResult = await reservasModel.findOne({attributes: ['Reservas_id'], order: [['Reservas_id', 'DESC']]});
+/*     const maxIdResult = await ReservasModel.findOne({attributes: ['Reservas_id'], order: [['Reservas_id', 'DESC']]});
     console.log("EL ID MAXIMO ES:",maxIdResult)
 
     let maxReservaId = null;
@@ -100,7 +100,7 @@ async function create(reservaData, id) {
     const sessionUserId = id
 
         try {
-            const newReserva = await reservasModel.create({
+            const newReserva = await ReservasModel.create({
                 Reservas_id:1,
                 User_id:sessionUserId,
                 Date,
@@ -124,9 +124,9 @@ async function create(reservaData, id) {
 
 async function remove(id) {
     try {
-        const usuario = await reservasModel.findByPk(id);
-        await usuario.destroy();
-        return {data:usuario};
+        const reserva = await ReservasModel.findByPk(id);
+        await reserva.destroy();
+        return {data:reserva};
     } catch (error) {
         console.error(error);
         return{error}

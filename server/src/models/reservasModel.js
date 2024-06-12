@@ -1,8 +1,9 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/sequelize.js";
+import userModel from "./userModel.js";
+import MesasModel from "./mesasModel.js";
 
-
-const reservasModel = sequelize.define("Reservas",
+const ReservasModel = sequelize.define("Reservas",
     {
         Reservas_id:{
             type: DataTypes.INTEGER.UNSIGNED,
@@ -40,9 +41,9 @@ const reservasModel = sequelize.define("Reservas",
         
     }
 )
-/* reservasModel.belongsTo(userModel,{as:"usuario",foreignKey:"User_id"});
-userModel.hasMany(reservasModel,{foreignKey:"User_id"});
-reservasModel.belongsTo(weaponModel,{as:"arma",foreignKey:"Weapon_id"});
-weaponModel.hasMany(reservasModel,{foreignKey:"Weapon_id"}); */
+ReservasModel.belongsTo(userModel,{as:"usuario",foreignKey:"User_id"});
+userModel.hasMany(ReservasModel,{foreignKey:"User_id"});
+ReservasModel.belongsTo(MesasModel,{as:"mesas",foreignKey:"Mesa_id"});
+MesasModel.hasMany(ReservasModel,{foreignKey:"Mesa_id"});
 
-export default reservasModel;
+export default ReservasModel;

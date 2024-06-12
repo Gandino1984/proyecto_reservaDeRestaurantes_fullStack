@@ -5,7 +5,6 @@ import userApiController from "../controllers/users/userApiController.js";
 const router  = Router();
 
 router.get("/",userApiController.getAll);
-//router.get("/byproperty",userApiController.getByProperty);
 router.get("/:id",userApiController.getById);
 router.put("/:id",userApiController.update);
 router.delete("/:id",userApiController.remove);
