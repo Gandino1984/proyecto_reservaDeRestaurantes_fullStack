@@ -8,11 +8,18 @@ import Navbar from '../navbar/Navbar.jsx'
 
 function Landing(){
 
+  const [userType, setuserType] = useState("");
+
+  function handleUserTypeSelection(e){
+    setuserType(e.target.value);
+    // console.log("Landing: userType= ", userType);
+  }
+
   return (
         <div className={styles.containerLanding}>
                 <div className={styles.background} />
-                <Navbar />
-                <Login />
+                <Navbar handleUserTypeSelection={handleUserTypeSelection}/>
+                <Login userType={userType}/>
         </div> 
   )
 }

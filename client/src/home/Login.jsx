@@ -2,9 +2,11 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import styles from './Login.module.css'
 
-function Login() {
+function Login({userType}) {
 
-  const [userType, setuserType] = useState("restaurant");
+  const [user, setuser] = useState(userType);
+  console.log("Login:userType= ", userType)
+
   const [userAction, setuserAction] = useState("login");
 
   const [clientIsLogin, setclientIsLogin] = useState(true);
@@ -14,17 +16,17 @@ function Login() {
   const [restaurantIsRegister, setrestaurantIsregister] = useState(false);
 
   useEffect(() => {
-    if (userType === "client") {
+    if (user === "client") {
       setrestaurantIsLogin(false);
       setrestaurantIsregister(false);
     }
-    if (userType === "restaurant") {
+    if (user === "restaurant") {
       setrestaurantIsLogin(true);
       setrestaurantIsregister(true);
       setclientIsLogin(false);
       setclientIsRegister(false);
     }
-  }, [userType, clientIsLogin, clientIsRegister, restaurantIsLogin, restaurantIsRegister])
+  }, [user, clientIsLogin, clientIsRegister, restaurantIsLogin, restaurantIsRegister])
 
   return (
     <div className={styles.containerLogin}>
