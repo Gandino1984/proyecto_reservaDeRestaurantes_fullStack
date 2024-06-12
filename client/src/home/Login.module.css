@@ -19,8 +19,7 @@
     justify-content: center;
     padding:1rem 2rem 2rem 2rem;
     gap: 2rem;
-    transition: all 200ms ease;
-    /* margin-bottom: 1rem; */
+    transition: all 300ms ease;
 }
 
 .formContainer:hover{
@@ -96,8 +95,8 @@ input:focus[type="password"]{
     outline: none;
     cursor: pointer;
     appearance: none;
-    padding: .5rem .4rem;
-    font-size: .9rem;
+    padding: .5rem 0;
+    font-size: 1rem;
     font-family: Roboto Condensed;
     font-weight: 700;
     letter-spacing: .05rem;
