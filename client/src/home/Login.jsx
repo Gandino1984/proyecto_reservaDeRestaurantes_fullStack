@@ -15,20 +15,36 @@ function Login({userType}) {
   const [restaurantIsLogin, setrestaurantIsLogin] = useState(false);
   const [restaurantIsRegister, setrestaurantIsregister] = useState(false);
 
+  // faltan comprobaciones aquí
   useEffect((user, userAction) => {
     if (user === "client") {
-      setrestaurantIsLogin(false);
-      setrestaurantIsregister(false);
+        if(userAction === "login"){
+          setrestaurantIsLogin(false);
+          setrestaurantIsregister(false);
+          setclientIsLogin(true);
+          setclientIsRegister(false);  
+        }else{
+          setrestaurantIsLogin(false);
+          setrestaurantIsregister(false);
+          setclientIsLogin(false);
+          setclientIsRegister(true);
+        }  
     }
     if (user === "restaurant") {
-      setrestaurantIsLogin(true);
-      setrestaurantIsregister(true);
-      setclientIsLogin(false);
-      setclientIsRegister(false);
-    }
-  }, [user, clientIsLogin, clientIsRegister, restaurantIsLogin, restaurantIsRegister])
+      if(userAction === "login"){
+        setrestaurantIsLogin(true);
+        setrestaurantIsregister(false);
+        setclientIsLogin(false);
+        setclientIsRegister(false);  
+      }else{
+        setrestaurantIsLogin(false);
+        setrestaurantIsregister(true);
+        setclientIsLogin(false);
+        setclientIsRegister(false);
+      }  
+  }
 
-  // radioOptionHandler
+  }, [user, userAction, clientIsLogin, clientIsRegister, restaurantIsLogin, restaurantIsRegister])
 
   return (
     <div className={styles.containerLogin}>
