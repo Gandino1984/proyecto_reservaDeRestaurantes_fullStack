@@ -11,7 +11,7 @@ const getAllReservasByrestaurante = async () => {
     return result;
 };
 
-const getReservasByID = async (reserveID) => {
+const getReservasByID = async (reservaID) => {
     const result = await fetchData(`/reserves/${reservaID}`, "get");
     return result;
 };
