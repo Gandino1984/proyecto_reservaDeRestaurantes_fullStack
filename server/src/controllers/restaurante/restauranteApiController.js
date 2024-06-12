@@ -10,7 +10,7 @@ const getAll = async(req,res)=>{
 }
 
 const getRestauranteByTipo = async(req,res)=>{
-    const tipo = req.params
+    const tipo = req.params.tipo
     const {error,data} = await restauranteController.getRestauranteByTipo(tipo);
     res.json({error,data});
 }

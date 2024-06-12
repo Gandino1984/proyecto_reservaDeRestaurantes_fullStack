@@ -203,7 +203,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"Email\":\"usiao@normal.com\",\n    \"Name\":\"usiao\",\n    \"Password\":\"Asdasd123!\",\n    \"Password_repeat\":\"Asdasd123!\"\n}",
+							"raw": "{\n\t\"Email\":\"usao@normal.com\",\n    \"Name\":\"usio\",\n    \"Password\":\"asd\",\n    \"Password_repeat\":\"asd\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -297,7 +297,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"Email\":\"usiao@normal.com\",\n    \"Password\":\"Asdasd123!\"\n}",
+							"raw": "{\n\t\"Email\":\"asd\",\n    \"Password\":\"asd\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -365,7 +365,7 @@
 					"response": []
 				},
 				{
-					"name": "GetAllReservasByRestaurante",
+					"name": "getReservasPorDiaYSillas",
 					"event": [
 						{
 							"listen": "test",
@@ -394,13 +394,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/reservas/restaurante",
+							"raw": "{{base_url}}/reservas/1/4/2024-07-01",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"reservas",
-								"restaurante"
+								"1",
+								"4",
+								"2024-07-01"
 							]
 						},
 						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -472,7 +474,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"username\": \"es un poco tontería\"\n}",
+							"raw": "{\n    \"Date\": \"2024-07-01\",\n    \"Hora_Inicio\": \"15:00:00\",\n    \"Hora_Final\": \"17:00:00\",\n    \"Is_accepted\": 1,\n    \"Mesa_Id\": 1,\n    \"Name\": \"Nueva reserva actualizada\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -558,7 +560,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"Date\":\"2024-06-11\",\n    \"Hora_Inicio\":\"16:00\",\n    \"Hora_Final\":\"17:00\",\n    \"Name\":\"Asier\"\n}",
+							"raw": "{\n        \"Date\": \"2024-07-16\",\n        \"Hora_Inicio\": \"15:00:00\",\n        \"Hora_Final\": \"17:00:00\",\n        \"Mesa_id\": 1,\n        \"Name\": \"Reserva de ejemplo\",\n        \"id\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -733,7 +735,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"username\": \"es un poco tontería\"\n}",
+							"raw": "{\n\t\"Sillas\": 9\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -819,7 +821,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"Email\":\"usario@normal.com\",\n    \"Name\":\"usario\",\n    \"Password\":\"Asdasd123!\",\n    \"Password_repeat\":\"Asdasd123!\"\n}",
+							"raw": "{\n        \"Restaurante_id\": 1,\n        \"Sillas\": 4\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -874,12 +876,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/restaurantes",
+							"raw": "{{base_url}}/restaurante",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"restaurantes"
+								"restaurante"
 							]
 						},
 						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -887,7 +889,7 @@
 					"response": []
 				},
 				{
-					"name": "GetAllRestaurantesByUSer",
+					"name": "GetRestauranteByTipo",
 					"event": [
 						{
 							"listen": "test",
@@ -902,6 +904,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -915,14 +920,24 @@
 						},
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{base_url}}/mesas/restaurante",
+							"raw": "{{base_url}}/restaurante/tipo/Pizza",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"mesas",
-								"restaurante"
+								"restaurante",
+								"tipo",
+								"Pizza"
 							]
 						},
 						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -959,13 +974,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/restaurante/1",
+							"raw": "{{base_url}}/restaurante/3",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"restaurante",
-								"1"
+								"3"
 							]
 						},
 						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -994,7 +1009,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"username\": \"es un poco tontería\"\n}",
+							"raw": "{\n    \"Name\": \"Nuevo nombre del restaurante\",\n    \"Hora_Apertura\": \"08:00:00\",\n    \"Hora_Cierre\": \"22:00:00\",\n    \"User_id\": 1,\n    \"Tipo_Restaurante\": \"Nueva categoría\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1080,7 +1095,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"Email\":\"usario@normal.com\",\n    \"Name\":\"usario\",\n    \"Password\":\"Asdasd123!\",\n    \"Password_repeat\":\"Asdasd123!\"\n}",
+							"raw": "{\n    \"Name\": \"Nuevo Restaurante\",\n    \"Hora_Apertura\": \"10:00:00\",\n    \"Hora_Cierre\": \"22:00:00\",\n    \"Tipo_Restaurante\": \"Comida Rápida\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"

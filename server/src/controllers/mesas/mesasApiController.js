@@ -34,8 +34,7 @@ const remove = async(req,res)=>{
 }
 
 const create = async(req,res)=>{
-    const sesionUserId = req.session.user.user_id
-    const mesa = await mesasController.create(req.body, sesionUserId);
+    const mesa = await mesasController.create(req.body);
     res.json({data:mesa})
 }
 
