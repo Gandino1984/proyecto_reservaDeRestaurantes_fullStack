@@ -1,4 +1,5 @@
 import mesasModel from "../../models/mesasModel.js";
+import ReservasModel from "../../models/reservasModel.js";
 import { Op } from 'sequelize'; 
 
 
@@ -21,9 +22,10 @@ async function getAll(userData) {
     }
 }
 
-const getByProperty = async(property,value) =>{
+const getMesasByRestaurante = async(restauranteId) =>{
     try {
-        const mesa = await mesasModel.find({[property]:value})
+        const mesa = await mesasModel.findAll({ where: { Restaurante_id: restauranteId } })
+        console.log("Mesas filtradas", mesa)
         return mesa;
     } catch (error) {
         return null;
@@ -85,7 +87,7 @@ async function create(mesaData, id) {
         try {
             const newmesa = await mesasModel.create({
                 Mesa_id:maxmesaId,
-                Restaurante_id:1,
+                Restaurante_id,
                 Sillas,
             });
             console.log("new mesa", newmesa);
@@ -102,6 +104,11 @@ async function create(mesaData, id) {
 
 async function remove(id) {
     try {
+        await ReservasModel.destroy({
+            where: {
+                Mesa_id: id
+            }
+        });
         const mesa = await mesasModel.findByPk(id);
         await mesa.destroy();
         return {data:mesa};
@@ -115,7 +122,7 @@ async function remove(id) {
 export {
     getAll,
     getById,
-    getByProperty,
+    getMesasByRestaurante,
     create,
     update,
     remove
@@ -125,7 +132,7 @@ export {
 export default {
     getAll,
     getById,
-    getByProperty,
+    getMesasByRestaurante,
     create,
     update,
     remove

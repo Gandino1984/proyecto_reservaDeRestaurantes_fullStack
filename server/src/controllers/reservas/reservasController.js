@@ -42,23 +42,16 @@ const getReservasPorDiaYSillas = async ({ numeroSillas, dia, restaurante }) => {
             },
             include: [{
                 model: ReservasModel,
-                as: "reservas", // Usamos el alias definido en la asociación
+                as: "reservas",
                 where: {
                     Date: dia
                 },
-                required: false // Esto es importante si deseas obtener mesas incluso si no tienen reservas en la fecha dada
+                required: false 
             }]
         });
 
-        const reservasDisponibles = mesas.map(mesa => {
-            return {
-                Mesa_id: mesa.Mesa_id,
-                Sillas: mesa.Sillas,
-                Reservas: mesa.reservas // Asegúrate de que este campo coincide con el alias definido
-            };
-        });
-
-        return { data: reservasDisponibles };
+        console.log("LAS MESAS SON:", mesas)
+        return { data: mesas };
     } catch (error) {
         console.error("Error al obtener reservas:", error);
         return { error: error.message };
@@ -108,41 +101,42 @@ async function update(id, reservaData) {
 
 async function create(reservaData, id) {
     const { Date, Hora_Inicio, Hora_Final, Mesa_id, Name } = reservaData;
-
-    // Validaciones básicas
+    
     if (!Date || !Hora_Inicio || !Hora_Final || !Name) {
         return { error: "Todos los campos son obligatorios" };
     }
-
-    // Validación de fecha y hora
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
     if (!dateRegex.test(Date)) {
         return { error: "El formato de la fecha es incorrecto. Debe ser YYYY-MM-DD" };
     }
-
     const timeRegex = /^\d{2}:\d{2}(:\d{2})?$/;
     if (!timeRegex.test(Hora_Inicio) || !timeRegex.test(Hora_Final)) {
         return { error: "El formato de la hora es incorrecto. Debe ser HH:MM o HH:MM:SS" };
     }
     const maxIdResult = await ReservasModel.findOne({attributes: ['Reservas_id'], order: [['Reservas_id', 'DESC']]});
     console.log("EL ID MAXIMO ES:",maxIdResult)
-
     let maxReservaId = null;
-    
     if (maxIdResult) {
-        maxReservaId = maxIdResult.dataValues.Reservas_id +1;
+    maxReservaId = maxIdResult.dataValues.Reservas_id +1;
     }
     const sessionUserId = id
 
+    const reservaExistente = await ReservasModel.findOne({where: {Date: Date,Hora_Inicio: Hora_Inicio, Hora_Final: Hora_Final }});
+
+    if (reservaExistente) {
+        return { error: "No se puede crear la reserva, ya hay una reserva ese dia y en ese rango de horas" };
+ 
+    }
+
         try {
             const newReserva = await ReservasModel.create({
-                Reservas_id:1,
+                Reservas_id:maxReservaId,
                 User_id:sessionUserId,
                 Date,
                 Hora_Inicio,
                 Hora_Final,
                 Is_accepted:0,
-                Mesa_id:1,
+                Mesa_id,
                 Name,
             });
             console.log("new reserva", newReserva);
