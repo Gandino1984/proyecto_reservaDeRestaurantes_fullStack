@@ -25,11 +25,8 @@ async function getAll(userData) {
 
 async function getRestauranteByTipo(tipo) {
     try {
-        const restaurantes = await restauranteModel.findAll({ 
-            include:["Name","Hora_Apertura","Hora_Cierre","Tipo_Restaurante"], 
-            where: { Tipo_Restaurante: tipo } 
-        });        
-        console.log(restaurantes)
+        const restaurantes = await restauranteModel.findAll({where: { Tipo_Restaurante: tipo } });        
+        console.log("Llego aqui", restaurantes)
         return { data: restaurantes };
     }
     catch (error) {
@@ -89,38 +86,44 @@ async function updateRestaurante(id, restauranteData) {
 }
 
 
-async function create(restauranteData, id) {
-    const { Restaurante_id, Sillas } = restauranteData;
-
+async function create(restauranteData, sesionUserId) {
+    const { Name, Hora_Apertura, Hora_Cierre, Tipo_Restaurante } = restauranteData;
+    console.log("el tipo de restaurante es", Tipo_Restaurante)
     // Validaciones básicas
-    if (!Restaurante_id || !Sillas) {
+    if (!Name || !Hora_Apertura || !Hora_Cierre || !Tipo_Restaurante) {
         return { error: "Todos los campos son obligatorios" };
     }
-    const maxIdResult = await restauranteModel.findOne({attributes: ['restaurante_id'], order: [['restaurante_id', 'DESC']]});
-    console.log("EL ID MAXIMO ES:",maxIdResult)
 
-    let maxrestauranteId = null;
-    
-    if (maxIdResult) {
-        maxrestauranteId = maxIdResult.dataValues.restaurante_id +1;
-    }
-    const sessionUserId = id
+    try {
+        const maxIdResult = await restauranteModel.findOne({
+            attributes: ['Restaurante_id'],
+            order: [['Restaurante_id', 'DESC']]
+        });
 
-        try {
-            const newrestaurante = await restauranteModel.create({
-                Restaurante_id:1,
-                Sillas,
-            });
-            console.log("new restaurante", newrestaurante);
-            return { data: newrestaurante };
+        let maxRestauranteId = 1;
 
-        } catch (error) {
-
-            console.error("Error al crear la restaurante:", error);
-            return { error: "Error al crear la restaurante. Por favor, inténtelo de nuevo más tarde." };
+        if (maxIdResult) {
+            maxRestauranteId = maxIdResult.dataValues.Restaurante_id + 1;
         }
 
+        const newRestaurante = await restauranteModel.create({
+            Restaurante_id: maxRestauranteId,
+            Name,
+            Hora_Apertura,
+            Hora_Cierre,
+            User_id: sesionUserId,
+            Tipo_Restaurante
+        });
+
+        console.log("Nuevo restaurante creado:", newRestaurante);
+
+        return { data: newRestaurante };
+    } catch (error) {
+        console.error("Error al crear el restaurante:", error);
+        return { error: "Error al crear el restaurante. Por favor, inténtelo de nuevo más tarde." };
+    }
 }
+
 
 async function remove(id) {
     try {
