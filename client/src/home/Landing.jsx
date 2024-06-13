@@ -5,6 +5,7 @@ import styles from './Landing.module.css'
 import bg1 from '../images/bgHome.jpg'
 import Login from './Login.jsx'
 import Navbar from '../navbar/Navbar.jsx'
+import Hero from '../heroSection/Hero.jsx'
 
 function Landing(){
   // default state de tipo de usuario
@@ -27,6 +28,7 @@ function Landing(){
                 <div className={styles.background} />
                 <Navbar handleUserTypeSelection={handleUserTypeSelection} loginFormOpen={loginFormOpen} />
                 <Login userType={userType} loginFormStateChangeHandler={loginFormStateChangeHandler}/>
+                <Hero />
         </div> 
   )
 }

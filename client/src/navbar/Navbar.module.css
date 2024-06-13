@@ -21,7 +21,10 @@
     align-items: center;
     justify-content: center;
     user-select: none;
-    font-size: 5.5rem;
+    font-size: 6rem;
+    font-weight: 900;
+    letter-spacing: .2rem;
+    padding-right: 2rem;
     /* padding-left: 3rem; */
     font-family: Alegreya;
     color: white;
