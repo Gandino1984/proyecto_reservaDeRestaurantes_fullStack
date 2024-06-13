@@ -1,4 +1,7 @@
 import userModel from "../../models/userModel.js";
+import ReservasModel from "../../models/reservasModel.js";
+import RestauranteModel from "../../models/restauranteModel.js";
+import MesasModel from "../../models/mesasModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -28,7 +31,7 @@ async function getById(id) {
         if (!user) {
             return { error: "El user no existe" };
         }
-        return { data: user };
+        return  user ;
     }
     catch (error) {
         console.error(error);
@@ -187,15 +190,45 @@ async function update(id, userData) {
 
 async function remove(id) {
     try {
+        const restaurantes = await RestauranteModel.findAll({
+            where: {
+                User_id: id
+            },
+            attributes: ['Restaurante_id']
+        });
+
+        const restauranteIds = restaurantes.map(r => r.Restaurante_id);
+
+        if (restauranteIds.length > 0) {
+            await MesasModel.destroy({
+                where: {
+                    Restaurante_id: restauranteIds
+                }
+            });
+
+            await RestauranteModel.destroy({
+                where: {
+                    Restaurante_id: restauranteIds
+                }
+            });
+        }
+
+        await ReservasModel.destroy({
+            where: {
+                User_id: id
+            }
+        });
+
         const usuario = await userModel.findByPk(id);
         await usuario.destroy();
-        return {data:usuario};
+
+        return { data: usuario };
     } catch (error) {
-        console.error(error);
-        return{error}
+        console.error("Error al eliminar el usuario y sus datos asociados:", error);
+        return { error: error.message };
     }
-    
 }
+
 
 export {
     getAll,
