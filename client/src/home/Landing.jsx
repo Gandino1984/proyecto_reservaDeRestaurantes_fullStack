@@ -5,21 +5,30 @@ import styles from './Landing.module.css'
 import bg1 from '../images/bgHome.jpg'
 import Login from './Login.jsx'
 import Navbar from '../navbar/Navbar.jsx'
+import Hero from '../heroSection/Hero.jsx'
 
 function Landing(){
-
+  // default state de tipo de usuario
   const [userType, setuserType] = useState("");
 
+  //esta func usa el tipo de usuario seleccionado en el navbar
   function handleUserTypeSelection(e){
     setuserType(e.target.value);
-    // console.log("Landing: userType= ", userType);
+    
+  }
+
+  const [loginFormOpen, setloginFormOpen] = useState(false);
+
+  function loginFormStateChangeHandler(){
+    setloginFormOpen((loginFormOpen)=>!loginFormOpen);
   }
 
   return (
         <div className={styles.containerLanding}>
                 <div className={styles.background} />
-                <Navbar handleUserTypeSelection={handleUserTypeSelection}/>
-                <Login userType={userType}/>
+                <Navbar handleUserTypeSelection={handleUserTypeSelection} loginFormOpen={loginFormOpen} />
+                <Login userType={userType} loginFormStateChangeHandler={loginFormStateChangeHandler}/>
+                <Hero />
         </div> 
   )
 }
