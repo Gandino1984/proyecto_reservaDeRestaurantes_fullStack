@@ -6,12 +6,10 @@ function Navbar({handleUserTypeSelection}) {
 
   function onChangeRadiohandler(e){
     handleUserTypeSelection(e);
+    //agregar aquí la clase active para los label del navbar
+    // visibilizar login on click 
   }
-
-  function onClickLabel(e){
-
-  }
-
+s
   return (
     <>
         <div className={styles.containerNavbar}>

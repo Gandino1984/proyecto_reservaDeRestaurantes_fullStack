@@ -46,23 +46,25 @@ function Login({userType}) {
     <div className={styles.containerLogin}>
                   <form className={styles.formContainer} action="">
                           <div className={styles.menuContainer}>
-                                {userAction === "login" && <h2>Iniciar Sesión:</h2>}
-                                {userAction === "register" && <h2>Registrar Cuenta:</h2>}
                                 <div className={styles.radios} onChange={e=>onChangeActionHandler(e)}>
+                                    <div className={styles.labels}>
+                                      <label  className={styles.labelLogin} htmlFor="loginOption">Iniciar Sesión</label>
+                                      <label  className={styles.labelRegister} htmlFor="registerOption">Registrar Cuenta</label>
+                                    </div>  
                                     <input className={styles.radioOption} value="login" id="loginOption" name='userAction' type="radio"  />
                                     <input className={styles.radioOption} value="register" id="registerOption" name='userAction' type="radio"  />
                                 </div>
                           </div>
                           
                           {userType === "client" && 
-                            <div>
+                            <div className={styles.inputsUserLogin}>
                               <input type="text" id="clientName" name="clientName" placeholder="Nombre de cliente" />
                               <input type="password" id="clientPasssword" name="clientPasssword" placeholder="Contraseña de cliente" />
                             </div>}
                           {clientIsRegister && <input type="password" id="repeatClientPasssword" name="clientRepeatPasssword" placeholder="Repetir contraseña de cliente" />}
                           
                           {userType === "restaurant" && 
-                            <div>
+                            <div className={styles.inputsUserLogin}>
                               <input type="text" id="restaurantName" name="restaurantName" placeholder="Nombre de restaurante" />
                               <input type="password" id="restaurantPasssword" name="restaurantPasssword" placeholder="Contraseña de restaurante" />
                             </div>
