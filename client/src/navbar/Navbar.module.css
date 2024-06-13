@@ -5,7 +5,8 @@
     display: flex;
     align-items: center; 
     justify-content:left;
-    padding-left: 5rem;
+    padding-left: 7rem;
+    padding-top: 2rem;
 }
 
 .containerTitle{
@@ -20,7 +21,10 @@
     align-items: center;
     justify-content: center;
     user-select: none;
-    font-size: 5rem;
+    font-size: 6rem;
+    font-weight: 700;
+    letter-spacing: .2rem;
+    padding-right: 2rem;
     /* padding-left: 3rem; */
     font-family: Alegreya;
     color: white;
@@ -28,7 +32,7 @@
 
 .radioBtnsContainer{
     position: relative;
-    margin-left: 5rem;
+    margin-left: 7rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,9 +44,11 @@
     position: absolute;
     font-family: Roboto Condensed;
     color: var(--green);
+    font-size: 1.3rem;
+    letter-spacing: .1rem;
     font-weight: 500;
     z-index: 5;
-    gap: 1rem;
+    gap: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,4 +75,20 @@
     opacity: 0;
     cursor: pointer;
     display: flex;
+}
+
+.activeLabel{
+    color: red;
+}
+
+.inactiveLabel{
+    color: gray;
+}
+
+.activeSelector{
+    display: flex;
+}
+
+.inactiveSelector{
+    display: none;
 }

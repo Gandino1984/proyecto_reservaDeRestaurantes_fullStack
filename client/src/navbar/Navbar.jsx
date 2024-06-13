@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './Navbar.module.css'
 import { useState } from 'react'
 
-function Navbar({handleUserTypeSelection}) {
+function Navbar({handleUserTypeSelection, loginFormOpen}) {
 
+  const [selectorState, setselectorState]  = useState("activeSelector");
+  
   function onChangeRadiohandler(e){
     handleUserTypeSelection(e);
+    setselectorState("inactiveSelector") 
   }
+
+  useEffect(() => {
+    if(loginFormOpen === true){
+      setselectorState("inactiveSelector") 
+    }else{
+      setselectorState("activeSelector")
+    }
+  },[loginFormOpen])
+   
 
   return (
     <>
@@ -15,15 +27,16 @@ function Navbar({handleUserTypeSelection}) {
                     <p className={styles.title}>Book-it</p>
               </div>
         
-              <div className={styles.radioBtnsContainer}>
-                    <div className={styles.radios} onChange={e=>onChangeRadiohandler(e)}>
-                        <input className={styles.radioOption} id="clientOption" name='userType' type="radio" value="client" />
-                        <input className={styles.radioOption} id="restaurantOption" name='userType' type="radio" value="restaurant" />
-                    </div>   
+              <div className={`${styles.radioBtnsContainer} ${styles[selectorState]}`}>
                     <div className={styles.labels}>
-                        <label htmlFor="clientOption">CLIENTE</label>
-                        <label htmlFor="restaurantOption">RESTAURANTE</label>
-                    </div> 
+                        <label  htmlFor="clientOption">CLIENTE</label>
+                        <label  htmlFor="restaurantOption">RESTAURANTE</label>
+                    </div>                   
+                    <div className={styles.radios} onChange={e=>onChangeRadiohandler(e)}>
+                        <input className={styles.radioOption} value="client"  id="clientOption" name='userType' type="radio" />
+                        <input className={styles.radioOption} value="restaurant" id="restaurantOption" name='userType' type="radio" />
+                    </div>   
+                  
               </div>
         </div>
     </>
