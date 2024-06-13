@@ -18,7 +18,6 @@ const updateRestaurante = async (restauranteID, restauranteData) => {
     return result;
 };
 
-
 const createRestaurante = async(restauranteData)=>{
     const result = await fetchData("/restaurantes","post",restauranteData);
     return result;
