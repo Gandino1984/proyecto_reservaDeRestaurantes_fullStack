@@ -37,6 +37,7 @@
 }
 
 .labels{
+    padding-top: 1rem;
     user-select: none;
     display: flex;
     align-items: center;
@@ -46,6 +47,8 @@
     z-index: 10;
     opacity: 1;
     gap: 2rem;
+    /* padding-bottom: 1rem; */
+    margin-bottom: 1rem;
 }
 
 
@@ -133,7 +136,7 @@ input:focus[type="password"]{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .btn1{
@@ -159,16 +162,38 @@ input:focus[type="password"]{
     /* box-shadow: 1px 1px 10px 5px #cbce349b; */
 }
 
+.closeIcon{
+    /* border: 1px solid red; */
+    position: absolute;
+    transform: translate(1.5rem, -.5rem);
+    z-index: 20;
+    width: 10%;
+    height: 100%;
+    right: 0;
+    padding: .3rem;
+    display: flex;
+    align-items: center;
+    justify-content:flex-end;
+    color: var(--green);
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+.closeIcon:hover{
+    color: var(--purple);
+}
+
 .activeForm{
     display: flex;
 }
 
 .inactiveForm{
+    display: none;
     animation-name: slideDown;
     animation-duration: 300ms;
     animation-timing-function: ease;
     animation-iteration-count: 1;
-    display: none;
+  
 }
 
 @keyframes slideUp {

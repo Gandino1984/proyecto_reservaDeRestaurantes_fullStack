@@ -14,13 +14,14 @@ function Landing(){
   //esta func usa el tipo de usuario seleccionado en el navbar
   function handleUserTypeSelection(e){
     setuserType(e.target.value);
+    
   }
 
   const [loginFormOpen, setloginFormOpen] = useState(false);
 
   function loginFormStateChangeHandler(){
-    // const state = !loginFormOpen;
-    setloginFormOpen((loginFormOpen)=>(!loginFormOpen));
+    const state = !loginFormOpen;
+    setloginFormOpen((loginFormOpen)=>!loginFormOpen);
   }
 
   return (

@@ -8,7 +8,7 @@ function Login({userType, loginFormStateChangeHandler}) {
   let formState  = "inactiveForm";
 
   //si el selector de tipo de usuario del navbar no ha sido presionado 
-  //el formulario. Para cualquier opción se muestra.
+  //el formulario. Para cualquier opción se muestra.  
   if(userType === ""){
     formState = "inactiveForm"
   }else{
@@ -23,7 +23,6 @@ function Login({userType, loginFormStateChangeHandler}) {
   const [restaurantIsRegister, setrestaurantIsRegister] = useState(false);
 
   const [userAction, setUserAction] = useState("login");
-
 
   function onChangeActionHandler(e){
       if(e.target.value === "login" && userType === "client"){
@@ -56,6 +55,8 @@ function Login({userType, loginFormStateChangeHandler}) {
       }
   }
 
+
+
   return (
     <div className={styles.containerLogin}>
                   <form className={`${styles.formContainer} ${styles[formState]}`} action="">
@@ -68,6 +69,7 @@ function Login({userType, loginFormStateChangeHandler}) {
                                     <input className={styles.radioOption} value="login" id="loginOption" name='userAction' type="radio"  />
                                     <input className={styles.radioOption} value="register" id="registerOption" name='userAction' type="radio"  />
                                 </div>
+                              
                           </div>
                           
                           {userType === "client" && 
