@@ -9,7 +9,7 @@
 .formContainer{
     background-color: transparent; 
     border-radius: 8px;
-    display: flex;
+    display: none;
     outline: 1px solid var(--green);
     flex-direction: column;
     align-items: center;
@@ -37,7 +37,6 @@
 }
 
 .labels{
-
     user-select: none;
     display: flex;
     align-items: center;
@@ -160,6 +159,18 @@ input:focus[type="password"]{
     /* box-shadow: 1px 1px 10px 5px #cbce349b; */
 }
 
+.activeForm{
+    display: flex;
+}
+
+.inactiveForm{
+    animation-name: slideDown;
+    animation-duration: 300ms;
+    animation-timing-function: ease;
+    animation-iteration-count: 1;
+    display: none;
+}
+
 @keyframes slideUp {
     from{
         opacity: 0;
@@ -168,6 +179,18 @@ input:focus[type="password"]{
     to{
         opacity: 1;
         transform: translateY(0rem);
+    }
+}
+
+@keyframes slideDown {
+    from{
+        opacity: 1;
+        transform: translateY(0rem);
+        
+    }
+    to{
+        opacity: 0;
+        transform: translateY(3rem);
     }
 }
 

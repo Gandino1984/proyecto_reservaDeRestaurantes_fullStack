@@ -81,3 +81,10 @@
     color: gray;
 }
 
+.activeSelector{
+    display: flex;
+}
+
+.inactiveSelector{
+    display: none;
+}

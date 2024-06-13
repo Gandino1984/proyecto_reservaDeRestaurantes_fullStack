@@ -1,15 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './Navbar.module.css'
 import { useState } from 'react'
 
-function Navbar({handleUserTypeSelection}) {
+function Navbar({handleUserTypeSelection, loginFormOpen}) {
 
+  const [selectorState, setselectorState]  = useState("activeSelector");
+  
   function onChangeRadiohandler(e){
     handleUserTypeSelection(e);
-    //agregar aquí la clase active para los label del navbar
-    // visibilizar login on click 
+    setselectorState("inactiveSelector") 
   }
-s
+
+  useEffect(() => {
+    if(loginFormOpen === true){
+      setselectorState("inactiveSelector") 
+    }else{
+      setselectorState("activeSelector")
+    }
+  },[loginFormOpen])
+   
+
   return (
     <>
         <div className={styles.containerNavbar}>
@@ -17,7 +27,7 @@ s
                     <p className={styles.title}>Book-it</p>
               </div>
         
-              <div className={styles.radioBtnsContainer}>
+              <div className={`${styles.radioBtnsContainer} ${styles[selectorState]}`}>
                     <div className={styles.labels}>
                         <label  htmlFor="clientOption">CLIENTE</label>
                         <label  htmlFor="restaurantOption">RESTAURANTE</label>

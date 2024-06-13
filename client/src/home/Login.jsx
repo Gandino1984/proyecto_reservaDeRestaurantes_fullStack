@@ -2,14 +2,28 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import styles from './Login.module.css'
 
-function Login({userType}) {
+function Login({userType, loginFormStateChangeHandler}) {
 
+  //default state del formulario inicial
+  let formState  = "inactiveForm";
+
+  //si el selector de tipo de usuario del navbar no ha sido presionado 
+  //el formulario. Para cualquier opción se muestra.
+  if(userType === ""){
+    formState = "inactiveForm"
+  }else{
+    formState = "activeForm"
+    loginFormStateChangeHandler();
+  }
+
+  //estados de los componentes del formulario inicial
   const [clientIsLogin, setclientIsLogin] = useState(true);
   const [clientIsRegister, setclientIsRegister] = useState(false);
   const [restaurantIsLogin, setrestaurantIsLogin] = useState(false);
   const [restaurantIsRegister, setrestaurantIsRegister] = useState(false);
 
   const [userAction, setUserAction] = useState("login");
+
 
   function onChangeActionHandler(e){
       if(e.target.value === "login" && userType === "client"){
@@ -44,7 +58,7 @@ function Login({userType}) {
 
   return (
     <div className={styles.containerLogin}>
-                  <form className={styles.formContainer} action="">
+                  <form className={`${styles.formContainer} ${styles[formState]}`} action="">
                           <div className={styles.menuContainer}>
                                 <div className={styles.radios} onChange={e=>onChangeActionHandler(e)}>
                                     <div className={styles.labels}>
@@ -69,7 +83,6 @@ function Login({userType}) {
                               <input type="password" id="restaurantPasssword" name="restaurantPasssword" placeholder="Contraseña de restaurante" />
                             </div>
                           }
-                          
                           {restaurantIsRegister && <input type="password" id="restaurantRepeatPasssword" name="restaurantRepeatPasssword" placeholder="Repetir contraseña de restaurante" />}
                           
                           <button className={styles.btn1}>ENTRAR</button>
