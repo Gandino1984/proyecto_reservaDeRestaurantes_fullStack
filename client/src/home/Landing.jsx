@@ -7,7 +7,6 @@ import Login from './Login.jsx'
 import Navbar from '../navbar/Navbar.jsx'
 
 function Landing(){
-
   // default state de tipo de usuario
   const [userType, setuserType] = useState("");
 
@@ -20,7 +19,6 @@ function Landing(){
   const [loginFormOpen, setloginFormOpen] = useState(false);
 
   function loginFormStateChangeHandler(){
-    const state = !loginFormOpen;
     setloginFormOpen((loginFormOpen)=>!loginFormOpen);
   }
 
