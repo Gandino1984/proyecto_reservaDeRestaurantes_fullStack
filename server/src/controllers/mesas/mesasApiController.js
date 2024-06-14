@@ -9,9 +9,9 @@ const getAll = async(req,res)=>{
     res.json({error,data});
 }
 
-const getByProperty = async(req,res)=>{
-    const {property,value} = req.query;
-    const mesas = await mesasController.getByProperty(property,value);
+const getMesasByRestaurante = async(req,res)=>{
+    const restauranteId = req.params.restauranteId;
+    const mesas = await mesasController.getMesasByRestaurante(restauranteId);
     res.json({data:mesas})
 }
 
@@ -41,7 +41,7 @@ const create = async(req,res)=>{
 export default{
     getAll,
     getById,
-    getByProperty,
+    getMesasByRestaurante,
     update,
     create,
     remove
