@@ -31,7 +31,7 @@ const logout = async () => {
 };
 
 const removeUser = async(usersID) =>{
-    const result = await fetchData("/users/"+usersID,"delete");
+    const result = await fetchData(`/users/${usersID}`,"delete");
     console.log(result);
     return result;
 }

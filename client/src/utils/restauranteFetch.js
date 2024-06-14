@@ -7,6 +7,10 @@ const getAllRestaurantes = async () => {
     return result;
 };
 
+const getRestauranteByTipo = async (tipo) => {
+    const result = await fetchData(`/restaurantes/tipo/${tipo}`, "get");
+    return result;
+};
 
 const getRestauranteByID = async (restauranteID) => {
     const result = await fetchData(`/restaurantes/${restauranteID}`, "get");
@@ -25,14 +29,14 @@ const createRestaurante = async(restauranteData)=>{
     
     
 const removeRestaurante = async(restauranteID) =>{
-    const result = await fetchData("/restaurantes/"+restauranteID,"delete");
-    console.log(result);
+    const result = await fetchData(`/restaurantes/${restauranteID}`,"delete");
     return result;
 }
 
 export {
     getAllRestaurantes,
     getRestauranteByID,
+    getRestauranteByTipo,
     updateRestaurante, 
     createRestaurante,
     removeRestaurante
