@@ -25,7 +25,7 @@ dist-ssr
 
 server/DataBase/data
 # dotenv environment variable files
-server/.env
+/server.env
 .env.development.local
 .env.test.local
 .env.production.local

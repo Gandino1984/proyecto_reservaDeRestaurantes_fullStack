@@ -125,13 +125,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users/1",
+							"raw": "{{base_url}}/users/5",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"users",
-								"1"
+								"5"
 							]
 						},
 						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
@@ -394,15 +394,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/reservas/1/4/2024-07-01",
+							"raw": "{{base_url}}/reservas/2/6/2024-07-02",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"reservas",
-								"1",
-								"4",
-								"2024-07-01"
+								"2",
+								"6",
+								"2024-07-02"
 							]
 						},
 						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -439,13 +439,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/reservas/1",
+							"raw": "{{base_url}}/reservas/2",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"reservas",
-								"1"
+								"2"
 							]
 						},
 						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -474,7 +474,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"Date\": \"2024-07-01\",\n    \"Hora_Inicio\": \"15:00:00\",\n    \"Hora_Final\": \"17:00:00\",\n    \"Is_accepted\": 1,\n    \"Mesa_Id\": 1,\n    \"Name\": \"Nueva reserva actualizada\"\n}\n",
+							"raw": "{\n    \"Date\": \"2024-07-01\",\n    \"Hora_Inicio\": \"15:00:00\",\n    \"Hora_Final\": \"17:00:00\",\n    \"Is_accepted\": 0,\n    \"Mesa_Id\": 1,\n    \"Name\": \"Nueva reserva actualizada\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -525,13 +525,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/reservas/1",
+							"raw": "{{base_url}}/reservas/2",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"reservas",
-								"1"
+								"2"
 							]
 						},
 						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
@@ -560,7 +560,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"Date\": \"2024-07-16\",\n        \"Hora_Inicio\": \"15:00:00\",\n        \"Hora_Final\": \"17:00:00\",\n        \"Mesa_id\": 1,\n        \"Name\": \"Reserva de ejemplo\",\n        \"id\": 1\n}",
+							"raw": "{\n        \"Date\": \"2024-07-02\",\n        \"Hora_Inicio\": \"16:00:00\",\n        \"Hora_Final\": \"17:00:00\",\n        \"Mesa_id\": 2,\n        \"Name\": \"Reserva de ejemplo\",\n        \"id\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -657,13 +657,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/mesas/restaurante",
+							"raw": "{{base_url}}/mesas/restaurante/4",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"mesas",
-								"restaurante"
+								"restaurante",
+								"4"
 							]
 						},
 						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -735,7 +736,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"Sillas\": 9\n}",
+							"raw": "{\n\t\"Sillas\": 18\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -743,13 +744,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/mesas/1",
+							"raw": "{{base_url}}/mesas/17",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"mesas",
-								"1"
+								"17"
 							]
 						},
 						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
@@ -821,7 +822,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"Restaurante_id\": 1,\n        \"Sillas\": 4\n}",
+							"raw": "{\n        \"Restaurante_id\": 4,\n        \"Sillas\": 9\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -930,14 +931,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/restaurante/tipo/Pizza",
+							"raw": "{{base_url}}/restaurante/tipo/Hamburguesas",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"restaurante",
 								"tipo",
-								"Pizza"
+								"Hamburguesas"
 							]
 						},
 						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
