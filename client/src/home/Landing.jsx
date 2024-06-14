@@ -6,15 +6,17 @@ import bg1 from '../images/bgHome.jpg'
 import Login from './Login.jsx'
 import Navbar from '../navbar/Navbar.jsx'
 import Hero from '../heroSection/Hero.jsx'
+import RestaurantCard from './RestaurantCard.jsx'
 
 function Landing(){
   // default state de tipo de usuario
   const [userType, setuserType] = useState("");
 
+  const [restaurantCardIsOpen, setrestaurantCardIsOpen] = useState(false);
+
   //esta func usa el tipo de usuario seleccionado en el navbar
   function handleUserTypeSelection(e){
-    setuserType(e.target.value);
-    
+      setuserType(e.target.value);
   }
 
   const [loginFormOpen, setloginFormOpen] = useState(false);
@@ -28,6 +30,7 @@ function Landing(){
                 <div className={styles.background} />
                 <Navbar handleUserTypeSelection={handleUserTypeSelection} loginFormOpen={loginFormOpen} />
                 <Login userType={userType} loginFormStateChangeHandler={loginFormStateChangeHandler}/>
+                {restaurantCardIsOpen && <RestaurantCard restaurantCardIsOpen={restaurantCardIsOpen} onCloseRestaurantCard={() => setrestaurantCardIsOpen(false)}/>}<RestaurantCard />
                 <Hero />
         </div> 
   )

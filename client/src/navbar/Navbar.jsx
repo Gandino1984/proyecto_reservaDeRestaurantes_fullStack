@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import styles from './Navbar.module.css'
 import { useState } from 'react'
+import RestaurantSearchBar from './RestaurantSearchBar';
 
 function Navbar({handleUserTypeSelection, loginFormOpen}) {
 
@@ -36,8 +37,10 @@ function Navbar({handleUserTypeSelection, loginFormOpen}) {
                         <input className={styles.radioOption} value="client"  id="clientOption" name='userType' type="radio" />
                         <input className={styles.radioOption} value="restaurant" id="restaurantOption" name='userType' type="radio" />
                     </div>   
-                  
               </div>
+
+              <RestaurantSearchBar />
+
         </div>
     </>
   )
