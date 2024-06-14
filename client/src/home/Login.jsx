@@ -55,6 +55,12 @@ function Login({userType, loginFormStateChangeHandler}) {
       }
   }
 
+  function loginClickHandler(e){
+
+    e.preventDefault();
+
+  }
+
 
 
   return (
@@ -87,7 +93,7 @@ function Login({userType, loginFormStateChangeHandler}) {
                           }
                           {restaurantIsRegister && <input type="password" id="restaurantRepeatPasssword" name="restaurantRepeatPasssword" placeholder="Repetir contraseña de restaurante" />}
                           
-                          <button className={styles.btn1}>ENTRAR</button>
+                          <button className={styles.btn1} onClick={e=>loginClickHandler(e)}>ENTRAR</button>
                   </form>
     </div>
     
