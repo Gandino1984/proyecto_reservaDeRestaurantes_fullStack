@@ -14,10 +14,15 @@ function Landing(){
 
   const [restaurantCardIsOpen, setrestaurantCardIsOpen] = useState(false);
 
+  function onCloseRestaurantCard(e){
+    setrestaurantCardIsOpen(true);
+  }
+
   //esta func usa el tipo de usuario seleccionado en el navbar
   function handleUserTypeSelection(e){
       setuserType(e.target.value);
   }
+
 
   const [loginFormOpen, setloginFormOpen] = useState(false);
 
@@ -28,9 +33,9 @@ function Landing(){
   return (
         <div className={styles.containerLanding}>
                 <div className={styles.background} />
-                <Navbar handleUserTypeSelection={handleUserTypeSelection} loginFormOpen={loginFormOpen} />
+                <Navbar handleUserTypeSelection={handleUserTypeSelection} loginFormOpen={loginFormOpen} onCloseRestaurantCard={onCloseRestaurantCard}/>
                 <Login userType={userType} loginFormStateChangeHandler={loginFormStateChangeHandler}/>
-                {restaurantCardIsOpen && <RestaurantCard restaurantCardIsOpen={restaurantCardIsOpen} onCloseRestaurantCard={() => setrestaurantCardIsOpen(false)}/>}<RestaurantCard />
+                {restaurantCardIsOpen && <RestaurantCard restaurantCardIsOpen={restaurantCardIsOpen} onCloseRestaurantCard={e=>onCloseRestaurantCard(e)}/>}<RestaurantCard />
                 <Hero />
         </div> 
   )
