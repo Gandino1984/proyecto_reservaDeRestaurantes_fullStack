@@ -3,7 +3,7 @@ import styles from './Navbar.module.css'
 import { useState } from 'react'
 import RestaurantSearchBar from './RestaurantSearchBar';
 
-function Navbar({handleUserTypeSelection, loginFormOpen}) {
+function Navbar({handleUserTypeSelection, loginFormOpen, onCloseRestaurantCard}) {
 
   const [selectorState, setselectorState]  = useState("activeSelector");
   
@@ -39,7 +39,7 @@ function Navbar({handleUserTypeSelection, loginFormOpen}) {
                     </div>   
               </div>
 
-              <RestaurantSearchBar />
+              <RestaurantSearchBar onCloseRestaurantCard={onCloseRestaurantCard}/>
 
         </div>
     </>
