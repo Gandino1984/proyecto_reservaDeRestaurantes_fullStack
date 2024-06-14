@@ -2,13 +2,13 @@ import fetchData from "fetch.js";
 
 // Funciones para llamar a la Api
 
-const getUserByID = async (userID) => {
-    const result = await fetchData(`/users/${userID}`, "get");
+const getAllUsers = async () => {
+    const result = await fetchData("/users", "get");
     return result;
 };
 
-const getAllUsers = async () => {
-    const result = await fetchData("/users", "get");
+const getUserByID = async (userID) => {
+    const result = await fetchData(`/users/${userID}`, "get");
     return result;
 };
 
