@@ -9,7 +9,7 @@ function Navbar() {
     <>
         <div className={styles.containerNavbar}>
               <div className={styles.containerTypewriter}>
-                    <p className={styles.typewriter}>Book-IT</p>
+                    <p className={styles.typewriter}>Book&IT</p>
               </div>
 
               <RestaurantSearchBar />
