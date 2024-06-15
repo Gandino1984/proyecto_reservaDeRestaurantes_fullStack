@@ -2,6 +2,10 @@
 .containerNavbar{
     /* border: 1px solid red; */
     width: 100%;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
     display: flex;
     align-items: center; 
     justify-content:space-between;
@@ -12,16 +16,19 @@
 
 .containerTypewriter{
     /* border: 1px solid white;     */
-    background-color: black;
+    /* background-color: black; */
     border-radius: 5px;
+    font-size: 5rem;
+    font-weight: 700;
+    color: white;
+    font-family: Alegreya;
 }
-
+/* 
 .typewriter{
     position: relative;
     user-select: none;
     font-size: 3rem;
     padding-left: .5rem;
-    /* padding-right: .15rem; */
     font-family: Alegreya;
     color: var(--green);
 
@@ -36,55 +43,8 @@
     right: 0;
     animation: typing 2.6s steps(7) alternate infinite,
                 blinking .8s infinite;
-}
+} */
 
-
-.radioBtnsContainer{
-    position: relative;
-    margin-left: 7rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-}
-
-.labels{
-    width: 100%;
-    position: absolute;
-    font-family: Roboto Condensed;
-    color: var(--green);
-    font-size: 1.3rem;
-    letter-spacing: .1rem;
-    font-weight: 500;
-    z-index: 5;
-    gap: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.labels label{
-    cursor: pointer;
-    color: var(--green);
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.radios{
-    width: 0%;
-    gap: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.radioOption{
-    opacity: 0;
-    cursor: pointer;
-    display: flex;
-}
 
 .activeLabel{
     color: red;
@@ -102,7 +62,7 @@
     display: none;
 }
 
-@keyframes typing{
+/* @keyframes typing{
     to{
         width: 0%;
     }
@@ -114,4 +74,4 @@
         color: transparent;
     }
    
-}
+} */

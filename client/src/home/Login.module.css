@@ -1,17 +1,30 @@
-.containerLogin {
-    width: 100%;
+.container{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content:center;
-    /* padding-left: 15rem; */
-    padding-top: 6rem;
-    padding-bottom: 1rem;    
 }
 
+.login{
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 2rem;
+    background: linear-gradient(to right, #00000000, #000000c6 80%, #000000b2 90%);
+}
+     
 .formContainer{
-    background-color: transparent; 
+    /* background-color: white;  */
     border-radius: 8px;
-    display: none;
+    display: flex;
     outline: 1px solid var(--green);
     flex-direction: column;
     align-items: center;
@@ -22,24 +35,52 @@
     animation-duration: 300ms;
     animation-timing-function: ease;
     animation-iteration-count: 1;
-    transition: all 300ms ease;
+    transition: all 250ms ease;
 }
 
 .formContainer:hover{
     outline: 1px solid var(--purple);
 }
 
-.menuContainer{
-    padding-top: .5rem;
-    padding-bottom: 1rem;
+
+.userTypeBtnContainer{
+    width: 100%;
+    /* border: 1px solid green; */
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    width: 100%;    
+    gap: 1rem;
+    user-select: none;
 }
 
-.labels{
+.labelClient{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.labelRestaurant{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.menuContainer{
+    position: relative;
+    width: 100%;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: .5rem;
+    padding-bottom: 1rem;
+    transition: all 250ms ease;
+}
+
+.userActionLabels{
     padding-top: 1rem;
     user-select: none;
     display: flex;
@@ -48,25 +89,11 @@
     position: absolute;
     width: 100%;
     z-index: 10;
-    opacity: 1;
     gap: 2rem;
-    /* padding-bottom: 1rem; */
     margin-bottom: 1rem;
 }
 
-
-.labelLogin, .labelRegister{
-    font-size: 1.3rem;
-    color: var(--green);
-    cursor: pointer;
-    padding-top: .5rem;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    font-family: Alegreya;
-    font-weight: 700;
-}
-
-.radios{
+.userActionRadios{
     width: 100%;
     display: flex;
     align-items: center;
@@ -74,7 +101,7 @@
     gap: 2rem;
 }
 
-.radioOption{
+.userActionRadioOption{
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -82,24 +109,35 @@
     display: none;
 }
 
-input[type="text"], input[type="password"]{
-    width: 25rem;
-    border: 2px solid var(--green);
-    color: var(--purple);
-    outline: none;
-    appearance: none;
-    padding: .5rem 1rem;
-    font-size: 1rem;
-    font-family: Roboto Condensed;
-    font-weight: 400;
-    letter-spacing: .05rem;
-    border-radius: 12px;
+.labelRegister{
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    padding-top: .5rem;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-family: Alegreya;
+    font-weight: 500;
 }
 
-input:focus[type="text"]{
-    border: 2px solid var(--purple);
-    background-color: var(--purple);
+.labelLogin{
+    font-size: 2rem;
     color: white;
+    cursor: pointer;
+    padding-top: .5rem;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-family: Alegreya;
+    font-weight: 500;
+}
+
+
+
+input[type="text"]{
+    width: 25rem;
+    background-color: white;
+    color: var(--purple);
+    border: none;
     outline: none;
     appearance: none;
     padding: .5rem 1rem;
@@ -107,21 +145,33 @@ input:focus[type="text"]{
     font-family: Roboto Condensed;
     font-weight: 400;
     letter-spacing: .05rem;
-    border-radius: 12px;
+    border-radius: 8px;
+}
+
+input[type="password"]{
+    width: 25rem;
+    background-color: white;
+    color: purple;
+    outline: none;
+    border: none;
+    appearance: none;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    font-family: Roboto Condensed;
+    font-weight: 400;
+    letter-spacing: .05rem;
+    border-radius: 8px;
+}
+
+
+input:focus[type="text"]{
+    background-color: black;
+    color: var(--green);
 }
 
 input:focus[type="password"]{
-    border: 2px solid var(--purple);
-    background-color: var(--purple);
-    color: white;
-    outline: none;
-    appearance: none;
-    padding: .5rem 1rem;
-    font-size: 1rem;
-    font-family: Roboto Condensed;
-    font-weight: 400;
-    letter-spacing: .05rem;
-    border-radius: 12px;
+    background-color: black;
+    color: var(--green);
 }
 
 ::placeholder {
@@ -153,20 +203,18 @@ input:focus[type="password"]{
     font-weight: 700;
     letter-spacing: .05rem;
     border-radius: 22px;
-    background-color: var(--green);
+    background-color: var(--purple);
     color: white;
     transition: all 200ms ease;
 }
 
 .btn1:hover{
-    color: white;
-    background-color: var(--purple);
+    color: var(--green);
+    background-color: black;
     border-radius: 8px;
-    /* box-shadow: 1px 1px 10px 5px #cbce349b; */
 }
 
 .closeIcon{
-    /* border: 1px solid red; */
     position: absolute;
     transform: translate(1.5rem, -.5rem);
     z-index: 20;
@@ -186,39 +234,54 @@ input:focus[type="password"]{
     color: var(--purple);
 }
 
-.activeForm{
+
+/* ************************ */
+
+
+
+.userTypeLabels{
+    width: 100%;
+    position: absolute;
     display: flex;
+    z-index: 5;
+    align-items: center;
+    justify-content: right;
+    font-family: Roboto Condensed;
+    color: var(--green);
+    font-size: 1.3rem;
+    letter-spacing: .1rem;
+    font-weight: 500;
+    gap: 2rem;
 }
 
-.inactiveForm{
+.userTypeLabels label{
+    cursor: pointer;
+    color: var(--green);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.chevronBack{
+    color: white;
+    background-color: var(--purple);
+    border-radius: 50%;
+}
+
+
+
+.userTypeRadios{
+    width: 0%;
+    gap: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.userTypeRadioOption{
+    opacity: 0;
+    cursor: pointer;
     display: none;
-    animation-name: slideDown;
-    animation-duration: 300ms;
-    animation-timing-function: ease;
-    animation-iteration-count: 1;
 }
-
-@keyframes slideUp {
-    from{
-        opacity: 0;
-        transform: translateY(3rem);
-    }
-    to{
-        opacity: 1;
-        transform: translateY(0rem);
-    }
-}
-
-@keyframes slideDown {
-    from{
-        opacity: 1;
-        transform: translateY(0rem);
-        
-    }
-    to{
-        opacity: 0;
-        transform: translateY(3rem);
-    }
-}
-
 
