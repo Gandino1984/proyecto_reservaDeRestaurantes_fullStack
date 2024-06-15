@@ -196,7 +196,6 @@ input:focus[type="password"]{
     animation-duration: 300ms;
     animation-timing-function: ease;
     animation-iteration-count: 1;
-  
 }
 
 @keyframes slideUp {

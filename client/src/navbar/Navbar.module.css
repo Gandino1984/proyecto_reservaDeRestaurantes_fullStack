@@ -10,26 +10,34 @@
     padding-top: 2rem;
 }
 
-.containerTitle{
-    /* width: 100%; */
-    display: flex;
-    align-items: center;
-    justify-content:left;
+.containerTypewriter{
+    /* border: 1px solid white;     */
+    background-color: black;
+    border-radius: 5px;
 }
 
-.title{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.typewriter{
+    position: relative;
     user-select: none;
-    font-size: 6rem;
-    font-weight: 700;
-    letter-spacing: .2rem;
-    padding-right: 2rem;
-    /* padding-left: 3rem; */
+    font-size: 3rem;
+    padding-left: .5rem;
+    /* padding-right: .15rem; */
     font-family: Alegreya;
-    color: white;
+    color: var(--green);
+
 }
+
+.typewriter::after{
+    width: 100%;
+    content: "|";
+    position: absolute;
+    color: white;
+    background-color: black;
+    right: 0;
+    animation: typing 2.6s steps(7) alternate infinite,
+                blinking .8s infinite;
+}
+
 
 .radioBtnsContainer{
     position: relative;
@@ -65,7 +73,7 @@
 }
 
 .radios{
-    width: 100%;
+    width: 0%;
     gap: 1rem;
     display: flex;
     align-items: center;
@@ -92,4 +100,18 @@
 
 .inactiveSelector{
     display: none;
+}
+
+@keyframes typing{
+    to{
+        width: 0%;
+    }
+
+}
+
+@keyframes blinking{
+    50%{
+        color: transparent;
+    }
+   
 }

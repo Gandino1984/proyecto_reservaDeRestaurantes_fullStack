@@ -5,16 +5,16 @@ function Hero() {
         <div className={styles.container}>
                 <div className={styles.hero}>
                         <div className={styles.text1}>
-                            <p>Dinos dónde</p>
+                            <p>Dinos cuánta <br />hambre tienes</p>
                         </div>
                         <div className={styles.text2}>
-                            <p className={styles.text3}>Book-it</p>
-                            <p>dice come</p>
+                            <p className={styles.text3}> Book-IT programa <br /> tu solución</p>
+                            <div className={styles.btnContainer}>
+                                <button className={styles.btn}>RESERVA YA</button>
+                            </div>
                         </div>
                 </div>
-                <div className={styles.btnContainer}>
-                    <button className={styles.btn}>RESERVA YA</button>
-                </div>
+              
         </div>
     )
 }

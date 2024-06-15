@@ -20,12 +20,15 @@ function Navbar({handleUserTypeSelection, loginFormOpen, onCloseRestaurantCard})
     }
   },[loginFormOpen])
    
+  function onCloseRestaurantCardHandler(e){
+    onCloseRestaurantCard();
+  }
 
   return (
     <>
         <div className={styles.containerNavbar}>
-              <div className={styles.containerTitle}>
-                    <p className={styles.title}>Book-it</p>
+              <div className={styles.containerTypewriter}>
+                    <p className={styles.typewriter}>Book-IT  !!</p>
               </div>
         
               <div className={`${styles.radioBtnsContainer} ${styles[selectorState]}`}>

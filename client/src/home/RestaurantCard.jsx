@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './RestaurantCard.module.css';
 
 const RestaurantCard = ({ restaurantCardIsOpen, onCloseRestaurantCard, data }) => {
-    if (!restaurantCardIsOpen) return null;
+    if (!restaurantCardIsOpen || data == null) return null;
   
     return (
       <div className={styles.container}>
