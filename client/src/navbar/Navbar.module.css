@@ -2,6 +2,10 @@
 .containerNavbar{
     /* border: 1px solid red; */
     width: 100%;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
     display: flex;
     align-items: center; 
     justify-content:space-between;
@@ -10,73 +14,37 @@
     padding-top: 2rem;
 }
 
-.containerTitle{
-    /* width: 100%; */
-    display: flex;
-    align-items: center;
-    justify-content:left;
-}
-
-.title{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-    font-size: 6rem;
+.containerTypewriter{
+    /* border: 1px solid white;     */
+    /* background-color: black; */
+    border-radius: 5px;
+    font-size: 5rem;
     font-weight: 700;
-    letter-spacing: .2rem;
-    padding-right: 2rem;
-    /* padding-left: 3rem; */
-    font-family: Alegreya;
     color: white;
+    font-family: Alegreya;
 }
-
-.radioBtnsContainer{
+/* 
+.typewriter{
     position: relative;
-    margin-left: 7rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     user-select: none;
+    font-size: 3rem;
+    padding-left: .5rem;
+    font-family: Alegreya;
+    color: var(--green);
+
 }
 
-.labels{
+.typewriter::after{
     width: 100%;
+    content: "|";
     position: absolute;
-    font-family: Roboto Condensed;
-    color: var(--green);
-    font-size: 1.3rem;
-    letter-spacing: .1rem;
-    font-weight: 500;
-    z-index: 5;
-    gap: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    color: white;
+    background-color: black;
+    right: 0;
+    animation: typing 2.6s steps(7) alternate infinite,
+                blinking .8s infinite;
+} */
 
-.labels label{
-    cursor: pointer;
-    color: var(--green);
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.radios{
-    width: 100%;
-    gap: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.radioOption{
-    opacity: 0;
-    cursor: pointer;
-    display: flex;
-}
 
 .activeLabel{
     color: red;
@@ -93,3 +61,17 @@
 .inactiveSelector{
     display: none;
 }
+
+/* @keyframes typing{
+    to{
+        width: 0%;
+    }
+
+}
+
+@keyframes blinking{
+    50%{
+        color: transparent;
+    }
+   
+} */

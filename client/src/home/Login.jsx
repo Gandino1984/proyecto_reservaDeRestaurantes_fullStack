@@ -2,100 +2,115 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import styles from './Login.module.css'
 
-function Login({userType, loginFormStateChangeHandler}) {
+function Login() {
 
-  //default state del formulario inicial
-  let formState  = "inactiveForm";
+ const [userIsClient, setuserIsClient] = useState(true);
+ const [userIsRestaurant, setuserIsRestaurant] = useState(false);
 
-  //si el selector de tipo de usuario del navbar no ha sido presionado 
-  //el formulario. Para cualquier opción se muestra.  
-  if(userType === ""){
-    formState = "inactiveForm"
-  }else{
-    formState = "activeForm"
-    loginFormStateChangeHandler();
+ const [userActionIsLogin, setuserActionIsLogin] = useState(true);
+ const [userActionIsRegister, setuserActionIsRegister] = useState(false);
+
+ let clientIsLogin = true;
+ let clientIsRegister = false;
+ let restaurantIsLogin = false;
+ let restaurantIsRegister = false;
+ 
+//  const [clientIsLogin, setclientIsLogin] = useState(true);
+//  const [clientIsRegister, setclientIsRegister] = useState(false);
+//  const [restaurantIsLogin, setrestaurantIsLogin] = useState(false);
+//  const [restaurantIsRegister, setrestaurantIsRegister] = useState(false);
+ 
+     
+  if(userActionIsLogin && userIsClient){
+    clientIsLogin = true;
+    clientIsRegister = false;
+    restaurantIsLogin = false;
+    restaurantIsRegister = false;
+  }
+  if(userActionIsRegister && userIsClient){
+    clientIsLogin = true;
+    clientIsRegister = true;
+    restaurantIsLogin = false;
+    restaurantIsRegister = false;
+  }
+  if(userActionIsLogin && userIsRestaurant){
+    clientIsLogin = false;
+    clientIsRegister = false;
+    restaurantIsLogin = true;
+    restaurantIsRegister = false;
+  }
+  if(userActionIsRegister && userIsRestaurant){
+    clientIsLogin = false;
+    clientIsRegister = false;
+    restaurantIsLogin = true;
+    restaurantIsRegister = true;
+  }
+  
+  
+  function userTypeHandler(e){
+    if(e.target.value === "client"){
+      setuserIsClient(true);
+      setuserIsRestaurant(false);
+    }else{
+      setuserIsClient(false);
+      setuserIsRestaurant(true);
+    }
   }
 
-  //estados de los componentes del formulario inicial
-  const [clientIsLogin, setclientIsLogin] = useState(true);
-  const [clientIsRegister, setclientIsRegister] = useState(false);
-  const [restaurantIsLogin, setrestaurantIsLogin] = useState(false);
-  const [restaurantIsRegister, setrestaurantIsRegister] = useState(false);
-
-  const [userAction, setUserAction] = useState("login");
-
-  function onChangeActionHandler(e){
-      if(e.target.value === "login" && userType === "client"){
-        setUserAction("login")
-        setclientIsLogin(true)
-        setclientIsRegister(false)
-        setrestaurantIsLogin(false)
-        setrestaurantIsRegister(false)
-      }
-      if(e.target.value === "register" && userType === "client"){
-        setUserAction("register")
-        setclientIsLogin(false)
-        setclientIsRegister(true)
-        setrestaurantIsLogin(false)
-        setrestaurantIsRegister(false)
-      }
-      if(e.target.value === "login" && userType === "restaurant"){
-        setUserAction("login")
-        setclientIsLogin(false)
-        setclientIsRegister(false)
-        setrestaurantIsLogin(true)
-        setrestaurantIsRegister(false)
-      }
-      if(e.target.value === "register" && userType === "restaurant"){
-        setclientIsLogin(false)
-        setclientIsRegister(false)
-        setrestaurantIsLogin(false)
-        setrestaurantIsRegister(true)
-        setUserAction("register")
-      }
+  function userActionHandler(e){
+    if(e.target.value === "login"){
+      setuserActionIsLogin(true);
+      setuserActionIsRestaurant(false);
+    }else{
+      setuserActionIsLogin(false);
+      setuserActionIsRegister(true);
+    }
   }
 
   function loginClickHandler(e){
-
     e.preventDefault();
-
   }
 
 
-
   return (
-    <div className={styles.containerLogin}>
-                  <form className={`${styles.formContainer} ${styles[formState]}`} action="">
-                          <div className={styles.menuContainer}>
-                                <div className={styles.radios} onChange={e=>onChangeActionHandler(e)}>
-                                    <div className={styles.labels}>
-                                      <label  className={styles.labelLogin} htmlFor="loginOption">Iniciar Sesión</label>
-                                      <label  className={styles.labelRegister} htmlFor="registerOption">Registrar Cuenta</label>
-                                    </div>  
-                                    <input className={styles.radioOption} value="login" id="loginOption" name='userAction' type="radio"  />
-                                    <input className={styles.radioOption} value="register" id="registerOption" name='userAction' type="radio"  />
-                                </div>
+    <div className={styles.container}>
+      <div className={styles.login}>
+                
+                <form className={styles.formContainer} action="">
+                        <div className={styles.userTypeBtnContainer}>
+                              <div className={styles.userTypeLabels}>
+                                  {userIsClient && <label  className={styles.labelRestaurant} htmlFor="restaurantOption"><ion-icon className={styles.chevronBack} name="chevron-back"></ion-icon></label>}
+                                  {userIsRestaurant && <label  className={styles.labelClient} htmlFor="clientOption"><ion-icon className={styles.chevronBack} name="chevron-back"></ion-icon></label>}
+                          
+                              </div>                   
+                              <div className={styles.userTypeRadios} onChange={e=>userTypeHandler(e)}>
+                                    <input className={styles.userTypeRadioOption} value="client"  id="clientOption" name='userType' type="radio" />
+                                    <input className={styles.userTypeRadioOption} value="restaurant" id="restaurantOption" name='userType' type="radio" />
+                              </div>   
+                        </div>
+
+                        <div className={styles.menuContainer}>
+                              <div className={styles.userActionLabels}>
+                                    <label  className={styles.labelLogin} htmlFor="loginOption">Login</label>
+                                    <label  className={styles.labelRegister} htmlFor="registerOption">Registro</label>
+                              </div>  
+                              <div className={styles.userActionRadios} onChange={e=>userActionHandler(e)}>
+                      
+                                    <input className={styles.userActionRadioOption} value="login" id="loginOption" name='userAction' type="radio"  />
+                                    <input className={styles.userActionRadioOption} value="register" id="registerOption" name='userAction' type="radio"  />
+                              </div>
+                        </div>              
+                        {clientIsLogin && <input type="text" id="clientName" name="clientName" placeholder="Nombre de cliente" />}
+                        {clientIsLogin && <input type="password" id="clientPasssword" name="clientPasssword" placeholder="Contraseña de cliente" />}  
+                        {clientIsRegister && <input type="password" id="repeatClientPasssword" name="clientRepeatPasssword" placeholder="Repetir contraseña de cliente" />}
+                        {restaurantIsLogin && <input type="text" id="restaurantName" name="restaurantName" placeholder="Nombre de restaurante" />}
+                        {restaurantIsLogin && <input type="password" id="restaurantPasssword" name="restaurantPasssword" placeholder="Contraseña de restaurante" />}
+                        {restaurantIsRegister && <input type="password" id="restaurantRepeatPasssword" name="restaurantRepeatPasssword" placeholder="Repetir contraseña de restaurante" />}
                               
-                          </div>
-                          
-                          {userType === "client" && 
-                            <div className={styles.inputsUserLogin}>
-                              <input type="text" id="clientName" name="clientName" placeholder="Nombre de cliente" />
-                              <input type="password" id="clientPasssword" name="clientPasssword" placeholder="Contraseña de cliente" />
-                            </div>}
-                          {clientIsRegister && <input type="password" id="repeatClientPasssword" name="clientRepeatPasssword" placeholder="Repetir contraseña de cliente" />}
-                          
-                          {userType === "restaurant" && 
-                            <div className={styles.inputsUserLogin}>
-                              <input type="text" id="restaurantName" name="restaurantName" placeholder="Nombre de restaurante" />
-                              <input type="password" id="restaurantPasssword" name="restaurantPasssword" placeholder="Contraseña de restaurante" />
-                            </div>
-                          }
-                          {restaurantIsRegister && <input type="password" id="restaurantRepeatPasssword" name="restaurantRepeatPasssword" placeholder="Repetir contraseña de restaurante" />}
-                          
-                          <button className={styles.btn1} onClick={e=>loginClickHandler(e)}>ENTRAR</button>
-                  </form>
-    </div>
+                        <button className={styles.btn1} onClick={e=>loginClickHandler(e)}>ENTRAR</button>
+                </form>
+        </div>
+      </div>
     
   )
 }

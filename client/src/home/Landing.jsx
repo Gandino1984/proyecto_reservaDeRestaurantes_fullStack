@@ -10,34 +10,25 @@ import RestaurantCard from './RestaurantCard.jsx'
 
 function Landing(){
   // default state de tipo de usuario
-  const [userType, setuserType] = useState("");
 
-  const [restaurantCardIsOpen, setrestaurantCardIsOpen] = useState(false);
-
-  function onCloseRestaurantCard(e){
-    setrestaurantCardIsOpen(true);
-  }
-
-  //esta func usa el tipo de usuario seleccionado en el navbar
-  function handleUserTypeSelection(e){
-      setuserType(e.target.value);
-  }
-
+  const [restaurantCardOpen, setrestaurantCardOpen] = useState(false);
 
   const [loginFormOpen, setloginFormOpen] = useState(false);
 
-  function loginFormStateChangeHandler(){
-    setloginFormOpen((loginFormOpen)=>!loginFormOpen);
+  //esta func usa el tipo de usuario seleccionado en el navbar
+  function onHeroBtnClick(){
+    setloginFormOpen(true);
   }
+
 
   return (
         <div className={styles.containerLanding}>
                 <div className={styles.background} />
-                <Navbar handleUserTypeSelection={handleUserTypeSelection} loginFormOpen={loginFormOpen} onCloseRestaurantCard={onCloseRestaurantCard}/>
-                <Login userType={userType} loginFormStateChangeHandler={loginFormStateChangeHandler}/>
-                {restaurantCardIsOpen && <RestaurantCard restaurantCardIsOpen={restaurantCardIsOpen} onCloseRestaurantCard={e=>onCloseRestaurantCard(e)}/>}<RestaurantCard />
-                <Hero />
-        </div> 
+                <Navbar />
+                {loginFormOpen && <Login />}
+                <Hero heroBtnClick={onHeroBtnClick}/>
+                {restaurantCardOpen && <RestaurantCard />}     
+        </div>
   )
 }
 
