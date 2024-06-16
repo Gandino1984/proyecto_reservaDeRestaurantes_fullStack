@@ -1,26 +1,24 @@
-import React, { useEffect } from 'react'
-import styles from './Navbar.module.css'
-import { useState } from 'react'
+import React, { useContext } from 'react';
+import styles from './Navbar.module.css';
 import RestaurantSearchBar from './RestaurantSearchBar';
 import ClientCard from './ClientCard';
+import UserContext from '../context/Usercontext';
 
-function Navbar({searchBtnClick}) {
+function Navbar({ searchBtnClick }) {
+  const { user } = useContext(UserContext);
+  console.log("USER EN NAVBAR", user)
 
   return (
-    <>
-        <div className={styles.containerNavbar}>
-              <div className={styles.containerTypewriter}>
-                    <p className={styles.typewriter}>Cook&Eat</p>
-              </div>
+    <div className={styles.containerNavbar}>
+      <div className={styles.containerTypewriter}>
+        <p className={styles.typewriter}>Cook&Eat</p>
+      </div>
 
-              <RestaurantSearchBar searchBtnClick={e=>searchBtnClick(e)}/>
+      <RestaurantSearchBar searchBtnClick={searchBtnClick} />
 
-              <ClientCard />
-
-        </div>
-    </>
-  )
-    
+      {user && <ClientCard />}
+    </div>
+  );
 }
 
-export default Navbar
+export default Navbar;

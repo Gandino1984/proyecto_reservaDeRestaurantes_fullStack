@@ -1,9 +1,12 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { login, register} from "../utils/userFetch"
 import styles from './Login.module.css'
+import UserContext from '../context/Usercontext'
+
 
 function Login({closeBtnClick}) {
+  const { setUser } = useContext(UserContext);
 
  const [userIsClient, setuserIsClient] = useState(true);
  const [userIsRestaurant, setuserIsRestaurant] = useState(false);
@@ -115,6 +118,8 @@ async function loginClickHandler(e) {
       console.log("resultado login", result)
       if (!result.error) {
           setError("login correcto");
+          setUser(result.data); 
+          console.log("user", result.data)
       } else {
           setError(result.error);
       }
