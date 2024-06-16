@@ -10,7 +10,7 @@ function Navbar({searchBtnClick}) {
     <>
         <div className={styles.containerNavbar}>
               <div className={styles.containerTypewriter}>
-                    <p className={styles.typewriter}>Book&IT</p>
+                    <p className={styles.typewriter}>Cook&Eat</p>
               </div>
 
               <RestaurantSearchBar searchBtnClick={e=>searchBtnClick(e)}/>
