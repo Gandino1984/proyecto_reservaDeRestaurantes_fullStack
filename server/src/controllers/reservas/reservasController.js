@@ -11,7 +11,7 @@ async function getAll(userData) {
             return { data: users };
         }
         if (userData.Is_Admin == 0) {
-            const user = await ReservasModel.findOne({ where: { User_id: userData.User_id } });
+            const user = await ReservasModel.findAll({ where: { User_id: userData.User_id } });
             console.log("LAS RESERVAS MOSTRADAS SIENDO USUARIO SON:", user)
             return { data: [user] };
         }        
