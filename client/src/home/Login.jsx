@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { login, register} from "../utils/userFetch"
 import styles from './Login.module.css'
 
 function Login({closeBtnClick}) {
@@ -75,24 +76,38 @@ function Login({closeBtnClick}) {
     }
   }
 
-
-  async function loginClickHandler(e){
+  const handleUserData =(e) =>{
     e.preventDefault();
-    if (clientIsRegister || restaurantIsRegister){
+    const data = e.target.value;
+    const key = e.target.name;
+    setUserData(userData => {
+        return {
+            ...userData,
+            [key]:data
+        }
+    })
+}
+
+
+async function loginClickHandler(e) {
+  e.preventDefault();
+  let result;  // Asegúrate de declarar result aquí
+  if (clientIsRegister || restaurantIsRegister) {
       result = await register(userData);
       if (!result.error) {
           setError("se ha registrado correctamente");
-      }
-      else {
+      } else {
           setError(result.error);
       }
-    }
-    if (clientIsLogin || restaurantIsLogin){
+  }
+  if (clientIsLogin || restaurantIsLogin) {
       result = await login(userData);
       if (!result.error) {
-        setError("login correcto");
-    }
-    }
+          setError("login correcto");
+      } else {
+          setError(result.error);
+      }
+  }
 };
 
 
@@ -100,7 +115,7 @@ function Login({closeBtnClick}) {
     <div className={styles.container}>
       <div className={styles.login}>
                 
-                <form className={styles.formContainer} onSubmit={loginClickHandler}>
+                <form className={styles.formContainer}>
                         <div className={styles.userTypeBtnContainer}>
                               <div className={styles.userTypeLabels}>
                                   {userIsClient && <label  className={styles.labelRestaurant} htmlFor="restaurantOption"><ion-icon className={styles.chevronBack} name="chevron-back"></ion-icon>Restaurantes</label>}
@@ -133,7 +148,7 @@ function Login({closeBtnClick}) {
                         {restaurantIsLogin && <input type="text" id="restaurantName" name="restaurantName" placeholder="Nombre de restaurante" value={userData.Name} onChange={handleUserData}  />}
                         {restaurantIsLogin && <input type="password" id="restaurantPasssword" name="restaurantPasssword" placeholder="Contraseña de restaurante" value={userData.Password} onChange={handleUserData} />}
                         {restaurantIsLogin && <input type="text" id="restaurantEmail" name="restaurantEmail" placeholder="Correo de restaurante..." value={userData.Password_repeat} onChange={handleUserData}  />}
-                        {restaurantIsRegister && <input type="password" id="restaurantRepeatPasssword" name="restaurantRepeatPasssword" placeholder="Repetir contraseña de restaurante" value={userData.Email} onChange={handleUserData}  />}
+                        {restaurantIsRegister && <input type="password" id="restaurantRepeatPasssword" name="restaurantRepeatPasssword" placeholder="Repetir contraseña de restaurante" value={userData.Email} onChange={handleUserData} />}
                         
                         
                               
