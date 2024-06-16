@@ -1,7 +1,7 @@
 import reservasController from "./reservasController.js";
 
 const getAll = async(req,res)=>{
-    const reservasData = req.session.user
+    const reservasData = req.session
     console.log("LA reservasDATA ES:", reservasData)
     const esAdmin = req.session.user.esAdmin
     console.log("ESADMIN ES IGUAL A:",esAdmin)

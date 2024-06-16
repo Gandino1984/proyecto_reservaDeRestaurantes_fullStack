@@ -1,9 +1,16 @@
-import fetchData from "fetch.js";
+import fetchData from "./fetch";
+import UserContext from '../context/Usercontext';
+import React, { useContext } from 'react';
+
+
 
 // Funciones para llamar a la Api
 
 const getAllMesas = async () => {
-    const result = await fetchData("/mesas", "get");
+    const { user } = useContext(UserContext);
+    console.log("USER AL LLAMAR A LA API", user)
+
+    const result = await fetchData("/mesas", "get", user);
     return result;
 };
 

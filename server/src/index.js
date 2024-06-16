@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import router from "./routers/router.js";
 import session from "express-session";
 
+
 dotenv.config();
 
 const sessionData = {
@@ -17,6 +18,7 @@ const sessionData = {
 
 
 const app= express();
+
 app.use(session(sessionData));
 app.use(express.static("public")); // nos permite mostrar archivos en la carpeta public
 

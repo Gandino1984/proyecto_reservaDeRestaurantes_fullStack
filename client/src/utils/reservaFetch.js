@@ -1,12 +1,13 @@
 import fetchData from "./fetch.js";
-
+import UserContext from '../context/Usercontext';
+import React, { useContext } from 'react';
 
 //IMPORTANTE, LA FUNCION getAllReservas MIRA SI ES ADMIN O NO
 //SI ES ADMIN SACA TODAS LAS RESERVAS
 //PERO SI ES USER SACA LAS RESERVAS ASOCIADAS AL USER_ID DEL QUE ESTA LOGUADO
 const getAllReservas = async () => {
     try {
-        const result = await fetchData("/reservas", "get");
+        const result = await fetchData("/reservas", "get",);
         return result;
     } catch (error) {
         console.error(error);
