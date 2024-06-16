@@ -1,8 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import styles from './TarjetasRestaurante.module.css';
-
 import UserContext from "../../context/Usercontext"
-
 import { getAllReservas } from '../../utils/reservaFetch';
 import { getAllRestaurantes } from '../../utils/restauranteFetch';
 import { getMesasByRestaurante } from "../../utils/mesasFetch"

@@ -1,9 +1,9 @@
 import reservasController from "./reservasController.js";
 
 const getAll = async(req,res)=>{
-    const reservasData = req.session
+    const reservasData = req.user
     console.log("LA reservasDATA ES:", reservasData)
-    const esAdmin = req.session.user.esAdmin
+    const esAdmin = req.user.dataValues.Is_Admin
     console.log("ESADMIN ES IGUAL A:",esAdmin)
     const {error,data} = await reservasController.getAll(reservasData);
     res.json({error,data});
@@ -16,6 +16,17 @@ const getByProperty = async(req,res)=>{
 }
 
 const getReservasPorDiaYSillas = async (req, res) => {
+    const { restaurante, numeroSillas, dia } = req.params;
+    const { data, error } = await reservasController.getReservasPorDiaYSillas({ numeroSillas, dia, restaurante });
+
+    if (error) {
+        return res.status(500).json({ error });
+    }
+
+    res.json({ data });
+};
+
+const getReservasPorMesa = async (req, res) => {
     const { restaurante, numeroSillas, dia } = req.params;
     const { data, error } = await reservasController.getReservasPorDiaYSillas({ numeroSillas, dia, restaurante });
 

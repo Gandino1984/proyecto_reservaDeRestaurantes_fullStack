@@ -1,10 +1,8 @@
 import mesasController from "./mesasController.js";
 
 const getAll = async(req,res)=>{
-    const mesasData = req.session.user
+    const mesasData = req.user
     console.log("LA mesasDATA ES:", mesasData)
-    const esAdmin = req.session.user.esAdmin
-    console.log("ESADMIN ES IGUAL A:",esAdmin)
     const {error,data} = await mesasController.getAll(mesasData);
     res.json({error,data});
 }

@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from 'react'
 import { login, register} from "../utils/userFetch"
 import styles from './Login.module.css'
 import UserContext from '../context/Usercontext'
+import { saveToken } from '../utils/local'
 
 
 function Login({closeBtnClick}) {
@@ -108,6 +109,7 @@ async function loginClickHandler(e) {
   if (userActionIsRegister) {
       result = await register(userData);
       if (!result.error) {
+        
           setError("se ha registrado correctamente");
       } else {
           setError(result.error);
@@ -119,6 +121,7 @@ async function loginClickHandler(e) {
       if (!result.error) {
           setError("login correcto");
           setUser(result.data); 
+          saveToken(result.data.token);
           console.log("user", result.data)
       } else {
           setError(result.error);
