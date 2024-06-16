@@ -1,12 +1,13 @@
 import React from 'react'
 import styles from './ClientCard.module.css'
+import userImg from './user.png'
 
 function ClientCard() {
   return (
     <div className={styles.container}>
         <div className={styles.card}>
             <div className={styles.userAvatar}>
-                <img src="../images/png/mexicana.png" alt="user image" />
+                <img src={userImg} alt="user image" />
             </div>
             <div className={styles.userDetails}>
                 <p>Nombre de usuario</p>
