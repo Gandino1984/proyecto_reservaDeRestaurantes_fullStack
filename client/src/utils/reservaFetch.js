@@ -1,11 +1,18 @@
-import fetchData from "fetch.js";
+import fetchData from "./fetch.js";
 
-// Funciones para llamar a la Api
 
+//IMPORTANTE, LA FUNCION getAllReservas MIRA SI ES ADMIN O NO
+//SI ES ADMIN SACA TODAS LAS RESERVAS
+//PERO SI ES USER SACA LAS RESERVAS ASOCIADAS AL USER_ID DEL QUE ESTA LOGUADO
 const getAllReservas = async () => {
-    const result = await fetchData("/reservas", "get");
-    return result;
+    try {
+        const result = await fetchData("/reservas", "get");
+        return result;
+    } catch (error) {
+        console.error(error);
+    }   
 };
+  
 
 const getReservasPorDiaYSillas = async (restauranteID, numeroSillas, dia ) => {
     const result = await fetchData(`${restauranteID}/${numeroSillas}/${dia}`, "get");
