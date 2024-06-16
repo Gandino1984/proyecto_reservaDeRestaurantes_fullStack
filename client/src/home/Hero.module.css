@@ -1,0 +1,100 @@
+.container{
+    /* border: 3px solid red; */
+    position: absolute;
+    z-index: 0;
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    top: 0;
+    left: 0;
+    align-items:center;
+    justify-content: center; 
+    flex-direction: column;
+    background: linear-gradient(to left, #00000000, #333 80%, #333 90%);
+
+}
+
+.hero{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center; 
+    padding-left: 4rem;
+    gap: 2rem;
+}
+
+.sub{
+    display: flex;
+    align-items: center;
+    justify-content:right;
+    font-family: Alegreya;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--green)
+}
+
+.text{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.text1{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    font-family: Alegreya;
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--green);   
+    padding-left: 4rem;
+    line-height: 4.8rem;
+}
+
+.text2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Alegreya;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: white;   
+}
+
+
+.btnContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding-top: 1.5rem;
+}
+
+.btn{
+    font-family: Roboto Condensed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0px solid transparent;
+    outline: none;
+    cursor: pointer;
+    margin-left: 2rem;
+    padding: .5rem .7rem;
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
+    background-color: var(--purple);
+    border-radius: 22px;
+    transition: all 200ms ease;
+}
+
+.btn:hover{
+    color: var(--green);
+    background-color: black;
+    border-radius: 8px;
+}

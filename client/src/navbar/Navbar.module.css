@@ -1,81 +1,24 @@
-
 .containerNavbar{
-    /* border: 1px solid red; */
     width: 100%;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
     display: flex;
     align-items: center; 
     justify-content:space-between;
-    padding-left: 7rem;
-    padding-right: 7rem;
-    padding-top: 2rem;
+    padding: 1rem 5rem;
+    border-bottom: 1px solid var(--green);
+    background: linear-gradient(to bottom, #b7ba1f4c 30%, #00000000) 50%;
 }
 
-.containerTitle{
-    /* width: 100%; */
-    display: flex;
-    align-items: center;
-    justify-content:left;
-}
-
-.title{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-    font-size: 6rem;
+.containerTypewriter{
+    border-radius: 5px;
+    font-size: 5rem;
     font-weight: 700;
-    letter-spacing: .2rem;
-    padding-right: 2rem;
-    /* padding-left: 3rem; */
-    font-family: Alegreya;
+    text-shadow: 3px 3px var(--purple);
     color: white;
-}
-
-.radioBtnsContainer{
-    position: relative;
-    margin-left: 7rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-}
-
-.labels{
-    width: 100%;
-    position: absolute;
-    font-family: Roboto Condensed;
-    color: var(--green);
-    font-size: 1.3rem;
-    letter-spacing: .1rem;
-    font-weight: 500;
-    z-index: 5;
-    gap: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.labels label{
-    cursor: pointer;
-    color: var(--green);
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.radios{
-    width: 100%;
-    gap: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.radioOption{
-    opacity: 0;
-    cursor: pointer;
-    display: flex;
+    font-family: Alegreya;
 }
 
 .activeLabel{
@@ -93,3 +36,17 @@
 .inactiveSelector{
     display: none;
 }
+
+/* @keyframes typing{
+    to{
+        width: 0%;
+    }
+
+}
+
+@keyframes blinking{
+    50%{
+        color: transparent;
+    }
+   
+} */

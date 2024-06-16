@@ -5,32 +5,31 @@
     gap: 2rem;
 }
 
-input[type="text"]{
-    width: 20rem;
-    border: 2px solid var(--green);
-    color: var(--purple);
-    outline: none;
+
+.inputSearch[type="text"]{
     appearance: none;
-    padding: .5rem 1rem;
-    font-size: 1rem;
+    outline: none;
+    border: none;
+    background-color: white;
+    width: 20rem;
+    color: white;
+    /* padding: .5rem 1rem; */
+    font-size: 1.1rem;
     font-family: Roboto Condensed;
     font-weight: 400;
     letter-spacing: .05rem;
-    border-radius: 12px;
+    border-radius: 8px;
+    transition: all 200ms ease;
+
 }
 
-input:focus[type="text"]{
-    border: 2px solid var(--purple);
-    background-color: var(--purple);
-    color: white;
+.inputSearch:focus[type="text"]{
     outline: none;
-    appearance: none;
-    padding: .5rem 1rem;
-    font-size: 1rem;
+    border: none;
+    color: var(--green);
+    font-size: 1.2rem;   
+    background-color: black;
     font-family: Roboto Condensed;
-    font-weight: 400;
-    letter-spacing: .05rem;
-    border-radius: 12px;
 }
 
 .labelSearch{
@@ -42,10 +41,12 @@ input:focus[type="text"]{
     cursor: pointer;
     font-size: 2rem;
     color: white;
-    background-color: var(--green);
+    background-color: var(--purple);
     transition: all 200ms ease;
 }
 
 .labelSearch:hover{
-    background-color: var(--purple);
-}
+    border-radius: 30%;
+    color: var(--green);
+    background-color: black;
+}    
