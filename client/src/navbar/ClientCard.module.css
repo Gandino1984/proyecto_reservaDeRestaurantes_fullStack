@@ -2,21 +2,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* width: 100%; */
-    padding: 1rem
-
+    padding: 1rem 0rem;
 }
 
 .card{
-    font-family: Alegreya;
+    padding: .5rem 1rem ; 
     background-color: white;
+    border-radius: 8px;
+    font-family: Alegreya;
     color: black;
     font-size: 1.5rem;
-    border-radius: 12px;
+    width: 100%;
+    border-radius: 8px;
     display: flex;  
     align-items: center;
     justify-content: center;
-    padding: 1rem ;
     gap: 1rem;
 }
 
