@@ -3,7 +3,7 @@ import restauranteController from "./restauranteController.js";
 const getAll = async(req,res)=>{
     const userData = req.session.user
     console.log("LA userData ES:", userData)
-    const esAdmin = req.session.user.esAdmin
+    const esAdmin = req.session.user && req.session.user.esAdmin;
     console.log("ESADMIN ES IGUAL A:",esAdmin)
     const {error,data} = await restauranteController.getAll(userData);
     res.json({error,data});
