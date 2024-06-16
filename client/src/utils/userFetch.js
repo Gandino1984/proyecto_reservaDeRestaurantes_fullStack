@@ -1,4 +1,4 @@
-import fetchData from "fetch.js";
+import fetchData from "./fetch";
 
 // Funciones para llamar a la Api
 
@@ -22,7 +22,8 @@ const register = async(userData)=>{
     return result;
 };
 const login = async(userData)=>{
-    const result = await fetchData("/login","post",userData);
+    console.log("Userdata", userData)
+    const result = await fetchData("/login","POST",userData);
     return result;
 };
 const logout = async () => {

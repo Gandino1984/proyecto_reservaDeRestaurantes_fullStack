@@ -3,7 +3,11 @@ import { getToken } from "./local";
 const API_URL = import.meta.env.VITE_BACKEND_URL;
 
 const fetchData = async (route, method, inputData = null) => {
+    console.log("INPUTDATA", inputData)
+    console.log("La APIURL es", API_URL)
+    console.log("La ruta es", route)
     const url = new URL(API_URL + route);
+    console.log("URL", url)
     const fetchOptions = {
         method: method,
         headers: {

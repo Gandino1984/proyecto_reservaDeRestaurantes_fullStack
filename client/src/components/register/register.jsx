@@ -19,9 +19,6 @@ const Register = ({ onLogin }) => {
         const data = e.target.value;
         const key = e.target.name;
         setUserData(userData => {
-            // const newUserData = {...userData};
-            // newUserData[key] = data;
-            // return newUserData;
             return {
                 ...userData,
                 [key]:data
