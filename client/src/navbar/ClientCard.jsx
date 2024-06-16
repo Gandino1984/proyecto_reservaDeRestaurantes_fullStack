@@ -12,7 +12,7 @@ function ClientCard() {
 
   const handleMisReservasClick = async () => {
     try {
-      const data = await getAllReservas(user.user_id);
+      const data = await getAllReservas();
       setReservas(data);
     } catch (error) {
       console.error('Error al obtener las reservas:', error);
