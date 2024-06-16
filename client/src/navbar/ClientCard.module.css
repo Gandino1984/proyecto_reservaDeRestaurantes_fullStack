@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* width: 100%; */
+    padding: 1rem
+}
+
+.card{
+    font-family: Alegreya;
+    background-color: white;
+    color: black;
+    font-size: 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--green);
+}
+

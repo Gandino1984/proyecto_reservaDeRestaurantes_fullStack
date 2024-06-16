@@ -1,6 +1,4 @@
-
 .containerNavbar{
-    /* border: 1px solid red; */
     width: 100%;
     position: absolute;
     z-index: 100;
@@ -15,36 +13,12 @@
 }
 
 .containerTypewriter{
-    /* border: 1px solid white;     */
-    /* background-color: black; */
     border-radius: 5px;
     font-size: 5rem;
     font-weight: 700;
     color: white;
     font-family: Alegreya;
 }
-/* 
-.typewriter{
-    position: relative;
-    user-select: none;
-    font-size: 3rem;
-    padding-left: .5rem;
-    font-family: Alegreya;
-    color: var(--green);
-
-}
-
-.typewriter::after{
-    width: 100%;
-    content: "|";
-    position: absolute;
-    color: white;
-    background-color: black;
-    right: 0;
-    animation: typing 2.6s steps(7) alternate infinite,
-                blinking .8s infinite;
-} */
-
 
 .activeLabel{
     color: red;

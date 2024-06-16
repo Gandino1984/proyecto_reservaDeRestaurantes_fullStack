@@ -5,7 +5,7 @@ import styles from './Landing.module.css'
 import bg1 from '../images/bgHome.jpg'
 import Login from './Login.jsx'
 import Navbar from '../navbar/Navbar.jsx'
-import Hero from '../heroSection/Hero.jsx'
+import Hero from './Hero.jsx'
 import RestaurantCard from './RestaurantCard.jsx'
 
 function Landing(){

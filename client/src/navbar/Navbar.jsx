@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import styles from './Navbar.module.css'
 import { useState } from 'react'
 import RestaurantSearchBar from './RestaurantSearchBar';
+import ClientCard from './ClientCard';
 
 function Navbar({searchBtnClick}) {
 
@@ -13,6 +14,8 @@ function Navbar({searchBtnClick}) {
               </div>
 
               <RestaurantSearchBar searchBtnClick={e=>searchBtnClick(e)}/>
+
+              <ClientCard />
 
         </div>
     </>
