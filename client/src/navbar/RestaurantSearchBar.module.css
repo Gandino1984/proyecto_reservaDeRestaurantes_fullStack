@@ -18,7 +18,7 @@
     font-family: Roboto Condensed;
     font-weight: 400;
     letter-spacing: .05rem;
-    border-radius: 12px;
+    border-radius: 8px;
     transition: all 200ms ease;
 
 }
@@ -27,10 +27,9 @@
     outline: none;
     border: none;
     color: var(--green);
-    font-size: 1.1rem;   
+    font-size: 1.2rem;   
     background-color: black;
     font-family: Roboto Condensed;
-    border-radius: 8px;
 }
 
 .labelSearch{

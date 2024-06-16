@@ -1,6 +1,4 @@
-
 .containerNavbar{
-    /* border: 1px solid red; */
     width: 100%;
     position: absolute;
     z-index: 100;
@@ -9,42 +7,19 @@
     display: flex;
     align-items: center; 
     justify-content:space-between;
-    padding-left: 7rem;
-    padding-right: 7rem;
-    padding-top: 2rem;
+    padding: 1rem 5rem;
+    border-bottom: 1px solid var(--green);
+    background: linear-gradient(to bottom, #b7ba1f4c 30%, #00000000) 50%;
 }
 
 .containerTypewriter{
-    /* border: 1px solid white;     */
-    /* background-color: black; */
     border-radius: 5px;
     font-size: 5rem;
     font-weight: 700;
+    text-shadow: 3px 3px var(--purple);
     color: white;
     font-family: Alegreya;
 }
-/* 
-.typewriter{
-    position: relative;
-    user-select: none;
-    font-size: 3rem;
-    padding-left: .5rem;
-    font-family: Alegreya;
-    color: var(--green);
-
-}
-
-.typewriter::after{
-    width: 100%;
-    content: "|";
-    position: absolute;
-    color: white;
-    background-color: black;
-    right: 0;
-    animation: typing 2.6s steps(7) alternate infinite,
-                blinking .8s infinite;
-} */
-
 
 .activeLabel{
     color: red;
