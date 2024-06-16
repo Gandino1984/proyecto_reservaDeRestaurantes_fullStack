@@ -1,56 +1,44 @@
 import jwt from "jsonwebtoken";
-import userController  from "../controllers/users/userController.js";
+import userController from "../controllers/users/userController.js";
 
-const isAuthenticated = async(req,res,next)=>{
-    const authorization  = req.headers.authorization;
-    if(!authorization){
-        return res.status(401).json({error:"no hay token jwt"});
+const verifyToken = async (req, res, next) => {
+  const authorization = req.headers.authorization;
+  console.log("Autorizacion", authorization)
+  if (!authorization) {
+    return res.status(401).json({ error: "No hay token jwt" });
+  }
+
+  //const token = authorization.split(" ")[1];
+  const token =authorization.includes("Bearer")  ? authorization.split("Bearer ")[1] : authorization;
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("Decoded", decoded)
+    const user = await userController.getById(decoded.id);
+    if (!user) {
+      return res.status(400).json({ error: "No existe el usuario" });
     }
-    try {
-        const token = authorization.split("Bearer ")[1];
-        const decoded = jwt.verify(token,process.env.JWT_SECRET);
-        const user = await userController.getById(decoded._id);
-        if(!user){
-            return res.status(400).json({error:"No existe el usuario"});
-        }
-        
-        req.user = user;
-        console.log("Se carga bien req user", req.user)
-        next();
-        
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({error:"ha habido un error"});
+    req.user = user;
+    next();
+  } catch (error) {
+    console.error(error);
+    return res.status(400).json({ error: "Ha habido un error puede haber caducado el token" });
+  }
+};
+
+const isAuthenticated = (req, res, next) => {
+  verifyToken(req, res, next);
+};
+
+const isAdmin = (req, res, next) => {
+  verifyToken(req, res, (error) => {
+    if (error) {
+      return next(error);
     }
-
-}
-
-const isAdmin = async(req,res,next)=>{
-    const authorization  =req.headers.authorization;
-    if(!authorization){
-        return res.status(401).json({error:"no hay token jwt"});
+    if (req.user.role !== "admin") {
+      return res.status(401).json({ error: "No estás autorizado" });
     }
-    try {
-        const token = authorization.split("Bearer ")[1];
-        const decoded =jwt.verify(token,process.env.JWT_SECRET);
-        const user = await userController.getById(decoded._id);
-        if(!user){
-            return res.status(400).json({error:"No existe el usuario"});
-        }
-        if(user.isAdmin !== 1){
-            return res.status(401).json({error:"No estás autorizado"});
-        }
-        req.user = user;
-        next();
-        
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({error:"ha habido un error"});
-    }
+    next();
+  });
+};
 
-}
-
-export {
-    isAuthenticated,
-    isAdmin
-}
+export { isAuthenticated, isAdmin };

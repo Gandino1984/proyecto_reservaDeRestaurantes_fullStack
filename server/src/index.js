@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import router from "./routers/router.js";
 import session from "express-session";
+import cors from "cors";
 
 
 dotenv.config();
@@ -18,6 +19,8 @@ const sessionData = {
 
 
 const app= express();
+app.use(cors());
+app.use(express.json()); // api
 
 app.use(session(sessionData));
 app.use(express.static("public")); // nos permite mostrar archivos en la carpeta public

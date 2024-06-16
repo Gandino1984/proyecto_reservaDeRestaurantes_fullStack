@@ -1,10 +1,8 @@
 import userController from "./userController.js";
 
 const getAll = async(req,res)=>{
-    const userData = req.session.user
+    const userData = req.user
     console.log("LA USERDATA ES:", userData)
-    const esAdmin = req.session.user.esAdmin
-    console.log("ESADMIN ES IGUAL A:",esAdmin)
     const {error,data} = await userController.getAll(userData);
     res.json({error,data});
 }
