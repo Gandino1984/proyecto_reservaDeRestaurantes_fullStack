@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import styles from './Login.module.css'
 
-function Login() {
+function Login({closeBtnClick}) {
 
  const [userIsClient, setuserIsClient] = useState(true);
  const [userIsRestaurant, setuserIsRestaurant] = useState(false);
@@ -60,12 +60,13 @@ function Login() {
   function userActionHandler(e){
     if(e.target.value === "login"){
       setuserActionIsLogin(true);
-      setuserActionIsRestaurant(false);
+      setuserActionIsRegister(false);
     }else{
       setuserActionIsLogin(false);
       setuserActionIsRegister(true);
     }
   }
+
 
   function loginClickHandler(e){
     e.preventDefault();
@@ -79,14 +80,17 @@ function Login() {
                 <form className={styles.formContainer} action="">
                         <div className={styles.userTypeBtnContainer}>
                               <div className={styles.userTypeLabels}>
-                                  {userIsClient && <label  className={styles.labelRestaurant} htmlFor="restaurantOption"><ion-icon className={styles.chevronBack} name="chevron-back"></ion-icon>Restaurante</label>}
-                                  {userIsRestaurant && <label  className={styles.labelClient} htmlFor="clientOption"><ion-icon className={styles.chevronBack} name="chevron-back"></ion-icon>Cliente</label>}
-                          
+                                  {userIsClient && <label  className={styles.labelRestaurant} htmlFor="restaurantOption"><ion-icon className={styles.chevronBack} name="chevron-back"></ion-icon>Restaurantes</label>}
+                                  {userIsRestaurant && <label  className={styles.labelClient} htmlFor="clientOption"><ion-icon className={styles.chevronBack} name="chevron-back"></ion-icon>Clientes</label>}
                               </div>                   
                               <div className={styles.userTypeRadios} onChange={e=>userTypeHandler(e)}>
                                     <input className={styles.userTypeRadioOption} value="client"  id="clientOption" name='userType' type="radio" />
                                     <input className={styles.userTypeRadioOption} value="restaurant" id="restaurantOption" name='userType' type="radio" />
                               </div>   
+
+                              <div className={styles.closeBtn} onClick={e=>closeBtnClick(e)}>
+                                <ion-icon name="close-circle-outline"></ion-icon>
+                              </div>
                         </div>
 
                         <div className={styles.menuContainer}>
@@ -95,9 +99,9 @@ function Login() {
                                     <input className={styles.userActionRadioOption} value="register" id="registerOption" name='userAction' type="radio"  />
                               </div>
                               <div className={styles.userActionLabels}>
-                                    <label  className={styles.labelLogin  } htmlFor="loginOption">Login</label>
-                                    <label  className={styles.labelRegister} htmlFor="registerOption">Registro</label>
-                              </div>  
+                                  <label  className={styles.labelLogin} htmlFor="loginOption">Login</label>
+                                  <label  className={styles.labelRegister} htmlFor="registerOption">Registro</label>
+                              </div> 
                         </div>              
                         {clientIsLogin && <input type="text" id="clientName" name="clientName" placeholder="¿Cuál es tu nombre de usuario?" />}
                         {clientIsLogin && <input type="password" id="clientPasssword" name="clientPasssword" placeholder="Escribe tu contraseña aquí..." />}  

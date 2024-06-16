@@ -20,12 +20,17 @@ function Landing(){
     setloginFormOpen(true);
   }
 
+  function onCloseBtnLogin(){
+    setloginFormOpen(false);
+  }
+
+  
 
   return (
         <div className={styles.containerLanding}>
                 <div className={styles.background} />
                 <Navbar />
-                {loginFormOpen && <Login />}
+                {loginFormOpen && <Login closeBtnClick={onCloseBtnLogin} />}
                 <Hero heroBtnClick={onHeroBtnClick}/>
                 {restaurantCardOpen && <RestaurantCard />}     
         </div>

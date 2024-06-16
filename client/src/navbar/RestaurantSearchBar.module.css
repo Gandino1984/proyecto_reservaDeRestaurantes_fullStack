@@ -18,7 +18,7 @@
     font-family: Roboto Condensed;
     font-weight: 400;
     letter-spacing: .05rem;
-    border-radius: 20px;
+    border-radius: 12px;
     transition: all 200ms ease;
 
 }
@@ -42,10 +42,12 @@
     cursor: pointer;
     font-size: 2rem;
     color: white;
-    background-color: var(--green);
+    background-color: var(--purple);
     transition: all 200ms ease;
 }
 
 .labelSearch:hover{
-    background-color: var(--purple);
+    border-radius: 30%;
+    color: var(--green);
+    background-color: black;
 }    
