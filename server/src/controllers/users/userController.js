@@ -104,12 +104,12 @@ async function register(userData) {
 async function login(Email, Password) {
     try {
         if (!Email || !Password) {
-            return { error: "Falta Email o contraseña", status: 400 };
+            return { error: "Falta Email o contraseña"};
         }
 
         const { data: oldUser } = await getByEmail(Email);
         if (!oldUser) {
-            return { error: "La combinación de usuario y contraseña es errónea", status: 401 };
+            return { error: "La combinación de usuario y contraseña es errónea"};
         }
 
         const result = await bcrypt.compare(Password, oldUser.Password);
@@ -120,11 +120,11 @@ async function login(Email, Password) {
             const esAdmin = oldUser.Is_Admin;
             return { user_id, esAdmin, token };
         } else {
-            return { error: "La combinación de usuario y contraseña es errónea", status: 401 };
+            return { error: "La combinación de usuario y contraseña es errónea"};
         }
     } catch (error) {
         console.error(error);
-        return { error: "Ha habido un error en el login", status: 500 };
+        return { error: "Ha habido un error en el login"};
     }
 }
 
