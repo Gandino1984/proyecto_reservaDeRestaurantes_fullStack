@@ -102,6 +102,7 @@ async function loginClickHandler(e) {
   }
   if (clientIsLogin || restaurantIsLogin) {
       result = await login(userData);
+      console.log("resultado login", result)
       if (!result.error) {
           setError("login correcto");
       } else {
@@ -142,13 +143,13 @@ async function loginClickHandler(e) {
                               </div> 
                         </div>              
                         {clientIsLogin && <input type="text" id="Name" name="Name" placeholder="¿Cuál es tu nombre de usuario?" value={userData.Name} onChange={handleUserData} />}
-                        {clientIsLogin && <input type="password" id="clientPasssword" name="Password" placeholder="Escribe tu contraseña aquí..." value={userData.Password} onChange={handleUserData}  />}  
-                        {clientIsRegister && <input type="password" id="repeatClientPasssword" name="clientRepeatPasssword" placeholder="Verifica tu contraseña..." value={userData.Password_repeat} onChange={handleUserData} /> }
+                        {clientIsLogin && <input type="password" id="Password" name="Password" placeholder="Escribe tu contraseña aquí..." value={userData.Password} onChange={handleUserData}  />}  
+                        {clientIsRegister && <input type="password" id="Password_repeat" name="Password_repeat" placeholder="Verifica tu contraseña..." value={userData.Password_repeat} onChange={handleUserData} /> }
                         {clientIsLogin && <input type="text" id="clientEmail" name="Email" placeholder="Tu correo..." value={userData.Email} onChange={handleUserData}  />}
-                        {restaurantIsLogin && <input type="text" id="restaurantName" name="restaurantName" placeholder="Nombre de restaurante" value={userData.Name} onChange={handleUserData}  />}
-                        {restaurantIsLogin && <input type="password" id="restaurantPasssword" name="restaurantPasssword" placeholder="Contraseña de restaurante" value={userData.Password} onChange={handleUserData} />}
-                        {restaurantIsLogin && <input type="text" id="restaurantEmail" name="restaurantEmail" placeholder="Correo de restaurante..." value={userData.Password_repeat} onChange={handleUserData}  />}
-                        {restaurantIsRegister && <input type="password" id="restaurantRepeatPasssword" name="restaurantRepeatPasssword" placeholder="Repetir contraseña de restaurante" value={userData.Email} onChange={handleUserData} />}
+                        {restaurantIsLogin && <input type="text" id="restaurantName" name="Name" placeholder="Nombre de restaurante" value={userData.Name} onChange={handleUserData}  />}
+                        {restaurantIsLogin && <input type="password" id="restaurantPasssword" name="Password" placeholder="Contraseña de restaurante" value={userData.Password} onChange={handleUserData} />}
+                        {restaurantIsLogin && <input type="text" id="restaurantEmail" name="Email" placeholder="Correo de restaurante..." value={userData.Email} onChange={handleUserData}  />}
+                        {restaurantIsRegister && <input type="password" id="restaurantRepeatPasssword" name="Password_repeat" placeholder="Repetir contraseña de restaurante" value={userData.Password_repeat} onChange={handleUserData} />}
                         
                         
                               
