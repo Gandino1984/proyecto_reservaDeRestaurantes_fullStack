@@ -1,14 +1,14 @@
-import fetchData from "fetch.js";
+import fetchData from "./fetch";
 
 // Funciones para llamar a la Api
 
-const getUserByID = async (userID) => {
-    const result = await fetchData(`/users/${userID}`, "get");
+const getAllUsers = async () => {
+    const result = await fetchData("/users", "get");
     return result;
 };
 
-const getAllUsers = async () => {
-    const result = await fetchData("/users", "get");
+const getUserByID = async (userID) => {
+    const result = await fetchData(`/users/${userID}`, "get");
     return result;
 };
 
@@ -22,7 +22,8 @@ const register = async(userData)=>{
     return result;
 };
 const login = async(userData)=>{
-    const result = await fetchData("/login","post",userData);
+    console.log("Userdata", userData)
+    const result = await fetchData("/login","POST",userData);
     return result;
 };
 const logout = async () => {

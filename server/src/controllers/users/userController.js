@@ -52,7 +52,7 @@ async function create(userData) {
 }
 
 async function register(userData) {
-    const {Name, Is_Admin, Email, Password, Password_repeat} = userData;
+    const {Name, Is_Admin, Email, Password, Password_repeat, Is_Client} = userData;
     try {
         if(!Email || !Password || !Password_repeat){
             return {error:"falta email o contraseña"};
@@ -90,7 +90,7 @@ async function register(userData) {
             Is_Admin: 0,
             Email,
             Password:hash,
-            Is_Client:0
+            Is_Client
         }
         const newUser = await create(nuevoUser);
         console.log(newUser)

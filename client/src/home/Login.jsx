@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { login, register} from "../utils/userFetch"
 import styles from './Login.module.css'
 
 function Login({closeBtnClick}) {
@@ -9,6 +10,14 @@ function Login({closeBtnClick}) {
 
  const [userActionIsLogin, setuserActionIsLogin] = useState(true);
  const [userActionIsRegister, setuserActionIsRegister] = useState(false);
+
+ const [error, setError] = useState("");
+ const [userData, setUserData] = useState({
+  Name: "",
+  Email: "",
+  Password: "",
+  Password_repeat: ""
+});
 
  let clientIsLogin = true;
  let clientIsRegister = false;
@@ -67,17 +76,47 @@ function Login({closeBtnClick}) {
     }
   }
 
-
-  function loginClickHandler(e){
+  const handleUserData =(e) =>{
     e.preventDefault();
+    const data = e.target.value;
+    const key = e.target.name;
+    setUserData(userData => {
+        return {
+            ...userData,
+            [key]:data
+        }
+    })
+}
+
+
+async function loginClickHandler(e) {
+  e.preventDefault();
+  let result;  // Asegúrate de declarar result aquí
+  if (clientIsRegister || restaurantIsRegister) {
+      result = await register(userData);
+      if (!result.error) {
+          setError("se ha registrado correctamente");
+      } else {
+          setError(result.error);
+      }
   }
+  if (clientIsLogin || restaurantIsLogin) {
+      result = await login(userData);
+      console.log("resultado login", result)
+      if (!result.error) {
+          setError("login correcto");
+      } else {
+          setError(result.error);
+      }
+  }
+};
 
 
   return (
     <div className={styles.container}>
       <div className={styles.login}>
                 
-                <form className={styles.formContainer} action="">
+                <form className={styles.formContainer}>
                         <div className={styles.userTypeBtnContainer}>
                               <div className={styles.userTypeLabels}>
                                   {userIsClient && <label  className={styles.labelRestaurant} htmlFor="restaurantOption"><ion-icon className={styles.chevronBack} name="chevron-back"></ion-icon>Restaurantes</label>}
@@ -103,14 +142,14 @@ function Login({closeBtnClick}) {
                                   <label  className={styles.labelRegister} htmlFor="registerOption">Registro</label>
                               </div> 
                         </div>              
-                        {clientIsLogin && <input type="text" id="clientName" name="clientName" placeholder="¿Cuál es tu nombre de usuario?" />}
-                        {clientIsLogin && <input type="password" id="clientPasssword" name="clientPasssword" placeholder="Escribe tu contraseña aquí..." />}  
-                        {clientIsRegister && <input type="password" id="repeatClientPasssword" name="clientRepeatPasssword" placeholder="Verifica tu contraseña..." />}
-                        {clientIsLogin && <input type="text" id="clientEmail" name="clientEmail" placeholder="Tu correo..." />}
-                        {restaurantIsLogin && <input type="text" id="restaurantName" name="restaurantName" placeholder="Nombre de restaurante" />}
-                        {restaurantIsLogin && <input type="password" id="restaurantPasssword" name="restaurantPasssword" placeholder="Contraseña de restaurante" />}
-                        {restaurantIsLogin && <input type="text" id="restaurantEmail" name="restaurantEmail" placeholder="Correo de restaurante..." />}
-                        {restaurantIsRegister && <input type="password" id="restaurantRepeatPasssword" name="restaurantRepeatPasssword" placeholder="Repetir contraseña de restaurante" />}
+                        {clientIsLogin && <input type="text" id="Name" name="Name" placeholder="¿Cuál es tu nombre de usuario?" value={userData.Name} onChange={handleUserData} />}
+                        {clientIsLogin && <input type="password" id="Password" name="Password" placeholder="Escribe tu contraseña aquí..." value={userData.Password} onChange={handleUserData}  />}  
+                        {clientIsRegister && <input type="password" id="Password_repeat" name="Password_repeat" placeholder="Verifica tu contraseña..." value={userData.Password_repeat} onChange={handleUserData} /> }
+                        {clientIsLogin && <input type="text" id="clientEmail" name="Email" placeholder="Tu correo..." value={userData.Email} onChange={handleUserData}  />}
+                        {restaurantIsLogin && <input type="text" id="restaurantName" name="Name" placeholder="Nombre de restaurante" value={userData.Name} onChange={handleUserData}  />}
+                        {restaurantIsLogin && <input type="password" id="restaurantPasssword" name="Password" placeholder="Contraseña de restaurante" value={userData.Password} onChange={handleUserData} />}
+                        {restaurantIsLogin && <input type="text" id="restaurantEmail" name="Email" placeholder="Correo de restaurante..." value={userData.Email} onChange={handleUserData}  />}
+                        {restaurantIsRegister && <input type="password" id="restaurantRepeatPasssword" name="Password_repeat" placeholder="Repetir contraseña de restaurante" value={userData.Password_repeat} onChange={handleUserData} />}
                         
                         
                               
