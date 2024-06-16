@@ -3,14 +3,18 @@ import styles from './RestaurantSearchBar.module.css'
 
 function RestaurantSearchBar({searchBtnClick}) {
   function searchBtnClickhandler(e){
+    e.preventDefault(); 
     searchBtnClick(e)
   }
   return (
     <div className={styles.container}>
-        
-        <input className={styles.inputSearch} type="text" name="restaurantSearch" placeholder='Buscar un restaurante'/>
-        {/* cambiar este label a type submit */}
-        <label onClick={e=>searchBtnClickhandler(e)} className={styles.labelSearch} htmlFor="restaurantSearch"><ion-icon name="search"></ion-icon></label>
+        <form onSubmit={searchBtnClickhandler}>
+          <input className={styles.inputSearch} type="text" name="restaurantSearch" placeholder='Buscar un restaurante'/>
+
+          <button type="submit" className={styles.labelSearch}>
+            <ion-icon name="search"></ion-icon>
+          </button>
+        </form>
     </div>
   )
 }
