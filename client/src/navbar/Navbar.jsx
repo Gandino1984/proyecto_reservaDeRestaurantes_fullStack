@@ -3,7 +3,7 @@ import styles from './Navbar.module.css'
 import { useState } from 'react'
 import RestaurantSearchBar from './RestaurantSearchBar';
 
-function Navbar() {
+function Navbar({searchBtnClick}) {
 
   return (
     <>
@@ -12,7 +12,7 @@ function Navbar() {
                     <p className={styles.typewriter}>Book&IT</p>
               </div>
 
-              <RestaurantSearchBar />
+              <RestaurantSearchBar searchBtnClick={e=>searchBtnClick(e)}/>
 
         </div>
     </>

@@ -15,17 +15,29 @@ function Landing(){
 
   const [loginFormOpen, setloginFormOpen] = useState(false);
 
+  const [restaurantData, setrestaurantData] = useState(null);
+
   //esta func usa el tipo de usuario seleccionado en el navbar
   function onHeroBtnClick(){
     setloginFormOpen(true);
   }
 
+  function onCloseBtnLogin(){
+    setloginFormOpen(false);
+  }
+
+  function onNavbarSearchBtnClick(e){
+    console.log(e)
+  }
+
+
+  
 
   return (
         <div className={styles.containerLanding}>
                 <div className={styles.background} />
-                <Navbar />
-                {loginFormOpen && <Login />}
+                <Navbar searchBtnClick={e=>onNavbarSearchBtnClick(e)}/>
+                {loginFormOpen && <Login closeBtnClick={onCloseBtnLogin} />}
                 <Hero heroBtnClick={onHeroBtnClick}/>
                 {restaurantCardOpen && <RestaurantCard />}     
         </div>
