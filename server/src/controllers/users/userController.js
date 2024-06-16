@@ -7,13 +7,13 @@ import jwt from "jsonwebtoken";
 
 async function getAll(userData) {
     try {
-        if (userData.esAdmin == 1) {
+        if (userData.Is_Admin == 1) {
             const users = await userModel.findAll();
             console.log("LOS USUARIOS MOSTRADOS SIENDO ADMIN SON:", users)
             return { data: users };
         }
-        if (userData.esAdmin == 0) {
-            const user = await userModel.findOne({ where: { User_id: userData.user_id } });
+        if (userData.Is_Admin == 0) {
+            const user = await userModel.findOne({ where: { User_id: userData.User_id } });
             console.log("LOS USUARIOS MOSTRADOS SIENDO USUARIO SON:", user)
             return { data: [user] };
         }        

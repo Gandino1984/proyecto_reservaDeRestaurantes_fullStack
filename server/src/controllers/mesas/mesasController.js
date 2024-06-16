@@ -5,13 +5,13 @@ import { Op } from 'sequelize';
 
 async function getAll(userData) {
     try {
-        if (userData.esAdmin == 1) {
+        if (userData.Is_Admin == 1) {
             const users = await mesasModel.findAll();
             console.log("LAS mesaS MOSTRADAS SIENDO ADMIN SON:", users)
             return { data: users };
         }
-        if (userData.esAdmin == 0) {
-            const user = await mesasModel.findOne({ where: { User_id: userData.user_id } });
+        if (userData.Is_Admin == 0) {
+            const user = await mesasModel.findOne({ where: { User_id: userData.User_id } });
             console.log("LAS mesaS MOSTRADAS SIENDO USUARIO SON:", user)
             return { data: [user] };
         }        

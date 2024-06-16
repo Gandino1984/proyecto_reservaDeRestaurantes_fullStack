@@ -6,13 +6,13 @@ import { Op } from 'sequelize';
 //Si no eres administrador filtra todos los restaurantes asociados al User_id de la persona logueada, es decir, sus restaurantes.
 async function getAll(userData) {
     try {
-        if (userData.esAdmin == 1) {
+        if (userData.Is_Admin == 1) {
             const users = await restauranteModel.findAll();
             console.log("LAS restaurante MOSTRADAS SIENDO ADMIN SON:", users)
             return { data: users };
         }
-        if (userData.esAdmin == 0) {
-            const user = await restauranteModel.findOne({ where: { User_id: userData.user_id } });
+        if (userData.Is_Admin == 0) {
+            const user = await restauranteModel.findOne({ where: { User_id: userData.User_id } });
             console.log("LAS restaurante MOSTRADAS SIENDO USUARIO SON:", user)
             return { data: [user] };
         }        
