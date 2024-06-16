@@ -17,7 +17,7 @@ const getById = async (req,res) =>{
 
 const register = async(req,res)=>{
     const user = await userController.register(req.body);
-    console.log("llego aqui")
+    console.log("User en register es:", user)
     if(user.error){
         return res.json({error:user.error});
     }
@@ -29,7 +29,7 @@ const login = async(req, res) => {
     const data = await userController.login(Email, Password);
     
     if(data.error) {
-        return res.status(data.status || 400).json({error: data.error});
+        return res.json({error: data.error});
     }
     
     req.session.user = data;

@@ -317,6 +317,10 @@ input:focus[type="password"]{
     color: var(--purple);
 }
 
+.error {
+    color: red;
+}
+
 
 /* ************************ */
 

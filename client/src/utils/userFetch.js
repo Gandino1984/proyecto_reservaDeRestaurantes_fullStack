@@ -18,11 +18,13 @@ const updateUser = async (userID, userData) => {
 };
 
 const register = async(userData)=>{
+    console.log("Se lanza register", userData)
     const result = await fetchData("/register","post",userData);
+    console.log("Es resultado de register es:", result)
     return result;
 };
 const login = async(userData)=>{
-    console.log("Userdata", userData)
+    console.log("Se lanza login", userData)
     const result = await fetchData("/login","POST",userData);
     return result;
 };

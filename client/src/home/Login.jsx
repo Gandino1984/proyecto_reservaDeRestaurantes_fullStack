@@ -16,8 +16,18 @@ function Login({closeBtnClick}) {
   Name: "",
   Email: "",
   Password: "",
-  Password_repeat: ""
+  Password_repeat: "",
+  Is_Client:1
 });
+useEffect(() => {
+  if (userActionIsRegister) {
+      setUserData(prevData => ({
+          ...prevData,
+          Is_Client: userIsClient ? 1 : 0
+
+      }));
+  }
+}, [userIsClient, userActionIsRegister]);
 
  let clientIsLogin = true;
  let clientIsRegister = false;
@@ -92,7 +102,7 @@ function Login({closeBtnClick}) {
 async function loginClickHandler(e) {
   e.preventDefault();
   let result;  // Asegúrate de declarar result aquí
-  if (clientIsRegister || restaurantIsRegister) {
+  if (userActionIsRegister) {
       result = await register(userData);
       if (!result.error) {
           setError("se ha registrado correctamente");
@@ -100,7 +110,7 @@ async function loginClickHandler(e) {
           setError(result.error);
       }
   }
-  if (clientIsLogin || restaurantIsLogin) {
+  if (userActionIsLogin) {
       result = await login(userData);
       console.log("resultado login", result)
       if (!result.error) {
@@ -141,7 +151,8 @@ async function loginClickHandler(e) {
                                   <label  className={styles.labelLogin} htmlFor="loginOption">Login</label>
                                   <label  className={styles.labelRegister} htmlFor="registerOption">Registro</label>
                               </div> 
-                        </div>              
+                        </div> 
+                        {error && <div className={styles.error}>{error}</div>}             
                         {clientIsLogin && <input type="text" id="Name" name="Name" placeholder="¿Cuál es tu nombre de usuario?" value={userData.Name} onChange={handleUserData} />}
                         {clientIsLogin && <input type="password" id="Password" name="Password" placeholder="Escribe tu contraseña aquí..." value={userData.Password} onChange={handleUserData}  />}  
                         {clientIsRegister && <input type="password" id="Password_repeat" name="Password_repeat" placeholder="Verifica tu contraseña..." value={userData.Password_repeat} onChange={handleUserData} /> }
