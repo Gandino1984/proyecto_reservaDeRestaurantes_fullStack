@@ -8,12 +8,14 @@ function RestaurantSearchBar({searchBtnClick}) {
   }
   return (
     <div className={styles.container}>
-        <form onSubmit={searchBtnClickhandler}>
-          <input className={styles.inputSearch} type="text" name="restaurantSearch" placeholder='Buscar un restaurante'/>
-
-          <button type="submit" className={styles.labelSearch}>
-            <ion-icon name="search"></ion-icon>
-          </button>
+        <form  onSubmit={searchBtnClickhandler}>
+           <div className={styles.containerForm}>
+              <input className={styles.inputSearch} type="text" name="restaurantSearch" placeholder='Buscar un restaurante'/>
+                <button type="submit" className={styles.btnSearch}>
+                  <ion-icon name="search"></ion-icon>
+                </button>
+           </div>
+            
         </form>
     </div>
   )

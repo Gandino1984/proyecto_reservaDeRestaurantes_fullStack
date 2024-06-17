@@ -36,17 +36,3 @@
 .inactiveSelector{
     display: none;
 }
-
-/* @keyframes typing{
-    to{
-        width: 0%;
-    }
-
-}
-
-@keyframes blinking{
-    50%{
-        color: transparent;
-    }
-   
-} */
