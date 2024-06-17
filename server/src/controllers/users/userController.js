@@ -13,7 +13,7 @@ async function getAll(userData) {
             return { data: users };
         }
         if (userData.Is_Admin == 0) {
-            const user = await userModel.findOne({ where: { User_id: userData.User_id } });
+            const user = await userModel.findAll({ where: { User_id: userData.User_id } });
             console.log("LOS USUARIOS MOSTRADOS SIENDO USUARIO SON:", user)
             return { data: [user] };
         }        
