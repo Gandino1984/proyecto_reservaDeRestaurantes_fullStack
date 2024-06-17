@@ -15,10 +15,12 @@ import GeneralContext from '../context/GeneralContext.jsx'
 function Landing({children}){
 
   const {user} = useContext(GeneralContext)
+  const {loginFormOpen} = useContext(GeneralContext)
+
 
   const [restaurantCardOpen, setrestaurantCardOpen] = useState(true);
 
-  const [loginFormOpen, setloginFormOpen] = useState(false);
+  //const [loginFormOpen, setloginFormOpen] = useState(false);
 
   const [restaurantData, setrestaurantData] = useState(null);
 

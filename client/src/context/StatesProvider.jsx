@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import  GeneralContext from './GeneralContext'
+import GeneralContext from './GeneralContext';
 
 function StatesProvider({children}){
 
@@ -12,7 +12,7 @@ function StatesProvider({children}){
 
 
   function setUserByTypeToggle(e){
-    if(e.target,value==='client'){
+    if(e.target,value === 'client'){
         setUserByType('restaurant')
     }
     else{
@@ -20,13 +20,9 @@ function StatesProvider({children}){
     }
   }
 
-  function setLoginFormOpenHandler(e){
-    if(e.target.value == true){
-      setloginFormOpen(false)
-  }else{
-    setloginFormOpen(true)
+  function setLoginFormOpenHandler(e) {
+    setloginFormOpen(prevState => !prevState);
   }
-}
 
   //   if(e.target,value==='client'){
   //       setUserByType('restaurant')

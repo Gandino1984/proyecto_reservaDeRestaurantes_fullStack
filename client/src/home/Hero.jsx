@@ -1,10 +1,13 @@
 import styles from './Hero.module.css'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import GeneralContext from '../context/GeneralContext'
 
 
 function Hero() {
-    const {setLoginFormOpenHandler } = useContext(GeneralContext)
+    const { setLoginFormOpenHandler } = useContext(GeneralContext)
+    useEffect(() => {
+        console.log(setLoginFormOpenHandler);
+    }, [setLoginFormOpenHandler]);
 
     return (
         <div className={styles.container}>
