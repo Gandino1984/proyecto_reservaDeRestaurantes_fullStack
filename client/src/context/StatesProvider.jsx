@@ -24,14 +24,6 @@ function StatesProvider({children}){
     setloginFormOpen(prevState => !prevState);
   }
 
-  //   if(e.target,value==='client'){
-  //       setUserByType('restaurant')
-  //   }
-  //   else{
-  //     setUserByType('client')
-  //   }
-  // }
-
   const contextValue = {
     user,
     setUser,
