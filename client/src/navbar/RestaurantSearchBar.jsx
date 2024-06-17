@@ -57,30 +57,34 @@ function RestaurantSearchBar({ searchBtnClick }) {
   return (
     <div className={styles.container}>
       <form onSubmit={botonBusquedaHandler}>
-        <input
-          className={styles.inputSearch}
-          type="text"
-          name="restaurantSearch"
-          placeholder='Buscar un restaurante'
-          value={searchTerm}
-          onChange={handleInputChange}
-        />
-        {searchResults.length > 0 && (
-        <select className={styles.searchResults}>
-          {searchResults.map((restaurant) => (
-            <option 
-              key={restaurant.Restaurante_id} 
-              className={styles.searchResultItem}
-              onClick={() => handleResultClick(restaurant)}
-            >
-              <p>{restaurant.Name}</p>
-            </option>
-          ))}
-        </select>
-)}
-        <button type="submit" className={styles.labelSearch}>
-          <ion-icon name="search"></ion-icon>
-        </button>
+        <div classname={styles.containerForm}>
+          <input
+            className={styles.inputSearch}
+            type="text"
+            name="restaurantSearch"
+            placeholder='Buscar un restaurante'
+            value={searchTerm}
+            onChange={handleInputChange}
+          />
+          {searchResults.length > 0 && (
+          <select className={styles.searchResults}>
+            {searchResults.map((restaurant) => (
+              <option 
+                key={restaurant.Restaurante_id} 
+                className={styles.searchResultItem}
+                onClick={() => handleResultClick(restaurant)}
+              >
+                <p>{restaurant.Name}</p>
+              </option>
+            ))}
+          </select>
+  )}
+          <button type="submit" className={styles.btnSearch}>
+            <ion-icon name="search"></ion-icon>
+          </button>
+
+        </div>
+
       </form>
 
 
