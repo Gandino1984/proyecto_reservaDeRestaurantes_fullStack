@@ -4,23 +4,21 @@ import { login, register} from "../utils/userFetch"
 import styles from './Login.module.css'
 import GeneralContext from '../context/GeneralContext'
 import { saveToken } from '../utils/local'
+import CreateReserva from '../components/reserva/reservaCliente' 
+
 
 
 function Login({closeBtnClick}) {
-  const { setUser } = useContext(GeneralContext);
-  const { setLoginFormOpenHandler } = useContext(GeneralContext)
-  useEffect(() => {
-    console.log(setLoginFormOpenHandler);
-}, [setLoginFormOpenHandler]);
 
+ const { setUser, setLoginFormOpenHandler } = useContext(GeneralContext);
 
  const [userIsClient, setuserIsClient] = useState(true);
  const [userIsRestaurant, setuserIsRestaurant] = useState(false);
-
  const [userActionIsLogin, setuserActionIsLogin] = useState(true);
  const [userActionIsRegister, setuserActionIsRegister] = useState(false);
 
  const [error, setError] = useState("");
+ 
  const [userData, setUserData] = useState({
   Name: "",
   Email: "",
@@ -28,6 +26,7 @@ function Login({closeBtnClick}) {
   Password_repeat: "",
   Is_Client:1
 });
+
 useEffect(() => {
   if (userActionIsRegister) {
       setUserData(prevData => ({
@@ -42,8 +41,7 @@ useEffect(() => {
  let clientIsRegister = false;
  let restaurantIsLogin = false;
  let restaurantIsRegister = false;
- 
-     
+   
   if(userActionIsLogin && userIsClient){
     clientIsLogin = true;
     clientIsRegister = false;
@@ -68,7 +66,6 @@ useEffect(() => {
     restaurantIsLogin = true;
     restaurantIsRegister = true;
   }
-  
   
   function userTypeHandler(e){
     if(e.target.value === "client"){
@@ -102,15 +99,15 @@ useEffect(() => {
     })
 }
 
-
 async function loginClickHandler(e) {
   e.preventDefault();
   let result;  // Asegúrate de declarar result aquí
   if (userActionIsRegister) {
       result = await register(userData);
       if (!result.error) {
-        
           setError("se ha registrado correctamente");
+          
+          setLoginFormOpenHandler(e)
       } else {
           setError(result.error);
       }
@@ -123,6 +120,7 @@ async function loginClickHandler(e) {
           setUser(result.data); 
           saveToken(result.data.token);
           console.log("user", result.data)
+          setLoginFormOpenHandler(e)
       } else {
           setError(result.error);
       }
