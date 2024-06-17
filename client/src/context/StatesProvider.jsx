@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import  GeneralContext from './GeneralContext'
+import GeneralContext from './GeneralContext';
 
 function StatesProvider({children}){
 
@@ -12,13 +12,25 @@ function StatesProvider({children}){
 
 
   function setUserByTypeToggle(e){
-    if(e.target,value==='client'){
+    if(e.target,value === 'client'){
         setUserByType('restaurant')
     }
     else{
       setUserByType('client')
     }
   }
+
+  function setLoginFormOpenHandler(e) {
+    setloginFormOpen(prevState => !prevState);
+  }
+
+  //   if(e.target,value==='client'){
+  //       setUserByType('restaurant')
+  //   }
+  //   else{
+  //     setUserByType('client')
+  //   }
+  // }
 
   const contextValue = {
     user,
@@ -32,6 +44,7 @@ function StatesProvider({children}){
     setrestaurantCardOpen,
     restaurantData,
     setrestaurantData,
+    setLoginFormOpenHandler
   };
 
   return (

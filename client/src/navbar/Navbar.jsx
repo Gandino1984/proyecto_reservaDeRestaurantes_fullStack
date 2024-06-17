@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styles from './Navbar.module.css';
 import RestaurantSearchBar from './RestaurantSearchBar';
 import ClientCard from './ClientCard';
-import GeneralContext from '../context/GeneralContext';
+import GeneralContext from '../context/GeneralContext.jsx'
 
 function Navbar({ searchBtnClick }) {
   const { user } = useContext(GeneralContext);

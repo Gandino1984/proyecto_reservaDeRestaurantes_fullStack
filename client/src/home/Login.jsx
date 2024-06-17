@@ -8,6 +8,11 @@ import { saveToken } from '../utils/local'
 
 function Login({closeBtnClick}) {
   const { setUser } = useContext(GeneralContext);
+  const { setLoginFormOpenHandler } = useContext(GeneralContext)
+  useEffect(() => {
+    console.log(setLoginFormOpenHandler);
+}, [setLoginFormOpenHandler]);
+
 
  const [userIsClient, setuserIsClient] = useState(true);
  const [userIsRestaurant, setuserIsRestaurant] = useState(false);
@@ -37,11 +42,6 @@ useEffect(() => {
  let clientIsRegister = false;
  let restaurantIsLogin = false;
  let restaurantIsRegister = false;
- 
-//  const [clientIsLogin, setclientIsLogin] = useState(true);
-//  const [clientIsRegister, setclientIsRegister] = useState(false);
-//  const [restaurantIsLogin, setrestaurantIsLogin] = useState(false);
-//  const [restaurantIsRegister, setrestaurantIsRegister] = useState(false);
  
      
   if(userActionIsLogin && userIsClient){
@@ -135,6 +135,11 @@ async function loginClickHandler(e) {
       <div className={styles.login}>
                 
                 <form className={styles.formContainer}>
+                            <div>
+                                <button className={styles.closeBtn} onClick={e=>setLoginFormOpenHandler(e)}>
+                                        <ion-icon name="close-circle-outline"></ion-icon>
+                                </button>
+                            </div>
                         <div className={styles.userTypeBtnContainer}>
                               <div className={styles.userTypeLabels}>
                                   {userIsClient && <label  className={styles.labelRestaurant} htmlFor="restaurantOption"><ion-icon className={styles.chevronBack} name="chevron-back"></ion-icon>Restaurantes</label>}
@@ -145,10 +150,8 @@ async function loginClickHandler(e) {
                                     <input className={styles.userTypeRadioOption} value="restaurant" id="restaurantOption" name='userType' type="radio" />
                               </div>   
 
-                              <div className={styles.closeBtn} onClick={e=>closeBtnClick(e)}>
-                                <ion-icon name="close-circle-outline"></ion-icon>
-                              </div>
                         </div>
+
 
                         <div className={styles.menuContainer}>
                               <div className={styles.userActionRadios} onChange={e=>userActionHandler(e)}>
