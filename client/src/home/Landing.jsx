@@ -8,14 +8,14 @@ import Navbar from '../navbar/Navbar.jsx'
 import Hero from './Hero.jsx'
 import RestaurantCard from './RestaurantCard.jsx'
 import TarjetasRestaurante from "../components/restauranteReservas/TarjetasRestaurante.jsx"
-import UserContext from '../context/Usercontext';
+// import UserContext from '../context/Usercontext';
 import MostrarReservas from '../components/reserva/MostrarReservas.jsx'
+import { useContext } from 'react'
+import GeneralContext from '../context/GeneralContext.jsx'
 
+function Landing({children}){
 
-function Landing(){
-  const { user } = useContext(UserContext);
-
-  // default state de tipo de usuario
+  const {user} = useContext(GeneralContext)
 
   const [restaurantCardOpen, setrestaurantCardOpen] = useState(true);
 
@@ -23,7 +23,6 @@ function Landing(){
 
   const [restaurantData, setrestaurantData] = useState(null);
 
-  //esta func usa el tipo de usuario seleccionado en el navbar
   function onHeroBtnClick(){
     setloginFormOpen(true);
   }
