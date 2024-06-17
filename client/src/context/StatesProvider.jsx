@@ -20,6 +20,22 @@ function StatesProvider({children}){
     }
   }
 
+  function setLoginFormOpenHandler(e){
+    if(e.target.value == true){
+      setloginFormOpen(false)
+  }else{
+    setloginFormOpen(true)
+  }
+}
+
+  //   if(e.target,value==='client'){
+  //       setUserByType('restaurant')
+  //   }
+  //   else{
+  //     setUserByType('client')
+  //   }
+  // }
+
   const contextValue = {
     user,
     setUser,
@@ -32,6 +48,7 @@ function StatesProvider({children}){
     setrestaurantCardOpen,
     restaurantData,
     setrestaurantData,
+    setLoginFormOpenHandler
   };
 
   return (
