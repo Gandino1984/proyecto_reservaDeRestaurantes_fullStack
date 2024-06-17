@@ -10,9 +10,7 @@ function App() {
 
   return (
     <StatesProvider>
-      <Login />
-      <MostrarReservas />
-      {/* <Landing /> */}
+      <Landing />
     </StatesProvider>
   )
 }
