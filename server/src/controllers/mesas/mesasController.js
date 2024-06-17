@@ -24,6 +24,7 @@ async function getAll(userData) {
 
 const getMesasByRestaurante = async(restauranteId) =>{
     try {
+        console.log("RestauranteId en mesasController",restauranteId)
         const mesa = await mesasModel.findAll({ where: { Restaurante_id: restauranteId } })
         console.log("Mesas filtradas", mesa)
         return mesa;
