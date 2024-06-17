@@ -30,6 +30,9 @@ const userModel = sequelize.define("User",
             type:DataTypes.TINYINT,
             allowNull:false,
         },
+        User_Image: {
+            type:DataTypes.STRING(45)
+        }
     }
 )
 
