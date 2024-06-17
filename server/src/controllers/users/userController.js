@@ -118,8 +118,9 @@ async function login(Email, Password) {
             console.log("EL TOKEN ES:", token);
             const user_id = oldUser.User_id;
             const esAdmin = oldUser.Is_Admin;
-            const name = oldUser.Name
-            return { user_id, esAdmin, token, name };
+            const name = oldUser.Name;
+            const isClient = oldUser.Is_Client;
+            return { user_id, esAdmin, token, name, isClient };
         } else {
             return { error: "La combinación de usuario y contraseña es errónea"};
         }
