@@ -38,11 +38,6 @@ useEffect(() => {
  let restaurantIsLogin = false;
  let restaurantIsRegister = false;
  
-//  const [clientIsLogin, setclientIsLogin] = useState(true);
-//  const [clientIsRegister, setclientIsRegister] = useState(false);
-//  const [restaurantIsLogin, setrestaurantIsLogin] = useState(false);
-//  const [restaurantIsRegister, setrestaurantIsRegister] = useState(false);
- 
      
   if(userActionIsLogin && userIsClient){
     clientIsLogin = true;
