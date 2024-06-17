@@ -9,7 +9,7 @@ import Hero from './Hero.jsx'
 // import RestaurantCard from './RestaurantCard.jsx'
 import TarjetasRestaurante from "../components/restauranteReservas/TarjetasRestaurante.jsx"
 // import UserContext from '../context/Usercontext';
-import MostrarReservas from '../components/reserva/MostrarReservas.jsx'
+import ReservasRestaurante from '../components/reserva/ReservasRestaurante.jsx'
 import GeneralContext from '../context/GeneralContext.jsx'
 
 function Landing({children}){

@@ -8,6 +8,7 @@ function StatesProvider({children}){
   const [userByType, setUserByType] = useState('client') 
   const [restaurantCardOpen, setrestaurantCardOpen] = useState(true);
   const [loginFormOpen, setloginFormOpen] = useState(false);
+  const [reservasRestauranteOpen, setreservasRestauranteOpen] = useState(false);
   const [restaurantData, setrestaurantData] = useState(null);
 
 
@@ -18,6 +19,10 @@ function StatesProvider({children}){
     else{
       setUserByType('client')
     }
+  }
+
+  function reservasRestauranteOpenHandler(e) {
+    setreservasRestauranteOpen(prevState => !prevState);
   }
 
   function setLoginFormOpenHandler(e) {
@@ -36,7 +41,8 @@ function StatesProvider({children}){
     setrestaurantCardOpen,
     restaurantData,
     setrestaurantData,
-    setLoginFormOpenHandler
+    setLoginFormOpenHandler,
+    reservasRestauranteOpenHandler
   };
 
   return (
