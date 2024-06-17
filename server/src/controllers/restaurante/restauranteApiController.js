@@ -8,6 +8,13 @@ const getAll = async(req,res)=>{
     res.json({error,data});
 }
 
+const barraDeBusqueda = async(req,res)=>{
+    const busquedaData = req.params.busquedaData
+    console.log("BusquedaData es:",busquedaData)
+    const {error,data} = await restauranteController.barraDeBusqueda(busquedaData);
+    res.json({error,data});
+}
+
 const getRestauranteByTipo = async(req,res)=>{
     const tipo = req.params.tipo
     const {error,data} = await restauranteController.getRestauranteByTipo(tipo);
@@ -47,6 +54,7 @@ const create = async(req,res)=>{
 
 export default{
     getAll,
+    barraDeBusqueda,
     getRestauranteByTipo,
     getById,
     getByProperty,
