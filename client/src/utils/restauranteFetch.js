@@ -7,6 +7,11 @@ const getAllRestaurantes = async () => {
     return result;
 };
 
+const barraDeBusqueda = async (busqueda) => {
+    const result = await fetchData(`/restaurante/busqueda/${busqueda}`, "get");
+    return result;
+};
+
 const getRestauranteByTipo = async (tipo) => {
     const result = await fetchData(`/restaurante/tipo/${tipo}`, "get");
     return result;
@@ -35,6 +40,7 @@ const removeRestaurante = async(restauranteID) =>{
 
 export {
     getAllRestaurantes,
+    barraDeBusqueda,
     getRestauranteByID,
     getRestauranteByTipo,
     updateRestaurante, 

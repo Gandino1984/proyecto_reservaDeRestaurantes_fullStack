@@ -1,8 +1,14 @@
 .container{
     display: flex;
     align-items: center;
+    justify-content:space-between;
+}
+
+.containerForm{
+    display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 
@@ -10,7 +16,7 @@
     appearance: none;
     outline: none;
     border: none;
-    background-color: white;
+    background-color:   white;
     width: 20rem;
     color: white;
     /* padding: .5rem 1rem; */
@@ -32,7 +38,9 @@
     font-family: Roboto Condensed;
 }
 
-.labelSearch{
+.btnSearch{
+    border: none;
+    outline: none;
     border-radius: 50%;
     padding: .6rem;
     display: flex;
@@ -45,7 +53,7 @@
     transition: all 200ms ease;
 }
 
-.labelSearch:hover{
+.btnSearch:hover{
     border-radius: 30%;
     color: var(--green);
     background-color: black;
