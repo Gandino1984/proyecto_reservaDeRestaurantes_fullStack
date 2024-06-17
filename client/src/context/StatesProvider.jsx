@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { GeneralContext } from './GeneralContext'
+import  GeneralContext from './GeneralContext'
 
 function StatesProvider({children}){
 
@@ -20,21 +20,25 @@ function StatesProvider({children}){
     }
   }
 
+  const contextValue = {
+    user,
+    setUser,
+    userByType,
+    setUserByType,
+    setUserByTypeToggle,
+    loginFormOpen,
+    setloginFormOpen,
+    restaurantCardOpen,
+    setrestaurantCardOpen,
+    restaurantData,
+    setrestaurantData,
+  };
 
   return (
-    <GeneralContext.provider>
-        value={{
-            user, 
-            userByType, 
-            setUserByTypeToggle,
-            loginFormOpen,
-            restaurantCardOpen,
-            restaurantData
-        }}
-
-        { children }
-    </GeneralContext.provider>
-  )
+    <GeneralContext.Provider value={contextValue}>
+      {children}
+    </GeneralContext.Provider>
+  );
 }
 
 export default StatesProvider

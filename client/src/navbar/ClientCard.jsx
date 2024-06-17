@@ -2,10 +2,10 @@
 import React, { useContext } from 'react';
 import styles from './ClientCard.module.css';
 import userImg from './user.png';
-import UserContext from '../context/Usercontext';
+import GeneralContext from '../context/GeneralContext';
 
 function ClientCard({ onMisReservasClick }) {
-  const { user } = useContext(UserContext);
+  const { user } = useContext(GeneralContext);
 
   return (
     <div className={styles.container}>
