@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-const GeneralContext = createContext({user: null, setUser: () => {}});
+const GeneralContext = createContext();
 
 export default GeneralContext;
