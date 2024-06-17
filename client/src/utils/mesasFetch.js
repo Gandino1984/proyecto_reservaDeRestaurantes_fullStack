@@ -1,5 +1,5 @@
 import fetchData from "./fetch";
-import UserContext from '../context/Usercontext';
+import GeneralContext from "../context/GeneralContext";
 import React, { useContext } from 'react';
 
 
@@ -7,7 +7,7 @@ import React, { useContext } from 'react';
 // Funciones para llamar a la Api
 
 const getAllMesas = async () => {
-    const { user } = useContext(UserContext);
+    const { user } = useContext(GeneralContext);
     console.log("USER AL LLAMAR A LA API", user)
 
     const result = await fetchData("/mesas", "get", user);

@@ -10,7 +10,6 @@ import RestaurantCard from './RestaurantCard.jsx'
 import TarjetasRestaurante from "../components/restauranteReservas/TarjetasRestaurante.jsx"
 // import UserContext from '../context/Usercontext';
 import MostrarReservas from '../components/reserva/MostrarReservas.jsx'
-import { useContext } from 'react'
 import GeneralContext from '../context/GeneralContext.jsx'
 
 function Landing({children}){

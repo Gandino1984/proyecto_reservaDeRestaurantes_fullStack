@@ -1,6 +1,4 @@
 import fetchData from "./fetch.js";
-import UserContext from '../context/Usercontext';
-import React, { useContext } from 'react';
 
 //IMPORTANTE, LA FUNCION getAllReservas MIRA SI ES ADMIN O NO
 //SI ES ADMIN SACA TODAS LAS RESERVAS

@@ -6,6 +6,7 @@ import Landing from './home/Landing.jsx'
 // import { UserProvider } from './context/Usercontext.jsx'
 import MostrarReservas from './components/reserva/MostrarReservas.jsx'
 import Login from './home/Login.jsx'
+import StatesProvider from './context/StatesProvider.jsx'
 function App() {
 
   return (

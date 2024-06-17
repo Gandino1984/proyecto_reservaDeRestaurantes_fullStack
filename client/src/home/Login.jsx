@@ -2,12 +2,12 @@ import React from 'react'
 import { useState, useEffect, useContext } from 'react'
 import { login, register} from "../utils/userFetch"
 import styles from './Login.module.css'
-import UserContext from '../context/Usercontext'
+import GeneralContext from '../context/GeneralContext'
 import { saveToken } from '../utils/local'
 
 
 function Login({closeBtnClick}) {
-  const { setUser } = useContext(UserContext);
+  const { setUser } = useContext(GeneralContext);
 
  const [userIsClient, setuserIsClient] = useState(true);
  const [userIsRestaurant, setuserIsRestaurant] = useState(false);

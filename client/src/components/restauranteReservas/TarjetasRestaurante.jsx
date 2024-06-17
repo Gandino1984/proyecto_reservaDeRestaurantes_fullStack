@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
 import styles from './TarjetasRestaurante.module.css';
-import UserContext from "../../context/Usercontext"
+import GeneralContext from '../../context/GeneralContext'; 
 import { getAllReservas } from '../../utils/reservaFetch';
 import { getAllRestaurantes } from '../../utils/restauranteFetch';
 import { getMesasByRestaurante } from "../../utils/mesasFetch"
 
 function TarjetasRestaurante() {
-  const { user } = useContext(UserContext);
+  const { user } = useContext(GeneralContext);
   const [reservas, setReservas] = useState([]);
   const [mesas, setmesas] = useState([]);
 
