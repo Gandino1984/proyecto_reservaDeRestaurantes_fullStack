@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import styles from './Navbar.module.css';
 import RestaurantSearchBar from './RestaurantSearchBar';
 import ClientCard from './ClientCard';
-import UserContext from '../context/Usercontext';
+import GeneralContext from '../context/GeneralContext';
 
 function Navbar({ searchBtnClick }) {
-  const { user } = useContext(UserContext);
+  const { user } = useContext(GeneralContext);
   console.log("USER EN NAVBAR", user)
 
   return (
