@@ -31,8 +31,6 @@ const login = async(req, res) => {
     }
     
     req.session.user = data;
-    console.log("req.session.user", req.session.user);
-    console.log("req.session", req.session)
     res.status(200).json({data});
 };
 
