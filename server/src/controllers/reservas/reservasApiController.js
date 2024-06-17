@@ -26,9 +26,10 @@ const getReservasPorDiaYSillas = async (req, res) => {
     res.json({ data });
 };
 
-const getReservasPorMesa = async (req, res) => {
-    const { restaurante, numeroSillas, dia } = req.params;
-    const { data, error } = await reservasController.getReservasPorDiaYSillas({ numeroSillas, dia, restaurante });
+const getReservasPorRestaurante = async (req, res) => {
+    const restauranteId = req.params.restauranteid;
+    console.log("Restaurante en api controller", restauranteId)
+    const { data, error } = await reservasController.getReservasPorRestaurante(restauranteId);
 
     if (error) {
         return res.status(500).json({ error });
@@ -66,6 +67,7 @@ export default{
     getById,
     getByProperty,
     getReservasPorDiaYSillas,
+    getReservasPorRestaurante,
     update,
     create,
     remove

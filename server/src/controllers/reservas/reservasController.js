@@ -1,5 +1,7 @@
 import ReservasModel from "../../models/reservasModel.js";
 import MesasModel from "../../models/mesasModel.js";
+import RestauranteModel from "../../models/restauranteModel.js";
+import mesasController from "../mesas/mesasController.js";
 import { Op } from 'sequelize'; 
 
 
@@ -57,6 +59,61 @@ const getReservasPorDiaYSillas = async ({ numeroSillas, dia, restaurante }) => {
         return { error: error.message };
     }
 };
+
+const getReservasPorMesaIds = async (mesaIds) => {
+    try {
+        const reservas = await ReservasModel.findAll({
+            where: {
+                Mesa_id: {
+                    [Op.in]: mesaIds,  // Filtrar por array de IDs
+                },
+            },
+        });
+        return reservas;
+    } catch (error) {
+        console.error("Error al obtener reservas:", error);
+        throw error;
+    }
+};
+
+const getReservasPorRestaurante = async (restauranteId) => {
+    try {
+        console.log("RestauranteId",restauranteId)
+        // Obtener mesas por Restaurante_id
+        const mesas = await mesasController.getMesasByRestaurante(restauranteId);
+        console.log("Mesas filtradas", mesas)
+
+        // Obtener los IDs de las mesas
+        const mesaIds = mesas.map(mesa => mesa.Mesa_id);
+        console.log("MesaId filtrado", mesaIds)
+
+        // Si no hay mesas, no hay reservas
+        if (mesaIds.length === 0) {
+            return { data: [] };
+        }
+
+        // Obtener reservas por array de Mesa_ids
+        const reservas = await getReservasPorMesaIds(mesaIds);
+
+        // Combinar mesas y reservas en un solo resultado
+        const mesasConReservas = mesas.map(mesa => {
+            const reservasDeLaMesa = reservas.filter(reserva => reserva.Mesa_id === mesa.Mesa_id);
+            return {
+                ...mesa.toJSON(),
+                reservas: reservasDeLaMesa,
+            };
+        });
+
+        console.log("MESAS CON RESERVAS:", mesasConReservas);
+        return { data: mesasConReservas };
+    } catch (error) {
+        console.error("Error al obtener reservas:", error);
+        return { error: error.message };
+    }
+};
+
+
+
 
 async function getById(id) {
     try {
@@ -168,6 +225,7 @@ export {
     getById,
     getByProperty,
     getReservasPorDiaYSillas,
+    getReservasPorRestaurante,
     create,
     update,
     remove
@@ -179,6 +237,7 @@ export default {
     getById,
     getByProperty,
     getReservasPorDiaYSillas,
+    getReservasPorRestaurante,
     create,
     update,
     remove
