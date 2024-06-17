@@ -7,14 +7,14 @@ import { Op } from 'sequelize';
 async function getAll(userData) {
     try {
         if (userData.Is_Admin == 1) {
-            const users = await restauranteModel.findAll();
-            console.log("LAS restaurante MOSTRADAS SIENDO ADMIN SON:", users)
-            return { data: users };
+            const restaurantes = await restauranteModel.findAll();
+            console.log("LAS restaurante MOSTRADAS SIENDO ADMIN SON:", restaurantes)
+            return { data: restaurantes };
         }
         if (userData.Is_Admin == 0) {
-            const user = await restauranteModel.findAll({ where: { User_id: userData.User_id } });
-            console.log("LAS restaurante MOSTRADAS SIENDO USUARIO SON:", user)
-            return { data: [user] };
+            const restaurantes = await restauranteModel.findAll({ where: { User_id: userData.User_id } });
+            console.log("LAS restaurante MOSTRADAS SIENDO USUARIO SON:", restaurantes)
+            return { data: restaurantes };
         }        
     }
     catch (error) {
@@ -22,6 +22,38 @@ async function getAll(userData) {
         return { error: error };
     }
 }
+
+async function barraDeBusqueda(busquedaData) {
+    try {
+        if (busquedaData.length > 2) {
+            const restaurantes = await restauranteModel.findAll({
+                where: {
+                    [Op.or]: [
+                        {
+                            Name: {
+                                [Op.like]: `%${busquedaData}%`
+                            }
+                        },
+                        {
+                            Tipo_Restaurante: {
+                                [Op.like]: `%${busquedaData}%`
+                            }
+                        }
+                    ]
+                }
+            });
+            console.log("LOS RESTAURANTES ENCONTRADOS SON:", restaurantes);
+            return { data: restaurantes };
+        } else {
+            return { data: [], message: 'La búsqueda debe tener más de 3 caracteres' };
+        }
+    } catch (error) {
+        console.error("Error al buscar restaurantes:", error);
+        return { error: error.message };
+    }
+}
+
+
 
 async function getRestauranteByTipo(tipo) {
     try {
@@ -139,6 +171,7 @@ async function remove(id) {
 
 export {
     getAll,
+    barraDeBusqueda,
     getRestauranteByTipo,
     getById,
     getByProperty,
@@ -150,6 +183,7 @@ export {
 
 export default {
     getAll,
+    barraDeBusqueda,
     getRestauranteByTipo,
     getById,
     getByProperty,
