@@ -54,34 +54,36 @@ function RestaurantSearchBar({ searchBtnClick }) {
 
   return (
     <div className={styles.container}>
-      <form onSubmit={botonBusquedaHandler} className={styles.form}>
-        <div className={styles.inputContainer}>
-          <input
-            className={styles.inputSearch}
-            type="text"
-            name="restaurantSearch"
-            placeholder='Buscar un restaurante'
-            value={searchTerm}
-            onChange={handleInputChange}
-          />
-          {searchResults.length > 0 && (
-            <div className={styles.dropdown}>
-              {searchResults.map((restaurant) => (
-                <div 
-                  key={restaurant.Restaurante_id} 
-                  className={styles.searchResultItem}
-                  onClick={() => handleResultClick(restaurant)}
-                >
-                  <p>{restaurant.Name}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
         <button type="submit" className={styles.btnSearch}>
-          <ion-icon name="search"></ion-icon>
+              <ion-icon name="search"></ion-icon>
         </button>
-      </form>
+        <form onSubmit={botonBusquedaHandler} className={styles.form}>
+        
+          <div className={styles.inputContainer}>
+            <input
+              className={styles.inputSearch}
+              type="text"
+              name="restaurantSearch"
+              placeholder='Buscar un restaurante'
+              value={searchTerm}
+              onChange={handleInputChange}
+            />
+            {searchResults.length > 0 && (
+              <div className={styles.dropdown}>
+                {searchResults.map((restaurant) => (
+                  <div 
+                    key={restaurant.Restaurante_id} 
+                    className={styles.searchResultItem}
+                    onClick={() => handleResultClick(restaurant)}
+                  >
+                    <p>{restaurant.Name}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        
+        </form>
     </div>
   );
 }
