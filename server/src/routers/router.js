@@ -8,10 +8,10 @@ import { isAdmin,isAuthenticated } from "../middleware/authMiddelWare.js";
 
 const router  =  Router();
 
-router.use("/users",userRouter);
+router.use("/users",isAuthenticated,userRouter);
 router.use("/",authRouter);
-router.use("/reservas",reservasRouter);
-router.use("/mesas",mesasRouter);
+router.use("/reservas",isAuthenticated,reservasRouter);
+router.use("/mesas",isAuthenticated,mesasRouter);
 router.use("/restaurante",isAuthenticated,restauranteRouter);
 
 

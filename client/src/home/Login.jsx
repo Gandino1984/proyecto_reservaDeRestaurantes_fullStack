@@ -18,8 +18,8 @@ function Login({closeBtnClick}) {
   setuserIsRestaurant,
   setuserActionIsLogin,
   setuserActionIsRegister,
-  setcreateReservasOpen,
-  createReservasOpen
+  userLoggedOrRegistered,
+  setuserLoggedOrRegistered
 
 } = useContext(GeneralContext);
 
@@ -112,13 +112,12 @@ async function loginClickHandler(e) {
       result = await register(userData);
       if (!result.error) {
           setError("se ha registrado correctamente");
-          //****************** */
+
           setLoginFormOpenHandler(e)
-          //****************** */
-          if(userIsClient){
-            setcreateReservasOpen(true);
-          }
+          setuserLoggedOrRegistered(true)
+        
       } else {
+        setuserLoggedOrRegistered(false)
           setError(result.error);
       }
   }
@@ -130,14 +129,13 @@ async function loginClickHandler(e) {
           setUser(result.data); 
           saveToken(result.data.token);
           console.log("user", result.data)
-          setLoginFormOpenHandler(e)
-          
-          if(userIsClient){
-            setcreateReservasOpen(true);
-          }
 
+          setLoginFormOpenHandler(e)
+          setuserLoggedOrRegistered(true)
+        
       } else {
           setError(result.error);
+          setuserLoggedOrRegistered(false)
       }
   }
 };

@@ -59,7 +59,7 @@ const remove = async(req,res)=>{
 
 
 const create = async(req,res)=>{
-    const sesionUserId = req.session.user.user_id
+    const sesionUserId = req.user.dataValues.User_id
     const restaurante = await restauranteController.create(req.body, sesionUserId);
     res.json({data:restaurante})
 }
