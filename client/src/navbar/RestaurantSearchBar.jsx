@@ -4,7 +4,7 @@ import GeneralContext from '../context/GeneralContext';
 import { barraDeBusqueda } from '../utils/restauranteFetch'; 
 
 function RestaurantSearchBar({ searchBtnClick }) {
-  const { setrestaurantData } = useContext(GeneralContext);
+  const { setrestaurantData, userIsClient, createReservasOpen, setcreateReservasOpen, userLoggedOrRegistered, setuserLoggedOrRegistered} = useContext(GeneralContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
@@ -50,12 +50,20 @@ function RestaurantSearchBar({ searchBtnClick }) {
     if (searchTerm.length > 2) {
       searchBarra(searchTerm);
     }
-    searchBtnClick(e);
+
+    searchBtnClick(e)  
   };
+
+  function searchBtnhandler(e) {
+    e.preventDefault();
+    if(userLoggedOrRegistered){
+      setcreateReservasOpen(true)
+    }
+  }
 
   return (
     <div className={styles.container}>
-        <button type="submit" className={styles.btnSearch}>
+        <button onClick={searchBtnhandler} type="submit" className={styles.btnSearch}>
               <ion-icon name="search"></ion-icon>
         </button>
         <form onSubmit={botonBusquedaHandler} className={styles.form}>

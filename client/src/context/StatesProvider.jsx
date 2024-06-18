@@ -13,8 +13,6 @@ function StatesProvider({children}){
   const [loginFormOpen, setloginFormOpen] = useState(false);
   
   const [createReservasOpen, setcreateReservasOpen] = useState(false);
-
-  const [reservasRestauranteOpen, setreservasRestauranteOpen] = useState(false);
   
   const [restaurantData, setrestaurantData] = useState(null);
 
@@ -23,6 +21,8 @@ function StatesProvider({children}){
   const [userIsRestaurant, setuserIsRestaurant] = useState(false);
   const [userActionIsLogin, setuserActionIsLogin] = useState(true);
   const [userActionIsRegister, setuserActionIsRegister] = useState(false);
+
+  const [userLoggedOrRegistered, setuserLoggedOrRegistered] = useState(false)
 
 
   function setUserByTypeToggle(e){
@@ -65,7 +65,9 @@ function StatesProvider({children}){
     userActionIsRegister,
     setuserActionIsRegister,
     createReservasOpen,
-    setcreateReservasOpen
+    setcreateReservasOpen,
+    userLoggedOrRegistered,
+    setuserLoggedOrRegistered
   };
 
   return (
