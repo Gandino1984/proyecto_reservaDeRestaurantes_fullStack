@@ -16,7 +16,7 @@ function ClientCard({ onMisReservasClick }) {
         <div className={styles.userDetails}>
           <p>{user.name}</p>
           <p>{user.email}</p>
-          <button onClick={onMisReservasClick}>MIS RESERVAS</button>
+          {/* <button onClick={onMisReservasClick}>MIS RESERVAS</button> */}
         </div>
       </div>
     </div>
