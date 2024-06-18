@@ -1,11 +1,22 @@
 import restauranteController from "./restauranteController.js";
 
 const getAll = async(req,res)=>{
+<<<<<<< HEAD
     const userData = req.user
     console.log("LA userData ES:", userData)
     const esAdmin = req.session.user && req.session.user.esAdmin;
     console.log("ESADMIN ES IGUAL A:",esAdmin)
     const {error,data} = await restauranteController.getAll(userData);
+=======
+    const {error,data} = await restauranteController.getAll();
+    res.json({error,data});
+}
+
+const getRestaurantesByUserId = async(req,res)=>{
+    const userData = req.user.dataValues.User_id
+    console.log("req.user", req.user.dataValues.User_id)
+    const {error,data} = await restauranteController.getRestaurantesByUserId(userData);
+>>>>>>> dev
     res.json({error,data});
 }
 
@@ -56,6 +67,7 @@ const create = async(req,res)=>{
 export default{
     getAll,
     barraDeBusqueda,
+    getRestaurantesByUserId,
     getRestauranteByTipo,
     getById,
     getByProperty,

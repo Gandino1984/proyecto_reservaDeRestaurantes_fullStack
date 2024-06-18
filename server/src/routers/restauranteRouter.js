@@ -5,6 +5,7 @@ import restauranteApiController from "../controllers/restaurante/restauranteApiC
 const router  = Router();
 
 router.get("/",restauranteApiController.getAll);
+router.get("/user",restauranteApiController.getRestaurantesByUserId);
 router.get("/tipo/:tipo",restauranteApiController.getRestauranteByTipo);
 router.get("/byproperty",restauranteApiController.getByProperty);
 router.get("/busqueda/:busquedaData",restauranteApiController.barraDeBusqueda)

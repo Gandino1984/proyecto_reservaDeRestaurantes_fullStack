@@ -4,24 +4,29 @@ import { Op } from 'sequelize';
 
 //Esta funcion sirve para sacar los restaurantes, si eres administrador de la aplicacion (Nosotros) te muestra todos.
 //Si no eres administrador filtra todos los restaurantes asociados al User_id de la persona logueada, es decir, sus restaurantes.
-async function getAll(userData) {
+async function getAll() {
     try {
-        if (userData.Is_Admin == 1) {
             const restaurantes = await restauranteModel.findAll();
-            console.log("LAS restaurante MOSTRADAS SIENDO ADMIN SON:", restaurantes)
-            return { data: restaurantes };
-        }
-        if (userData.Is_Admin == 0) {
-            const restaurantes = await restauranteModel.findAll({ where: { User_id: userData.User_id } });
-            console.log("LAS restaurante MOSTRADAS SIENDO USUARIO SON:", restaurantes)
-            return { data: restaurantes };
-        }        
+            return { data: restaurantes };       
     }
     catch (error) {
         console.error(error);
         return { error: error };
     }
 }
+
+async function getRestaurantesByUserId(userData) {
+    try {
+            const restaurantes = await restauranteModel.findAll({ where: { User_id: userData } });
+            console.log("LAS restaurante MOSTRADAS SIENDO USUARIO SON:", restaurantes)
+            return { data: restaurantes };             
+    }
+    catch (error) {
+        console.error(error);
+        return { error: error };
+    }
+}
+
 
 async function barraDeBusqueda(busquedaData) {
     try {
@@ -172,6 +177,7 @@ async function remove(id) {
 export {
     getAll,
     barraDeBusqueda,
+    getRestaurantesByUserId,
     getRestauranteByTipo,
     getById,
     getByProperty,
@@ -184,6 +190,7 @@ export {
 export default {
     getAll,
     barraDeBusqueda,
+    getRestaurantesByUserId,
     getRestauranteByTipo,
     getById,
     getByProperty,

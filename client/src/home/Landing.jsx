@@ -34,11 +34,12 @@ function Landing({children}){
   return (
         <div className={styles.containerLanding}>
                 <div className={styles.background} />
+
                 <Navbar searchBtnClick={e=>onNavbarSearchBtnClick(e)}/>
-                {loginFormOpen && <Login closeBtnClick={onCloseBtnLogin} />}
+                {loginFormOpen && <Login closeBtnClick={onCloseBtnLogin} />}  
                 <Hero heroBtnClick={onHeroBtnClick}/>
-                {/* {restaurantCardOpen && <RestaurantCard />}  */}
-                {createReservasOpen && <CreateReserva />}
+              
+                
         </div>
   )
 }
