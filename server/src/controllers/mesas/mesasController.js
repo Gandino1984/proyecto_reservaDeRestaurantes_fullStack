@@ -6,14 +6,14 @@ import { Op } from 'sequelize';
 async function getAll(userData) {
     try {
         if (userData.Is_Admin == 1) {
-            const users = await mesasModel.findAll();
-            console.log("LAS mesaS MOSTRADAS SIENDO ADMIN SON:", users)
-            return { data: users };
+            const mesas = await mesasModel.findAll();
+            console.log("LAS mesaS MOSTRADAS SIENDO ADMIN SON:", mesas)
+            return { data: mesas };
         }
         if (userData.Is_Admin == 0) {
-            const user = await mesasModel.findAll({ where: { User_id: userData.User_id } });
-            console.log("LAS mesaS MOSTRADAS SIENDO USUARIO SON:", user)
-            return { data: [user] };
+            const mesa = await mesasModel.findAll({ where: { User_id: userData.User_id } });
+            console.log("LAS mesaS MOSTRADAS SIENDO USUARIO SON:", mesa)
+            return { data: mesa };
         }        
     }
     catch (error) {
