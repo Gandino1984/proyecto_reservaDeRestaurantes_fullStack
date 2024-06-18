@@ -8,7 +8,7 @@
     align-items: center; 
     justify-content:space-between;
     padding: 1rem 5rem;
-    border-bottom: 1px solid var(--green);
+    /* border-bottom: 1px solid var(--green); */
     background: linear-gradient(to bottom, #b7ba1f4c 30%, #00000000) 50%;
 }
 
