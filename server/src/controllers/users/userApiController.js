@@ -47,11 +47,6 @@ const remove = async(req,res)=>{
     res.json({data:user})
 }
 
-async function logout(req,res){
-    req.user = null;
-    console.log("req.user", req.user)
-    res.json (req.user)
-}
 
 export default{
     getAll,
@@ -59,7 +54,6 @@ export default{
     login,
     register,
     update,
-    logout,
     remove
 }
 

@@ -10,23 +10,22 @@ function RestaurantSearchBar({ searchBtnClick }) {
 
   const searchBarra = async (term) => {
     try {
-      console.log('Buscando:', term); // Para depuración
+      console.log('Buscando:', term); 
       const response = await barraDeBusqueda(term);
-      console.log('Datos recibidos:', response); // Para depuración
+      console.log('Datos recibidos:', response);
   
       if (response && response.data && Array.isArray(response.data)) {
-        // Si la respuesta tiene la estructura esperada
         const dataArray = response.data;
-        setrestaurantData(dataArray); // Actualizar el contexto si es necesario
-        setSearchResults(dataArray); // Actualizar resultados de búsqueda
-        console.log("resultados busqueda", dataArray); // Para depuración
+        setrestaurantData(dataArray); 
+        setSearchResults(dataArray);
+        console.log("resultados busqueda", dataArray);
       } else {
         console.error('La respuesta de la API no es válida:', response);
-        setSearchResults([]); // Limpiar resultados en caso de respuesta inválida
+        setSearchResults([]); 
       }
     } catch (error) {
       console.error('Error al obtener las reservas:', error);
-      setSearchResults([]); // Limpiar resultados en caso de error
+      setSearchResults([]); 
     }
   };
 

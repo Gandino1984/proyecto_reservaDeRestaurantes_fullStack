@@ -8,14 +8,14 @@ import { Op } from 'sequelize';
 async function getAll(userData) {
     try {
         if (userData.Is_Admin == 1) {
-            const users = await ReservasModel.findAll();
-            console.log("LAS RESERVAS MOSTRADAS SIENDO ADMIN SON:", users)
-            return { data: users };
+            const reservas = await ReservasModel.findAll();
+            console.log("LAS RESERVAS MOSTRADAS SIENDO ADMIN SON:", reservas)
+            return { data: reservas };
         }
         if (userData.Is_Admin == 0) {
-            const user = await ReservasModel.findAll({ where: { User_id: userData.User_id } });
-            console.log("LAS RESERVAS MOSTRADAS SIENDO USUARIO SON:", user)
-            return { data: [user] };
+            const reserva = await ReservasModel.findAll({ where: { User_id: userData.User_id } });
+            console.log("LAS RESERVAS MOSTRADAS SIENDO USUARIO SON:", reserva)
+            return { data: reserva };
         }        
     }
     catch (error) {
