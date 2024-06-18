@@ -1,10 +1,10 @@
 // mostrarReservas.jsx
 import React, { useState } from 'react';
-import styles from "./ReservasRestaurante.module.css"
+import styles from "./MostrarReservasRestaurante.module.css"
 import ClientCard from '../../navbar/ClientCard'; // Ajusta la ruta del componente ClientCard si es necesario
 import { getAllReservas } from '../../utils/reservaFetch';
 
-function ReservasRestaurante() {
+function MostrarReservasRestaurante() {
   const [reservas, setReservas] = useState([]);
 
   const handleMisReservasClick = async () => {
@@ -38,4 +38,4 @@ function ReservasRestaurante() {
   );
 }
 
-export default ReservasRestaurante;
+export default MostrarReservasRestaurante;

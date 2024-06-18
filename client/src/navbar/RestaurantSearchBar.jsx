@@ -4,7 +4,7 @@ import GeneralContext from '../context/GeneralContext';
 import { barraDeBusqueda } from '../utils/restauranteFetch'; 
 
 function RestaurantSearchBar({ searchBtnClick }) {
-  const { setrestaurantData } = useContext(GeneralContext);
+  const { setrestaurantData, userIsClient, createReservasOpen, setcreateReservasOpen, userLoggedOrRegistered, setuserLoggedOrRegistered} = useContext(GeneralContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
@@ -50,39 +50,49 @@ function RestaurantSearchBar({ searchBtnClick }) {
     if (searchTerm.length > 2) {
       searchBarra(searchTerm);
     }
-    searchBtnClick(e);
+
+    searchBtnClick(e)  
   };
+
+  function searchBtnhandler(e) {
+    e.preventDefault();
+    if(userLoggedOrRegistered){
+      setcreateReservasOpen(true)
+    }
+  }
 
   return (
     <div className={styles.container}>
-      <form onSubmit={botonBusquedaHandler} className={styles.form}>
-        <div className={styles.inputContainer}>
-          <input
-            className={styles.inputSearch}
-            type="text"
-            name="restaurantSearch"
-            placeholder='Buscar un restaurante'
-            value={searchTerm}
-            onChange={handleInputChange}
-          />
-          {searchResults.length > 0 && (
-            <div className={styles.dropdown}>
-              {searchResults.map((restaurant) => (
-                <div 
-                  key={restaurant.Restaurante_id} 
-                  className={styles.searchResultItem}
-                  onClick={() => handleResultClick(restaurant)}
-                >
-                  <p>{restaurant.Name}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-        <button type="submit" className={styles.btnSearch}>
-          <ion-icon name="search"></ion-icon>
+        <button onClick={searchBtnhandler} type="submit" className={styles.btnSearch}>
+              <ion-icon name="search"></ion-icon>
         </button>
-      </form>
+        <form onSubmit={botonBusquedaHandler} className={styles.form}>
+        
+          <div className={styles.inputContainer}>
+            <input
+              className={styles.inputSearch}
+              type="text"
+              name="restaurantSearch"
+              placeholder='Buscar un restaurante'
+              value={searchTerm}
+              onChange={handleInputChange}
+            />
+            {searchResults.length > 0 && (
+              <div className={styles.dropdown}>
+                {searchResults.map((restaurant) => (
+                  <div 
+                    key={restaurant.Restaurante_id} 
+                    className={styles.searchResultItem}
+                    onClick={() => handleResultClick(restaurant)}
+                  >
+                    <p>{restaurant.Name}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        
+        </form>
     </div>
   );
 }
