@@ -3,19 +3,25 @@ import { useState, useEffect, useContext } from 'react'
 import { login, register} from "../utils/userFetch"
 import styles from './Login.module.css'
 import GeneralContext from '../context/GeneralContext'
-import { saveToken } from '../utils/local'
-import CreateReserva from '../components/reserva/reservaCliente' 
-
+import { saveToken } from '../utils/local' 
 
 
 function Login({closeBtnClick}) {
 
- const { setUser, setLoginFormOpenHandler } = useContext(GeneralContext);
+ const { setUser, 
+  setLoginFormOpenHandler, 
+  userIsClient, 
+  userIsRestaurant, 
+  userActionIsLogin, 
+  userActionIsRegister, 
+  setuserIsClient,
+  setuserIsRestaurant,
+  setuserActionIsLogin,
+  setuserActionIsRegister,
+  setcreateReservasOpen,
+  createReservasOpen
 
- const [userIsClient, setuserIsClient] = useState(true);
- const [userIsRestaurant, setuserIsRestaurant] = useState(false);
- const [userActionIsLogin, setuserActionIsLogin] = useState(true);
- const [userActionIsRegister, setuserActionIsRegister] = useState(false);
+} = useContext(GeneralContext);
 
  const [error, setError] = useState("");
  
@@ -106,8 +112,12 @@ async function loginClickHandler(e) {
       result = await register(userData);
       if (!result.error) {
           setError("se ha registrado correctamente");
-          
+          //****************** */
           setLoginFormOpenHandler(e)
+          //****************** */
+          if(userIsClient){
+            setcreateReservasOpen(true);
+          }
       } else {
           setError(result.error);
       }
@@ -121,6 +131,11 @@ async function loginClickHandler(e) {
           saveToken(result.data.token);
           console.log("user", result.data)
           setLoginFormOpenHandler(e)
+          
+          if(userIsClient){
+            setcreateReservasOpen(true);
+          }
+
       } else {
           setError(result.error);
       }
