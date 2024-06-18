@@ -143,7 +143,7 @@ async function getByEmail(Email){
 }
 
 async function update(id, userData) {
-    const {Name, Is_Admin, Email, Password, Password_repeat} = userData;
+    const {Name, Is_Admin, Email, Password, Password_repeat, User_Image} = userData;
     try {
         // Validar contraseñas sólo si se proporcionan/* 
         
@@ -174,6 +174,7 @@ async function update(id, userData) {
             const hash = await bcrypt.hash(Password, 10);
             nuevoUser.Password = hash;
         }
+        if (User_Image) nuevoUser.User_Image = User_Image;
 
         // Verificar si hay campos para actualizar
         if (Object.keys(nuevoUser).length === 0) {
