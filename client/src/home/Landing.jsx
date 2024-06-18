@@ -38,6 +38,8 @@ function Landing({children}){
                 <Navbar searchBtnClick={e=>onNavbarSearchBtnClick(e)}/>
                 {loginFormOpen && <Login closeBtnClick={onCloseBtnLogin} />}  
                 <Hero heroBtnClick={onHeroBtnClick}/>
+                {createReservasOpen && <CreateReserva />}
+              
               
                 
         </div>
