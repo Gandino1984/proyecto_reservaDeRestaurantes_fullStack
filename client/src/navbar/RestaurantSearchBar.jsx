@@ -16,6 +16,7 @@ function RestaurantSearchBar({ searchBtnClick }) {
   
       if (response && response.data && Array.isArray(response.data)) {
         const dataArray = response.data;
+        console.log("DataArray", dataArray)
         setrestaurantData(dataArray); 
         setSearchResults(dataArray);
         console.log("resultados busqueda", dataArray);
