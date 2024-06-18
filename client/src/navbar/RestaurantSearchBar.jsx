@@ -29,12 +29,11 @@ function RestaurantSearchBar({ searchBtnClick }) {
       setSearchResults([]); // Limpiar resultados en caso de error
     }
   };
-  
 
   const handleInputChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
-    if (term.length > 3) {
+    if (term.length > 2) {
       searchBarra(term);
     } else {
       setSearchResults([]);
@@ -48,7 +47,7 @@ function RestaurantSearchBar({ searchBtnClick }) {
 
   const botonBusquedaHandler = (e) => {
     e.preventDefault();
-    if (searchTerm.length > 3) {
+    if (searchTerm.length > 2) {
       searchBarra(searchTerm);
     }
     searchBtnClick(e);
@@ -56,8 +55,8 @@ function RestaurantSearchBar({ searchBtnClick }) {
 
   return (
     <div className={styles.container}>
-      <form onSubmit={botonBusquedaHandler}>
-        <div classname={styles.containerForm}>
+      <form onSubmit={botonBusquedaHandler} className={styles.form}>
+        <div className={styles.inputContainer}>
           <input
             className={styles.inputSearch}
             type="text"
@@ -67,27 +66,23 @@ function RestaurantSearchBar({ searchBtnClick }) {
             onChange={handleInputChange}
           />
           {searchResults.length > 0 && (
-          <select className={styles.searchResults}>
-            {searchResults.map((restaurant) => (
-              <option 
-                key={restaurant.Restaurante_id} 
-                className={styles.searchResultItem}
-                onClick={() => handleResultClick(restaurant)}
-              >
-                <p>{restaurant.Name}</p>
-              </option>
-            ))}
-          </select>
-  )}
-          <button type="submit" className={styles.btnSearch}>
-            <ion-icon name="search"></ion-icon>
-          </button>
-
+            <div className={styles.dropdown}>
+              {searchResults.map((restaurant) => (
+                <div 
+                  key={restaurant.Restaurante_id} 
+                  className={styles.searchResultItem}
+                  onClick={() => handleResultClick(restaurant)}
+                >
+                  <p>{restaurant.Name}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-
+        <button type="submit" className={styles.btnSearch}>
+          <ion-icon name="search"></ion-icon>
+        </button>
       </form>
-
-
     </div>
   );
 }
