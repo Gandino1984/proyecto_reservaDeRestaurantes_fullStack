@@ -77,8 +77,9 @@ function StatesProvider({children}){
     reservas,
     setReservas,
     mostrarReservasRestauranteOpen,
-    setmostrarReservasRestauranteOpen
-
+    setmostrarReservasRestauranteOpen,
+    reservaRestauranteExitosa,
+    setreservaRestauranteExitosa
   };
 
   return (
