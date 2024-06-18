@@ -14,7 +14,7 @@ function Hero() {
                 <div className={styles.hero}>
                             <div className={styles.sub}>
                                 <p className={styles.text1}>Dinos cuánta <br />hambre tienes</p>
-                                <button className={styles.btn} onClick={e=>setLoginFormOpenHandler(e)}>INICIA SESIÓN</button>
+                                   <button className={styles.btn} onClick={e=>setLoginFormOpenHandler(e)}>INICIA SESIÓN</button>
                             </div>
                 </div>
               
