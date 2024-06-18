@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createReserva } from "../../utils/reservaFetch";
+import styles from './reservaCliente.module.css'
 
 const CreateReserva = ({ onCreate }) => {
   const [name, setName] = useState('');
@@ -32,47 +33,29 @@ const CreateReserva = ({ onCreate }) => {
   };
 
   return (
-    <form className="create-reserva" onSubmit={handleSubmit}>
-      <label htmlFor="name">Name</label>
-      <input 
-        type="text" 
-        name="name" 
-        value={name} 
-        onChange={(e) => setName(e.target.value)} 
-        required 
-      />
-
-      <label htmlFor="numGuests">Guests Number</label>
-      <input 
-        type="number" 
-        name="numGuests" 
-        value={numGuests} 
-        onChange={(e) => setNumGuests(e.target.value)} 
-        min="1" 
-        required 
-      />
-
-      <label htmlFor="reservationDate">Reservation Date</label>
-      <input 
-        type="date" 
-        name="reservationDate" 
-        value={reservationDate} 
-        onChange={(e) => setReservationDate(e.target.value)} 
-        required 
-      />
-
-      <label htmlFor="reservationTime">Hour</label>
-      <input 
-        type="time" 
-        name="reservationTime" 
-        value={reservationTime} 
-        onChange={(e) => setReservationTime(e.target.value)} 
-        required 
-      />
-
-      <button type="submit">Create</button>
-      {error && <p className="error">{error}</p>}
-    </form>
+    <div className={styles.container}>
+      <div className={styles.containerReservaCliente}>
+          <form className="create-reserva" onSubmit={handleSubmit}>
+              <div className={styles.containerInput}>
+                <input type="text" name="name" value={name} placeholder="Cuál es tu nombre?" onChange={(e) => setName(e.target.value)} required />
+              </div>
+              <div className={styles.containerInput}>
+                <label htmlFor="numGuests">Guests Number</label>
+                <input type="number" name="numGuests" value={numGuests} onChange={(e) => setNumGuests(e.target.value)} min="1" required />
+              </div>
+              <div className={styles.containerInput}>
+                <label htmlFor="reservationDate">Reservation Date</label>
+                <input type="date" name="reservationDate" value={reservationDate} onChange={(e) => setReservationDate(e.target.value)} required />
+              </div>
+              <div className={styles.containerInput}>
+                <label htmlFor="reservationTime">Hour</label>
+                <input type="time" name="reservationTime" value={reservationTime} onChange={(e) => setReservationTime(e.target.value)} required />
+              </div>
+              <button type="submit">Create</button>
+              {error && <p className="error">{error}</p>}
+          </form>
+      </div> 
+    </div>
   );
 };
 

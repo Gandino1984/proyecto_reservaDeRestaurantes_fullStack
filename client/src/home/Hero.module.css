@@ -9,7 +9,7 @@
     left: 0;
     align-items:center;
     justify-content: center; 
-    /* flex-direction: column; */
+    /* flex-direction: column;   */
     background: linear-gradient(to left, #00000000, #333 80%, #333 90%);
 
 }
