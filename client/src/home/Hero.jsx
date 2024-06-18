@@ -13,6 +13,7 @@ function Hero() {
             setLoginFormOpenHandler(true)
           
         }else{
+            alert("ya estás loggeado")
             setcreateReservasOpen(true)
         }
       }
