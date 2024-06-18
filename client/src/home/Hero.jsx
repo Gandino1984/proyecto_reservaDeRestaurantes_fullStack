@@ -14,7 +14,6 @@ function Hero() {
           
         }else{
             alert("ya estás loggeado")
-            setcreateReservasOpen(true)
         }
       }
 
