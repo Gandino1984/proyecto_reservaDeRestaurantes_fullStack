@@ -5,11 +5,24 @@ import GeneralContext from './GeneralContext';
 function StatesProvider({children}){
 
   const [user, setUser] = useState(null);
+  
   const [userByType, setUserByType] = useState('client') 
-  const [restaurantCardOpen, setrestaurantCardOpen] = useState(true);
+
+  const [restaurantCardOpen, setrestaurantCardOpen] = useState(false);
+
   const [loginFormOpen, setloginFormOpen] = useState(false);
+  
+  const [createReservasOpen, setcreateReservasOpen] = useState(false);
+
   const [reservasRestauranteOpen, setreservasRestauranteOpen] = useState(false);
+  
   const [restaurantData, setrestaurantData] = useState(null);
+
+  const [userIsClient, setuserIsClient] = useState(true);
+
+  const [userIsRestaurant, setuserIsRestaurant] = useState(false);
+  const [userActionIsLogin, setuserActionIsLogin] = useState(true);
+  const [userActionIsRegister, setuserActionIsRegister] = useState(false);
 
 
   function setUserByTypeToggle(e){
@@ -42,7 +55,17 @@ function StatesProvider({children}){
     restaurantData,
     setrestaurantData,
     setLoginFormOpenHandler,
-    reservasRestauranteOpenHandler
+    reservasRestauranteOpenHandler,
+    userIsClient,
+    setuserIsClient,
+    userIsRestaurant,
+    setuserIsRestaurant,
+    userActionIsLogin,
+    setuserActionIsLogin,
+    userActionIsRegister,
+    setuserActionIsRegister,
+    createReservasOpen,
+    setcreateReservasOpen
   };
 
   return (
