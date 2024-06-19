@@ -7,6 +7,9 @@ import { useContext } from 'react';
 
 function ShowRestaurants() {
 
+
+  const [arrayRestaurantData, setarrayRestaurantData] =useState([]);
+
   const { restaurantCardOpen, 
           setrestaurantCardOpen,
           restaurantData,
@@ -15,19 +18,38 @@ function ShowRestaurants() {
 
   async function searchRestaurants(){
     const response = await getAllRestaurantes();
-    console.log("ShowRestaurants: restaurantData= ", response);
+    // console.log("ShowRestaurants: restaurantData= ", response.data[0]);
     setrestaurantData(response.data);
   }
 
+  
   useEffect(() => {
     searchRestaurants();
   }, []);
 
+  useEffect(
+    () => {
+      if (restaurantData) {
+        const arrayMapped = restaurantData.map(restaurant => 
+          <li key={restaurant.Restaurante_id} className={styles.card}>
+            <p>{restaurant.Name}</p>
+          </li>
+        )
+        setarrayRestaurantData(arrayMapped)
+      } 
+  }
+  , [restaurantData]
+);
+
+
+  
   return (
     <div className={styles.container}>
-        <div className={styles.cardContainer}>
-          <div className={styles.card}>
-
+        <div className={styles.background}>
+          <div className={styles.cardGroup}>
+              <ul>  
+                      {arrayRestaurantData}
+              </ul>
           </div>
         </div>
     </div>

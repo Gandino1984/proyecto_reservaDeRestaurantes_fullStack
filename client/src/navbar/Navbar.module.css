@@ -16,7 +16,7 @@
     border-radius: 5px;
     font-size: 5rem;
     font-weight: 700;
-    text-shadow: 3px 3px var(--purple);
+    /* text-shadow: 3px 3px var(--purple); */
     color: white;
     font-family: Alegreya;
 }
