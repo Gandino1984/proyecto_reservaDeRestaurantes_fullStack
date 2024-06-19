@@ -15,7 +15,7 @@ import CreateReserva from '../components/reserva/reservaCliente.jsx'
 
 function Landing({children}){
 
-  const {user, loginFormOpen, setloginFormOpenHandler, userIsClient, createReservasOpen} = useContext(GeneralContext)
+  const {user, loginFormOpen, setloginFormOpenHandler,userIsRestaurant, userIsClient, createReservasOpen, mostrarReservasRestauranteOpen} = useContext(GeneralContext)
 
   const [restaurantData, setrestaurantData] = useState(null);
 
@@ -39,6 +39,7 @@ function Landing({children}){
                 {loginFormOpen && <Login closeBtnClick={onCloseBtnLogin} />}  
                 <Hero heroBtnClick={onHeroBtnClick}/>
                 {createReservasOpen && <CreateReserva />}
+                {user && userIsRestaurant && <MostrarReservasRestaurante />}
                 
         </div>
   )

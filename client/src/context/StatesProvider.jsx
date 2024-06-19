@@ -13,6 +13,8 @@ function StatesProvider({children}){
   const [loginFormOpen, setloginFormOpen] = useState(false);
   
   const [createReservasOpen, setcreateReservasOpen] = useState(false);
+
+  const [mostrarReservasRestauranteOpen, setMostrarReservasRestauranteOpen] = useState(false);
   
   const [restaurantData, setrestaurantData] = useState(null);
 
@@ -41,6 +43,9 @@ function StatesProvider({children}){
   function setLoginFormOpenHandler(e) {
     setloginFormOpen(prevState => !prevState);
   }
+  function mostrarReservasRestauranteOpenHandler(e) {
+    setMostrarReservasRestauranteOpen(prevState => !prevState);
+  }
 
   const contextValue = {
     user,
@@ -67,7 +72,9 @@ function StatesProvider({children}){
     createReservasOpen,
     setcreateReservasOpen,
     userLoggedOrRegistered,
-    setuserLoggedOrRegistered
+    setuserLoggedOrRegistered,
+    mostrarReservasRestauranteOpen,
+    setMostrarReservasRestauranteOpen
   };
 
   return (
