@@ -11,7 +11,7 @@ function Navbar({ searchBtnClick }) {
   return (
     <div className={styles.containerNavbar}>
       <div className={styles.containerTypewriter}>
-        <p className={styles.typewriter}>BookIT</p>
+        <p className={styles.typewriter}>APIo</p>
       </div>
 
       <RestaurantSearchBar searchBtnClick={searchBtnClick} />

@@ -12,10 +12,18 @@ import TarjetasRestaurante from "../components/restauranteReservas/TarjetasResta
 import MostrarReservasRestaurante from '../components/reserva/MostrarReservasRestaurante.jsx'
 import GeneralContext from '../context/GeneralContext.jsx'
 import CreateReserva from '../components/reserva/reservaCliente.jsx'
+import ShowRestaurants from '../components/mostrarRestaurantes/ShowRestaurants.jsx'
 
 function Landing({children}){
 
-  const {user, loginFormOpen, setloginFormOpenHandler, userIsClient, createReservasOpen} = useContext(GeneralContext)
+  const {user, 
+        loginFormOpen, 
+        setloginFormOpenHandler, 
+        userIsClient, 
+        createReservasOpen,
+        showRestaurantsOpen,
+        setshowRestaurantsOpen
+      } = useContext(GeneralContext)
 
   const [restaurantData, setrestaurantData] = useState(null);
 
@@ -39,7 +47,7 @@ function Landing({children}){
                 {loginFormOpen && <Login closeBtnClick={onCloseBtnLogin} />}  
                 <Hero heroBtnClick={onHeroBtnClick}/>
                 {createReservasOpen && <CreateReserva />}
-                
+                {showRestaurantsOpen && <ShowRestaurants />}     
         </div>
   )
 }

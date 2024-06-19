@@ -34,7 +34,7 @@ function MostrarReservasRestaurante() {
     <div className={styles.container}>
       {/* <ClientCard onMisReservasClick={handleMisReservasClick} /> */}
       <div className={styles.reservasContainer}>
-        <h3>Reservas:</h3>
+        <h3>Reservas:</h3>   
         <ul>
           {reservas.map((reserva) => (
             <li key={reserva.Reservas_id}>
