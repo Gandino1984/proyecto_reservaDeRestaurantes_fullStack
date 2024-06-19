@@ -17,5 +17,4 @@ router.post("/",isAuthenticated, restauranteApiController.create);
 
 
 
-
 export default router;
