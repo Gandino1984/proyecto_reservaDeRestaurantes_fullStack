@@ -8,24 +8,27 @@ import { useContext } from 'react';
 function ShowRestaurants() {
 
 
-  const [arrayRestaurantData, setarrayRestaurantData] =useState([]);
 
   const { restaurantCardOpen, 
           setrestaurantCardOpen,
           restaurantData,
-          setrestaurantData
+          setrestaurantData,
+          arrayRestaurantData,
+          setarrayRestaurantData
         } = useContext(GeneralContext);
 
   async function searchRestaurants(){
     const response = await getAllRestaurantes();
-    // console.log("ShowRestaurants: restaurantData= ", response.data[0]);
     setrestaurantData(response.data);
   }
-
   
   useEffect(() => {
     searchRestaurants();
   }, []);
+
+  function resetArray(array){
+    setarrayRestaurantData(array);
+  }
 
   useEffect(
     () => {
@@ -35,10 +38,11 @@ function ShowRestaurants() {
             <p>{restaurant.Name}</p>
           </li>
         )
-        setarrayRestaurantData(arrayMapped)
+        resetArray(arrayMapped)
+        
       } 
   }
-  , [restaurantData]
+  , [restaurantData, arrayRestaurantData]
 );
 
 

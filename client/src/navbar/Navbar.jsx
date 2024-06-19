@@ -4,7 +4,7 @@ import RestaurantSearchBar from './RestaurantSearchBar';
 import ClientCard from './ClientCard';
 import GeneralContext from '../context/GeneralContext.jsx'
 
-function Navbar({ searchBtnClick }) {
+function Navbar() {
   const { user } = useContext(GeneralContext);
   console.log("USER EN NAVBAR", user)
 
@@ -14,7 +14,7 @@ function Navbar({ searchBtnClick }) {
         <p className={styles.typewriter}>APIo</p>
       </div>
 
-      <RestaurantSearchBar searchBtnClick={searchBtnClick} />
+      <RestaurantSearchBar />
 
       {user && <ClientCard />}
     </div>
