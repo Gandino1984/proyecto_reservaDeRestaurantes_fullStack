@@ -12,8 +12,8 @@ router.use("/users",isAuthenticated,userRouter);
 router.use("/",authRouter);
 router.use("/reservas",isAuthenticated,reservasRouter);
 router.use("/mesas",isAuthenticated,mesasRouter);
-router.use("/restaurante",isAuthenticated,restauranteRouter);
-
+router.use("/restaurante", restauranteRouter);
+// router.use("/restaurante",isAuthenticated,restauranteRouter);
 
 
 export default router;

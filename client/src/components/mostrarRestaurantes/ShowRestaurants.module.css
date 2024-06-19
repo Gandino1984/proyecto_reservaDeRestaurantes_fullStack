@@ -1,0 +1,28 @@
+.container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.cardContainer{
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 2rem;
+    background: linear-gradient(to right, #00000000, #000000ce 80%, #000000ba 90%);
+}
+
+.card{
+    width: 20rem;
+    height: 20rem;
+    background-color: red;
+}

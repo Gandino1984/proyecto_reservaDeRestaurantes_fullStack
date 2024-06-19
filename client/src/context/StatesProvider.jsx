@@ -8,17 +8,20 @@ function StatesProvider({children}){
   
   const [userByType, setUserByType] = useState('client') 
 
-  const [restaurantCardOpen, setrestaurantCardOpen] = useState(false);
+  const [restaurantData, setrestaurantData] = useState(null);
+
+  const [userIsClient, setuserIsClient] = useState(true);
+  const [userIsRestaurant, setuserIsRestaurant] = useState(false);
+
+  const [reservasRestauranteOpen, setreservasRestauranteOpen] = useState(false);
+
+  const [showRestaurantsOpen, setshowRestaurantsOpen] = useState(true);
 
   const [loginFormOpen, setloginFormOpen] = useState(false);
   
   const [createReservasOpen, setcreateReservasOpen] = useState(false);
   
-  const [restaurantData, setrestaurantData] = useState(null);
-
-  const [userIsClient, setuserIsClient] = useState(true);
-
-  const [userIsRestaurant, setuserIsRestaurant] = useState(false);
+  
   const [userActionIsLogin, setuserActionIsLogin] = useState(true);
   const [userActionIsRegister, setuserActionIsRegister] = useState(false);
 
@@ -57,8 +60,8 @@ function StatesProvider({children}){
     loginFormOpen,
     setloginFormOpen,
     setLoginFormOpenHandler,
-    restaurantCardOpen,
-    setrestaurantCardOpen,
+    showRestaurantsOpen,
+    setshowRestaurantsOpen,
     restaurantData,
     setrestaurantData,
     reservasRestauranteOpenHandler,
