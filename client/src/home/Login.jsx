@@ -95,6 +95,7 @@ useEffect(() => {
   }
 
   const handleUserData =(e) =>{
+    console.log("holass")
     e.preventDefault();
     const data = e.target.value;
     const key = e.target.name;
@@ -107,6 +108,7 @@ useEffect(() => {
 }
 
 async function loginClickHandler(e) {
+  console.log("login handler")
   e.preventDefault();
   let result;  // Asegúrate de declarar result aquí
   if (userActionIsRegister) {
@@ -144,14 +146,18 @@ async function loginClickHandler(e) {
   }
 };
 
+function submitClickHandler(e){
+  e.preventDefault();
+}
+
 
   return (
     <div className={styles.container}>
       <div className={styles.login}>
                 
-                <form className={styles.formContainer}>
+                <form onSubmit={loginClickHandler} className={styles.formContainer}>
                             <div>
-                                <button className={styles.closeBtn} onClick={e=>setLoginFormOpenHandler(e)}>
+                                <button type="button" className={styles.closeBtn} onClick={setLoginFormOpenHandler}>
                                         <ion-icon name="close-circle-outline"></ion-icon>
                                 </button>
                             </div>
@@ -190,7 +196,7 @@ async function loginClickHandler(e) {
                         
                         
                               
-                        <button className={styles.btn1} onClick={e=>loginClickHandler(e)}>ENTRAR</button>
+                        <input type='button' value="Entrar" className={styles.btn1} onClick={e=>loginClickHandler(e)} />
                 </form>
         </div>
       </div>
