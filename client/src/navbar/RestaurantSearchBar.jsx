@@ -7,7 +7,9 @@ import { getAllRestaurantes } from '../utils/restauranteFetch';
 function RestaurantSearchBar() {
 
     const { restaurantData, setrestaurantData, 
-            setarrayRestaurantData
+            setarrayRestaurantData,
+            setshowRestaurantsOpen,
+            setloginFormOpen
     } = useContext(GeneralContext);
     
     console.log('SearchBar, context: restaurantData= ', restaurantData)
@@ -38,9 +40,10 @@ function RestaurantSearchBar() {
     };
 
     const handleInputChange = (e) => {
+        setshowRestaurantsOpen(true)
+        setloginFormOpen(false)
         const term = e.target.value;
         setSearchTerm(term);
-      
             searchBarra(term);
   
     };
@@ -70,6 +73,7 @@ function RestaurantSearchBar() {
 
         //setarrayRestaurantData(response.data);
         setrestaurantData(response.data);
+  
     }
 
     return (
