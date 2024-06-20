@@ -4,7 +4,8 @@ import { login, register} from "../utils/userFetch"
 import styles from './Login.module.css'
 import GeneralContext from '../context/GeneralContext'
 import { saveToken } from '../utils/local' 
-
+import { getAllRestaurantes } from '../utils/restauranteFetch'
+import { getAllReservas} from  '../utils/reservaFetch'
 
 function Login({closeBtnClick}) {
 
@@ -20,7 +21,15 @@ function Login({closeBtnClick}) {
   setuserActionIsRegister,
   userLoggedOrRegistered,
   setuserLoggedOrRegistered,
-  setshowRestaurantsOpen
+  setshowRestaurantsOpen,
+  reservasRestaurantOpen,
+  setReservasRestaurantOpen,
+  reservas,
+  setReservas,
+  restaurantes,
+  setRestaurantes,
+  userId, 
+  setUserId
 
 } = useContext(GeneralContext);
 
@@ -113,6 +122,7 @@ async function loginClickHandler(e) {
   let result;  // Asegúrate de declarar result aquí
   if (userActionIsRegister) {
       result = await register(userData);
+      console.log(result);
       if (!result.error) {
           setError("se ha registrado correctamente");
 
@@ -145,6 +155,44 @@ async function loginClickHandler(e) {
       }
   }
 };
+
+ 
+const handleMisReservas = async (userId) => {
+  try {
+    const response = await getAllReservas(userId);
+      const data = response.data;
+      console.log("handleMisReservas: ", data);
+      
+      if (Array.isArray(data)) {
+        setReservas(data);
+      } else {
+      console.error('La respuesta de la API no contiene un array:', response);
+    }
+  } catch (error) {
+    console.error('Error al obtener las reservas:', error);
+  }}
+  
+  const handleMisRestaurantes = async (userId) => {
+    try {
+      alert('handleMisRestaurantes')
+      const response = await getAllRestaurantes(userId);
+      const data = response.data;
+      console.log("handleMisRestaurantes: ", data);
+      if (Array.isArray(data)) {
+        setRestaurantes(data);
+      } else {
+        alert('La respuesta de la API no contiene un array:')  
+        console.error('La respuesta de la API no contiene un array:', response);
+      }
+    } catch (error) {
+      alert('Error al obtener las reservas:')
+      console.error('Error al obtener las reservas:', error);
+    }}
+    
+    useEffect(() => {
+      handleMisReservas();
+      handleMisRestaurantes();
+    }, []);
 
 function submitClickHandler(e){
   e.preventDefault();
