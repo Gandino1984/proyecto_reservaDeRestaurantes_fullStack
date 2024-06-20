@@ -7,11 +7,7 @@ import { useContext } from 'react';
 
 function ShowRestaurants() {
 
-
-
-  const { restaurantCardOpen, 
-          setrestaurantCardOpen,
-          restaurantData,
+  const { restaurantData,
           setrestaurantData,
           arrayRestaurantData,
           setarrayRestaurantData
@@ -26,7 +22,7 @@ function ShowRestaurants() {
     searchRestaurants();
   }, []);
 
-  function resetArray(array){
+  function mappedArrayhandler(array){
     setarrayRestaurantData(array);
   }
 
@@ -38,11 +34,11 @@ function ShowRestaurants() {
             <p>{restaurant.Name}</p>
           </li>
         )
-        resetArray(arrayMapped)
+        mappedArrayhandler(arrayMapped)
         
       } 
   }
-  , [restaurantData, arrayRestaurantData]
+  , [restaurantData]
 );
 
 

@@ -5,11 +5,13 @@ import { barraDeBusqueda } from '../utils/restauranteFetch';
 
 function RestaurantSearchBar() {
 
-    const { restaurantData, setrestaurantData, setcreateReservasOpen, userLoggedOrRegistered, setuserLoggedOrRegistered, arrayRestaurantData,setarrayRestaurantData
+    const { setrestaurantData, 
+            setarrayRestaurantData
     } = useContext(GeneralContext);
     
     const [searchTerm, setSearchTerm] = useState('');
-    const [searchResults, setSearchResults  ] = useState([]);
+
+    // const [searchResults, setSearchResults  ] = useState([]);
 
     const searchBarra = async (term) => {
         try {
@@ -19,14 +21,16 @@ function RestaurantSearchBar() {
                 const dataArray = response.data;
                 console.log("SearchBar: DataArray= ", dataArray)
                 setrestaurantData(dataArray); 
-                setSearchResults(dataArray);
+                // setSearchResults(dataArray);
             } else {
+                alert('La respuesta de la API no es válida: response = ', response)
                 console.error('La respuesta de la API no es válida:', response);
-                setarrayRestaurantData([]); 
+                // setarrayRestaurantData([]); 
             }
         } catch(error) {
-              console.error('Error al obtener las reservas:', error);
-              setarrayRestaurantData([]); 
+                alert('Error al obtener las reservas! error = ', error)
+                console.error('Error al obtener las reservas:', error);
+            //   setarrayRestaurantData([]); 
         }
     };
 
@@ -36,9 +40,10 @@ function RestaurantSearchBar() {
         
         if (term.length > 2) {
             searchBarra(term);
-        } else {
-          setarrayRestaurantData([]);
-        }
+        } 
+        //else {
+        //   setarrayRestaurantData([]);
+        // }
     };
 
     const handleResultClick = (restaurant) => {
@@ -64,6 +69,7 @@ function RestaurantSearchBar() {
     async function resetShowRestaurants(){
         const response = await getAllRestaurantes();
         setarrayRestaurantData(response.data);
+        setrestaurantData(response.data);
     }
 
     return (
