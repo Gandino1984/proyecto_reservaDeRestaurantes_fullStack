@@ -3,35 +3,20 @@ import React, { useState, useContext, useEffect } from 'react';
 import styles from "./MostrarReservasRestaurante.module.css"
 import ClientCard from '../../navbar/ClientCard'; // Ajusta la ruta del componente ClientCard si es necesario
 import { getAllReservas } from '../../utils/reservaFetch'
+import { getAllRestaurantes } from '../../utils/restauranteFetch';
 import GeneralContext from '../../context/GeneralContext';
 
 
 
 function MostrarReservasRestaurante() {
 
-  const {reservas, setReservas} = useContext(GeneralContext);
+  const {reservas, restaurantes} = useContext(GeneralContext);
+  
+  
 
-  useEffect(() => {
-    handleMisReservasClick();
-  }, [reservas]);
-
-  const handleMisReservasClick = async () => {
-    try {
-      const response = await getAllReservas();
-      const data = response.data;
-
-      if (Array.isArray(data)) { // Verifica que la respuesta sea un array
-        setReservas(data);
-      } else {
-        console.error('La respuesta de la API no contiene un array:', response);
-      }
-    } catch (error) {
-      console.error('Error al obtener las reservas:', error);
-    }
-
-
-  return (
-    <div className={styles.container}>
+      
+      return (
+        <div className={styles.container}>
       {/* <ClientCard onMisReservasClick={handleMisReservasClick} /> */}
       <div className={styles.reservasContainer}>
         <h3>Reservas:</h3>   
@@ -47,6 +32,5 @@ function MostrarReservasRestaurante() {
   );
 }
 
-}
 
 export default MostrarReservasRestaurante;
