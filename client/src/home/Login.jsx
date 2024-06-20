@@ -95,7 +95,6 @@ useEffect(() => {
   }
 
   const handleUserData =(e) =>{
-    console.log("holass")
     e.preventDefault();
     const data = e.target.value;
     const key = e.target.name;
@@ -108,7 +107,6 @@ useEffect(() => {
 }
 
 async function loginClickHandler(e) {
-  console.log("login handler")
   e.preventDefault();
   let result;  // Asegúrate de declarar result aquí
   if (userActionIsRegister) {
@@ -127,12 +125,10 @@ async function loginClickHandler(e) {
   }
   if (userActionIsLogin) {
       result = await login(userData);
-      console.log("resultado login", result)
       if (!result.error) {
-          setError("login correcto");
+          setError("login incorrecto");
           setUser(result.data); 
           saveToken(result.data.token);
-          console.log("user", result.data)
 
           setLoginFormOpenHandler(e)
           setuserLoggedOrRegistered(true)
@@ -193,7 +189,6 @@ function submitClickHandler(e){
                         {restaurantIsLogin && <input type="password" id="restaurantPasssword" name="Password" placeholder="Contraseña de restaurante" value={userData.Password} onChange={handleUserData} />}
                         {restaurantIsLogin && <input type="text" id="restaurantEmail" name="Email" placeholder="Correo de restaurante..." value={userData.Email} onChange={handleUserData}  />}
                         {restaurantIsRegister && <input type="password" id="restaurantRepeatPasssword" name="Password_repeat" placeholder="Repetir contraseña de restaurante" value={userData.Password_repeat} onChange={handleUserData} />}
-                        
                         
                               
                         <input type='button' value="Entrar" className={styles.btn1} onClick={e=>loginClickHandler(e)} />
