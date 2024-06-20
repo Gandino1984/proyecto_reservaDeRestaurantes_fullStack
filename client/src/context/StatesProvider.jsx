@@ -33,6 +33,7 @@ function StatesProvider({children}){
 
   const [reservaRestauranteExitosa, setreservaRestauranteExitosa] = useState(false)
   
+  const [arrayRestaurantData, setarrayRestaurantData] = useState([]);
 
   function setUserByTypeToggle(e){
     if(e.target,value === 'client'){
@@ -82,7 +83,9 @@ function StatesProvider({children}){
     mostrarReservasRestauranteOpen,
     setmostrarReservasRestauranteOpen,
     reservaRestauranteExitosa,
-    setreservaRestauranteExitosa
+    setreservaRestauranteExitosa,
+    arrayRestaurantData,
+    setarrayRestaurantData
   };
 
   return (

@@ -35,15 +35,11 @@ function Landing({children}){
     setloginFormOpenHandler(e);
   }
 
-  function onNavbarSearchBtnClick(e){
-    // console.log(e)
-  }
-
   return (
         <div className={styles.containerLanding}>
                 <div className={styles.background} />
 
-                <Navbar searchBtnClick={e=>onNavbarSearchBtnClick(e)}/>
+                <Navbar />
                 {loginFormOpen && <Login closeBtnClick={onCloseBtnLogin} />}  
                 <Hero heroBtnClick={onHeroBtnClick}/>
                 {createReservasOpen && <CreateReserva />}

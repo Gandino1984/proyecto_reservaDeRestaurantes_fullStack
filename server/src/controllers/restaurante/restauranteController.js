@@ -30,7 +30,7 @@ async function getRestaurantesByUserId(userData) {
 
 async function barraDeBusqueda(busquedaData) {
     try {
-        if (busquedaData.length > 2) {
+        // if (busquedaData.length > 2) {
             const restaurantes = await restauranteModel.findAll({
                 where: {
                     [Op.or]: [
@@ -49,9 +49,9 @@ async function barraDeBusqueda(busquedaData) {
             });
             console.log("LOS RESTAURANTES ENCONTRADOS SON:", restaurantes);
             return { data: restaurantes };
-        } else {
-            return { data: [], message: 'La búsqueda debe tener más de 3 caracteres' };
-        }
+        // } else {
+        //     return { data: [], message: 'La búsqueda debe tener más de 3 caracteres' };
+        // }
     } catch (error) {
         console.error("Error al buscar restaurantes:", error);
         return { error: error.message };

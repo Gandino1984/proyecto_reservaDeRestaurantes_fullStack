@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    /* width: 100%; */
   }
   
   .form {
@@ -12,8 +12,11 @@
   }
   
   .inputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    width: 100%;
+    /* min-width: 100%; */
   }
   
   .inputSearch {
@@ -21,7 +24,7 @@
     outline: none;
     border: none;
     background-color: white;
-    width: 100%; /* Asegura que el input ocupe el 100% del ancho del contenedor */
+    /* width: 100%; */
     padding: 0.5rem 1rem;
     font-size: 1.1rem;
     font-family: 'Roboto Condensed', sans-serif;
@@ -39,16 +42,14 @@
   }
   
   .dropdown {
+    width: 100%;
     position: absolute;
     top: 100%;
     left: 0;
-    right: 0; /* Asegura que el dropdown ocupe el 100% del ancho del contenedor */
     background-color: white;
     border: 1px solid #ccc;
     border-top: none;
     border-radius: 0 0 8px 8px;
-    max-height: 200px;
-    max-width: 240px;
     overflow-y: auto;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 1000;

@@ -8,12 +8,12 @@ const getAllRestaurantes = async () => {
 };
 
 const barraDeBusqueda = async (busqueda) => {
-    const result = await fetchData(`/restaurante/busqueda/${busqueda}`, "get");
+    const result = await fetchData(`/restaurante/busqueda`, "get", {busquedaData:busqueda});
     return result;
 };
 
 const getRestauranteByTipo = async (tipo) => {
-    const result = await fetchData(`/restaurante/tipo/${tipo}`, "get");
+    const result = await fetchData(`/restaurante/tipo/${tipo}`, "get", );
     return result;
 };
 
