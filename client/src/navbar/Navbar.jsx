@@ -6,7 +6,7 @@ import GeneralContext from '../context/GeneralContext.jsx'
 
 function Navbar() {
   const { user } = useContext(GeneralContext);
-  console.log("USER EN NAVBAR", user)
+  console.log("USER EN NAVBAR", user?.user_id)
 
   return (
     <div className={styles.containerNavbar}>

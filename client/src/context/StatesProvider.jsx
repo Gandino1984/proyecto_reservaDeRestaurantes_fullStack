@@ -5,6 +5,8 @@ import GeneralContext from './GeneralContext';
 function StatesProvider({children}){
 
   const [user, setUser] = useState(null);
+
+  const [userId, setUserId] = useState(null);
   
   const [userByType, setUserByType] = useState('client') 
 
@@ -12,8 +14,9 @@ function StatesProvider({children}){
 
   const [userIsClient, setuserIsClient] = useState(true);
   const [userIsRestaurant, setuserIsRestaurant] = useState(false);
+  
 
-  // const [reservasRestauranteOpen, setreservasRestauranteOpen] = useState(false);
+  const [reservasRestaurantOpen, setreservasRestaurantOpen] = useState(false);
 
   const [showRestaurantsOpen, setshowRestaurantsOpen] = useState(true);
 
@@ -28,6 +31,7 @@ function StatesProvider({children}){
   const [userLoggedOrRegistered, setuserLoggedOrRegistered] = useState(false)
 
   const [reservas, setReservas] = useState([]);
+  const [restaurantes, setRestaurantes] = useState([]);
 
   const [mostrarReservasRestauranteOpen, setmostrarReservasRestauranteOpen] = useState(false)
 
@@ -80,12 +84,18 @@ function StatesProvider({children}){
     setuserLoggedOrRegistered,
     reservas,
     setReservas,
+    restaurantes,
+    setRestaurantes,
     mostrarReservasRestauranteOpen,
     setmostrarReservasRestauranteOpen,
     reservaRestauranteExitosa,
     setreservaRestauranteExitosa,
     arrayRestaurantData,
-    setarrayRestaurantData
+    setarrayRestaurantData,
+    reservasRestaurantOpen,
+    setreservasRestaurantOpen,
+    userId,
+    setUserId
   };
 
   return (
