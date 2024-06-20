@@ -13,7 +13,7 @@ const getRestaurantesByUserId = async(req,res)=>{
 }
 
 const barraDeBusqueda = async(req,res)=>{
-    const busquedaData = req.params.busquedaData
+    const busquedaData = req.query.busquedaData
     console.log("BusquedaData es:",busquedaData)
     const {error,data} = await restauranteController.barraDeBusqueda(busquedaData);
     res.json({error,data});

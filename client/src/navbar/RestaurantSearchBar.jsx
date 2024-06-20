@@ -2,13 +2,16 @@ import React, { useState, useContext } from 'react';
 import styles from './RestaurantSearchBar.module.css';
 import GeneralContext from '../context/GeneralContext';
 import { barraDeBusqueda } from '../utils/restauranteFetch'; 
+import { getAllRestaurantes } from '../utils/restauranteFetch';
 
 function RestaurantSearchBar() {
 
-    const { setrestaurantData, 
+    const { restaurantData, setrestaurantData, 
             setarrayRestaurantData
     } = useContext(GeneralContext);
     
+    console.log('SearchBar, context: restaurantData= ', restaurantData)
+
     const [searchTerm, setSearchTerm] = useState('');
 
     // const [searchResults, setSearchResults  ] = useState([]);
@@ -37,13 +40,9 @@ function RestaurantSearchBar() {
     const handleInputChange = (e) => {
         const term = e.target.value;
         setSearchTerm(term);
-        
-        if (term.length > 2) {
+      
             searchBarra(term);
-        } 
-        //else {
-        //   setarrayRestaurantData([]);
-        // }
+  
     };
 
     const handleResultClick = (restaurant) => {
@@ -54,9 +53,9 @@ function RestaurantSearchBar() {
 
     const botonBusquedaHandler = (e) => {
         e.preventDefault();
-        if (searchTerm.length > 2) {
+        
             searchBarra(searchTerm);
-        }
+        
     };
 
     // function searchBtnhandler(e) {
@@ -68,7 +67,8 @@ function RestaurantSearchBar() {
 
     async function resetShowRestaurants(){
         const response = await getAllRestaurantes();
-        setarrayRestaurantData(response.data);
+
+        //setarrayRestaurantData(response.data);
         setrestaurantData(response.data);
     }
 
@@ -95,7 +95,7 @@ function RestaurantSearchBar() {
           </form>
 
           <button onClick={resetShowRestaurants} type="submit" className={styles.btnSearch}>
-              <ion-icon name="list-outline"></ion-icon>
+                <ion-icon name="trash-outline"></ion-icon>
           </button>
       </div>
     );

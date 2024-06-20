@@ -13,6 +13,8 @@ function ShowRestaurants() {
           setarrayRestaurantData
         } = useContext(GeneralContext);
 
+        console.log('ShowRestaurants, Context: restaurantData= ', restaurantData)
+
   async function searchRestaurants(){
     const response = await getAllRestaurantes();
     setrestaurantData(response.data);
