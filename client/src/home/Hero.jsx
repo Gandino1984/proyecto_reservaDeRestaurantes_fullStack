@@ -11,7 +11,7 @@ function Hero() {
 
     function heroBtnClick(e) {
         e.preventDefault();
-        if(userLoggedOrRegistered==false){
+        if(userLoggedOrRegistered===false){
             setLoginFormOpenHandler(true)
           
         }else{

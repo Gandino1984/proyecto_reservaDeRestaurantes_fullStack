@@ -19,7 +19,8 @@ function Login({closeBtnClick}) {
   setuserActionIsLogin,
   setuserActionIsRegister,
   userLoggedOrRegistered,
-  setuserLoggedOrRegistered
+  setuserLoggedOrRegistered,
+  setshowRestaurantsOpen
 
 } = useContext(GeneralContext);
 
@@ -115,6 +116,7 @@ async function loginClickHandler(e) {
 
           setLoginFormOpenHandler(e)
           setuserLoggedOrRegistered(true)
+          setshowRestaurantsOpen(true)
         
       } else {
         setuserLoggedOrRegistered(false)
@@ -132,6 +134,8 @@ async function loginClickHandler(e) {
 
           setLoginFormOpenHandler(e)
           setuserLoggedOrRegistered(true)
+          setshowRestaurantsOpen(true)
+
         
       } else {
           setError(result.error);
