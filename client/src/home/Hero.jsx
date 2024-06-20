@@ -5,7 +5,9 @@ import CreateReserva from '../components/reserva/reservaCliente'
 
 
 function Hero() {
-    const { setLoginFormOpenHandler, createReservasOpen, setcreateReservasOpen, userLoggedOrRegistered } = useContext(GeneralContext)
+    const { setLoginFormOpenHandler, userLoggedOrRegistered,
+        showRestaurantsOpen, setshowRestaurantsOpen
+     } = useContext(GeneralContext)
 
     function heroBtnClick(e) {
         e.preventDefault();
@@ -15,7 +17,8 @@ function Hero() {
         }else{
             alert("ya estás loggeado")
         }
-      }
+        setshowRestaurantsOpen(false)
+    }
 
     return (
         <div className={styles.container}>

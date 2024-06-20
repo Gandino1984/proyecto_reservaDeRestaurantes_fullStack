@@ -13,7 +13,7 @@ function StatesProvider({children}){
   const [userIsClient, setuserIsClient] = useState(true);
   const [userIsRestaurant, setuserIsRestaurant] = useState(false);
 
-  const [reservasRestauranteOpen, setreservasRestauranteOpen] = useState(false);
+  // const [reservasRestauranteOpen, setreservasRestauranteOpen] = useState(false);
 
   const [showRestaurantsOpen, setshowRestaurantsOpen] = useState(true);
 
