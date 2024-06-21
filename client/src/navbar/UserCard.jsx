@@ -1,10 +1,10 @@
 // clientCard.jsx
 import React, { useContext } from 'react';
-import styles from './ClientCard.module.css';
+import styles from './UserCard.module.css';
 import userImg from './user.png';
 import GeneralContext from '../context/GeneralContext';
 
-function ClientCard({ onMisReservasClick }) {
+function UserCard({ onMisReservasClick }) {
   const { user } = useContext(GeneralContext);
 
   return (
@@ -23,4 +23,4 @@ function ClientCard({ onMisReservasClick }) {
   );
 }
 
-export default ClientCard;
+export default UserCard;

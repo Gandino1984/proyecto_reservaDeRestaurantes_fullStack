@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styles from './Navbar.module.css';
 import RestaurantSearchBar from './RestaurantSearchBar';
-import ClientCard from './ClientCard';
+import ClientCard from './UserCard.jsx';
 import GeneralContext from '../context/GeneralContext.jsx'
 
 function Navbar() {
@@ -11,7 +11,7 @@ function Navbar() {
   return (
     <div className={styles.containerNavbar}>
       <div className={styles.containerTypewriter}>
-        <p className={styles.typewriter}>APIo</p>
+        <p className={styles.typewriter}>BookIT</p>
       </div>
 
       <RestaurantSearchBar />

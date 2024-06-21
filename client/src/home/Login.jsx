@@ -29,8 +29,11 @@ function Login({closeBtnClick}) {
   restaurantes,
   setRestaurantes,
   userId, 
-  setUserId
-
+  setUserId,
+  userName, 
+  setUserName,
+  userEmail, 
+  setUserEmail,
 } = useContext(GeneralContext);
 
  const [error, setError] = useState("");
@@ -107,27 +110,37 @@ useEffect(() => {
     e.preventDefault();
     const data = e.target.value;
     const key = e.target.name;
+    
     setUserData(userData => {
         return {
             ...userData,
             [key]:data
         }
     })
-}
+
+    if(key === "Name"){
+      setUserName(data)
+    }
+    if(key === "Email"){
+      setUserEmail(data)
+    }
+  }
+  
+
 
 async function loginClickHandler(e) {
   e.preventDefault();
-  let result;  // Asegúrate de declarar result aquí
+  
+  let result;
+
   if (userActionIsRegister) {
-      result = await register(userData);
-      console.log(result);
+      result = await register(userData)
       if (!result.error) {
           setError("se ha registrado correctamente");
-
+          console.log('Login: loginClickHandler() -> result.data = ',  result.data)
           setLoginFormOpenHandler(e)
           setuserLoggedOrRegistered(true)
           setshowRestaurantsOpen(true)
-        
       } else {
         setuserLoggedOrRegistered(false)
           setError(result.error);
@@ -136,10 +149,10 @@ async function loginClickHandler(e) {
   if (userActionIsLogin) {
       result = await login(userData);
       if (!result.error) {
-          setError("login incorrecto");
+        setError("login correcto");
+          console.log('Login: loginClickHandler() -> result.data.user_id = ',  result.data.user_id)
           setUser(result.data); 
           saveToken(result.data.token);
-
           setLoginFormOpenHandler(e)
           setuserLoggedOrRegistered(true)
           setshowRestaurantsOpen(true)
@@ -150,49 +163,49 @@ async function loginClickHandler(e) {
           setuserLoggedOrRegistered(false)
       }
   }
+
+  setUserId(result.data.user_id)
 };
 
  
 const handleMisReservas = async (userId) => {
-  try {
-    const response = await getAllReservas(userId);
-      const data = response.data;
-      console.log("handleMisReservas: ", data);
-      
-      if (Array.isArray(data)) {
-        setReservas(data);
-      } else {
-      console.error('La respuesta de la API no contiene un array:', response);
-    }
-  } catch (error) {
-    console.error('Error al obtener las reservas:', error);
-  }}
-  
-  const handleMisRestaurantes = async (userId) => {
     try {
-      alert('handleMisRestaurantes')
-      const response = await getAllRestaurantes(userId);
-      const data = response.data;
-      console.log("handleMisRestaurantes: ", data);
-      if (Array.isArray(data)) {
-        setRestaurantes(data);
-      } else {
-        alert('La respuesta de la API no contiene un array:')  
-        console.error('La respuesta de la API no contiene un array:', response);
-      }
-    } catch (error) {
-      alert('Error al obtener las reservas:')
-      console.error('Error al obtener las reservas:', error);
-    }}
+        const response = await getAllReservas(userId);
+        const data = response.data;
+        
+        if (Array.isArray(data)) {
+            setReservas(data);
+        } else {
+            alert('La respuesta de la API no contiene un array:', response)
+        }
+    }catch (error) {
+        alert('La respuesta de la API no contiene un array:', response)
+    }
+}
+  
+const handleMisRestaurantes = async (userId) => {
+    try {
+        const response = await getAllRestaurantes(userId);
+        const data = response.data;
+
+        if (Array.isArray(data)) {
+            setRestaurantes(data);
+        } else {
+            alert('La respuesta de la API no contiene un array: ', response)  
+        }
+    }catch(error) {
+        alert('Error al obtener las reservas:', error)
+    }
+}
     
     useEffect(() => {
-      handleMisReservas();
-      handleMisRestaurantes();
-    }, []);
+        handleMisReservas();
+        handleMisRestaurantes();
+    },[]);
 
-function submitClickHandler(e){
-  e.preventDefault();
-}
+// function submitClickHandler(e){
+//   e.preventDefault();
+// }
 
 
   return (
