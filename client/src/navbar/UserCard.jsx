@@ -5,7 +5,7 @@ import userImg from './user.png';
 import GeneralContext from '../context/GeneralContext';
 
 function UserCard({ onMisReservasClick }) {
-  const { user } = useContext(GeneralContext);
+  const { userName, userEmail } = useContext(GeneralContext);
 
   return (
     <div className={styles.container}>
@@ -14,8 +14,8 @@ function UserCard({ onMisReservasClick }) {
           <img src={userImg} alt="user avatar" />
         </div>
         <div className={styles.userDetails}>
-          <p>{user.name}</p>
-          <p>{user.email}</p>
+          <p>{userName}</p>
+          <p>{userEmail}</p>
           {/* <button onClick={onMisReservasClick}>MIS RESERVAS</button> */}
         </div>
       </div>

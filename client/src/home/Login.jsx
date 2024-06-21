@@ -130,14 +130,12 @@ useEffect(() => {
 
 async function loginClickHandler(e) {
   e.preventDefault();
-  
   let result;
 
   if (userActionIsRegister) {
       result = await register(userData)
       if (!result.error) {
           setError("se ha registrado correctamente");
-          console.log('Login: loginClickHandler() -> result.data = ',  result.data)
           setLoginFormOpenHandler(e)
           setuserLoggedOrRegistered(true)
           setshowRestaurantsOpen(true)
@@ -150,7 +148,6 @@ async function loginClickHandler(e) {
       result = await login(userData);
       if (!result.error) {
         setError("login correcto");
-          console.log('Login: loginClickHandler() -> result.data.user_id = ',  result.data.user_id)
           setUser(result.data); 
           saveToken(result.data.token);
           setLoginFormOpenHandler(e)

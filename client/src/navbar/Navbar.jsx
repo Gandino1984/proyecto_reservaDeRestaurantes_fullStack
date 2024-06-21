@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 import styles from './Navbar.module.css';
 import RestaurantSearchBar from './RestaurantSearchBar';
-import ClientCard from './UserCard.jsx';
+import UserCard from './UserCard.jsx';
 import GeneralContext from '../context/GeneralContext.jsx'
 
 function Navbar() {
-  const { user } = useContext(GeneralContext);
-  console.log("USER EN NAVBAR", user?.user_id)
+  const { userLoggedOrRegistered } = useContext(GeneralContext);
 
   return (
     <div className={styles.containerNavbar}>
@@ -16,7 +15,7 @@ function Navbar() {
 
       <RestaurantSearchBar />
 
-      {user && <ClientCard />}
+      { userLoggedOrRegistered && <UserCard />}
     </div>
   );
 }
