@@ -1,33 +1,29 @@
 import styles from './Hero.module.css'
 import { useContext, useEffect } from 'react'
 import GeneralContext from '../context/GeneralContext'
-import CreateReserva from '../components/reserva/reservaCliente'
+import RestaurantSearchBar from '../navbar/RestaurantSearchBar'
+import ShowRestaurants from '../components/mostrarRestaurantes/ShowRestaurants'
 
 
 function Hero() {
-    const { setLoginFormOpenHandler, userLoggedOrRegistered,
-        showRestaurantsOpen, setshowRestaurantsOpen
-     } = useContext(GeneralContext)
-
-    function heroBtnClick(e) {
-        e.preventDefault();
-        if(userLoggedOrRegistered===false){
-            setLoginFormOpenHandler(true)
-          
-        }else{
-            alert("ya estás loggeado")
-        }
-        setshowRestaurantsOpen(false)
-    }
+    const { showRestaurantsOpen } = useContext(GeneralContext)
 
     return (
-        <div className={styles.container}>
-                <div className={styles.hero}>
+        <div className={styles.containerHero}>
+                <div className={styles.hero1}>
                             <div className={styles.sub}>
-                                <p className={styles.text1}>Dinos cuánta <br />hambre tienes</p>
-                                   <button className={styles.btn} onClick={e=>heroBtnClick(e)}>INICIA SESIÓN</button>
+                                <p className={styles.text1}>¿Servilleta?</p>
+                                   {/* <button className={styles.btn} onClick={e=>heroBtnClick(e)}>INICIA SESIÓN</button> */}
                             </div>
-                </div>     
+                            <RestaurantSearchBar />
+                            <div className={styles.sub}>
+                                <p className={styles.text2}>¿O delantal?</p>
+                                   {/* <button className={styles.btn} onClick={e=>heroBtnClick(e)}>INICIA SESIÓN</button> */}
+                            </div>
+                </div>  
+                <div className={styles.hero2}>
+                    {showRestaurantsOpen && <ShowRestaurants />}    
+                </div>   
         </div>
     )
 }

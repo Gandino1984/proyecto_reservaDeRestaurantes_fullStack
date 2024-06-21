@@ -16,13 +16,10 @@ import ShowRestaurants from '../components/mostrarRestaurantes/ShowRestaurants.j
 
 function Landing({children}){
 
-  const {user, 
+  const {
         loginFormOpen, 
         setloginFormOpenHandler, 
-        userIsClient, 
         createReservasOpen,
-        showRestaurantsOpen,
-        setshowRestaurantsOpen
       } = useContext(GeneralContext)
 
   const [restaurantData, setrestaurantData] = useState(null);
@@ -38,12 +35,11 @@ function Landing({children}){
   return (
         <div className={styles.containerLanding}>
                 <div className={styles.background} />
-
                 <Navbar />
                 {loginFormOpen && <Login closeBtnClick={onCloseBtnLogin} />}  
                 <Hero heroBtnClick={onHeroBtnClick}/>
                 {createReservasOpen && <CreateReserva />}
-                {showRestaurantsOpen && <ShowRestaurants />}     
+              
         </div>
   )
 }

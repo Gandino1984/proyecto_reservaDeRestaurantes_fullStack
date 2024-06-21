@@ -5,15 +5,28 @@ import UserCard from './UserCard.jsx';
 import GeneralContext from '../context/GeneralContext.jsx'
 
 function Navbar() {
-  const { userLoggedOrRegistered } = useContext(GeneralContext);
+  const { userLoggedOrRegistered, setLoginFormOpenHandler } = useContext(GeneralContext);
+
+  function empezarBtnClick(e) {
+    e.preventDefault();
+    if(userLoggedOrRegistered===false){
+        setLoginFormOpenHandler(true)
+        setshowRestaurantsOpen(false)
+      
+    }else{
+        alert("ya estás loggeado")
+    }
+ 
+}
+
 
   return (
     <div className={styles.containerNavbar}>
-      <div className={styles.containerTypewriter}>
-        <p className={styles.typewriter}>BookIT</p>
+      <div className={styles.containerTitle}>
+        <p className={styles.title}>Guindilla</p>
       </div>
-
-      <RestaurantSearchBar />
+      { !userLoggedOrRegistered && <button className={styles.btn} onClick={e=>empezarBtnClick(e)}>EMPEZAR</button>}
+      {/* <RestaurantSearchBar /> */}
 
       { userLoggedOrRegistered && <UserCard />}
     </div>

@@ -54,7 +54,7 @@ input[type="date"]{
 }
 
 input[type="text"]{
-    width: 20rem;
+    width: 25rem;
     background-color: white;
     color: var(--purple);
     border: none;
