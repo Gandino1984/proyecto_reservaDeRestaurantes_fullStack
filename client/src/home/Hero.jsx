@@ -1,4 +1,4 @@
-import './Hero.css'
+    import './Hero.css'
 import { useContext, useEffect } from 'react'
 import GeneralContext from '../context/GeneralContext'
 import RestaurantSearchBar from '../navbar/RestaurantSearchBar'

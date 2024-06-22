@@ -230,6 +230,7 @@ const handleMisRestaurantes = async (userId) => {
                               </div>
                               <div className='userActionLabels'>
                                   <label  className='labelLogin' htmlFor="loginOption">Login</label>
+                                  <span>/</span>
                                   <label  className='labelRegister' htmlFor="registerOption">Registro</label>
                               </div> 
                               <div>
