@@ -112,6 +112,21 @@ const getReservasPorRestaurante = async (restauranteId) => {
     }
 };
 
+const getReservasByRestaurante = async (req, res) => {
+    try {
+        const reservas = await ReservasModel.findAll({
+            where: {
+                User_id: {
+                    [Op.in]: userIds,  // Filtrar por array de IDs
+                },
+            },
+        });
+        return reservas;
+    } catch (error) {
+        console.error("Error al obtener reservas:", error);
+        throw error;
+    }
+};
 
 
 
@@ -226,6 +241,7 @@ export {
     getByProperty,
     getReservasPorDiaYSillas,
     getReservasPorRestaurante,
+    getReservasByRestaurante,
     create,
     update,
     remove
@@ -238,6 +254,7 @@ export default {
     getByProperty,
     getReservasPorDiaYSillas,
     getReservasPorRestaurante,
+    getReservasByRestaurante,
     create,
     update,
     remove
