@@ -23,16 +23,10 @@ const getReservasByID = async (reservaID) => {
     return result;
 };
 
-const getReservasByRestaurante = async (restauranteId) => {
-    try {
-        const result = await fetchData(`/reservas/restaurante/${restauranteId}`, "get");
-        return result;
-    } catch (error) {
-        console.error('Error fetching reservations:', error);
-        throw error;
-    }
+const getReservasByRestaurante = async (reservaID) => {
+    const result = await fetchData(`/reservas/${reservaID}`, "get");
+    return result;
 };
-
 
 const updateReserva = async (reservaID, reservaData) => {
     const result = await fetchData(`/reservas/${reservaID}`, "put", reservaData);
