@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
-import styles from './Navbar.module.css';
-import RestaurantSearchBar from './RestaurantSearchBar';
+import './Navbar.css'; 
 import UserCard from './UserCard.jsx';
 import GeneralContext from '../context/GeneralContext.jsx'
 import logoImg from './guindilla.png';
 
 function Navbar() {
-  const { userLoggedOrRegistered, setLoginFormOpenHandler } = useContext(GeneralContext);
+  const { userLoggedOrRegistered, setLoginFormOpenHandler, setshowRestaurantsOpen } = useContext(GeneralContext);
 
   function empezarBtnClick(e) {
     e.preventDefault();
@@ -18,16 +17,15 @@ function Navbar() {
     }
 }
 
-
   return (
-    <div className={styles.containerNavbar}>
-        <div className={styles.containerTitle}>
-            <p className={styles.title}>jan<span className={styles.and}>&</span>eman</p>
-            <div className={styles.logoContainer}>
+    <div className='containerNavbar'>
+        <div className='containerTitleNavbar'>
+            <p className='titleNavBar'>jan<span className='and'>&</span>eman</p>
+            <div className='logoContainerNavbar'>
                 <img src={logoImg} alt="logo image" />
             </div>
         </div>
-      { !userLoggedOrRegistered && <button className={styles.btn} onClick={e=>empezarBtnClick(e)}>EMPEZAR</button>}
+      { !userLoggedOrRegistered && <button className='empezarBtn' onClick={e=>empezarBtnClick(e)}>EMPEZAR</button>}
       { userLoggedOrRegistered && <UserCard />}
     </div>
   );
