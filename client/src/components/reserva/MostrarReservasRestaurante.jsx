@@ -1,35 +1,59 @@
-// mostrarReservas.jsx
-import React, { useState, useContext, useEffect } from 'react';
-import styles from "./MostrarReservasRestaurante.module.css"
-// import ClientCard from '../../navbar/ClientCard'; // Ajusta la ruta del componente ClientCard si es necesario
-import { getAllReservas } from '../../utils/reservaFetch'
-import { getAllRestaurantes } from '../../utils/restauranteFetch';
+import React, { useState, useEffect, useContext } from 'react';
 import GeneralContext from '../../context/GeneralContext';
-
-
+import { getAllReservasRestaurante } from '../../utils/reservaFetch';
+/* import './MostrarReservasRestaurante.css'; */
 
 function MostrarReservasRestaurante() {
+  const { restauranteID, reservas, setReservas, usuarioID } = useContext(GeneralContext);
+  const [reservasArray, setReservasArray] = useState([]);
 
-  const {reservas, restaurantes} = useContext(GeneralContext);
-  
-  
+  async function getReservas() {
+    try {
+      const response = await getAllReservasRestaurante(restauranteID);
+      if (response && response.data) {
+        const todasLasReservas = response.data.flatMap(mesa => mesa.reservas);
+        setReservas(todasLasReservas);
+        console.log("response.data= ", response.data);
+      }
+    } catch (error) {
+      console.error("Error al mostrar reservas:", error);
+    }
+  }
 
-      
-      return (
-        <div className={styles.container}>
-      <div className={styles.reservasContainer}>
-        <h3>Reservas:</h3>   
-        <ul>
-          {reservas.map((reserva) => (
-            <li key={reserva.Reservas_id}>
-              {reserva.Name} - {reserva.Date} - {reserva.Hora_Inicio} a {reserva.Hora_Final}, estado: {reserva.Is_accepted}
-            </li>
-          ))}
-        </ul>
-      </div>
+  useEffect(() => {
+    if (restauranteID) {
+      getReservas();
+    }
+  }, [restauranteID]);
+
+  useEffect(() => {
+    if (reservas) {
+      const reservasFiltradas = reservas.filter(reserva => reserva.usuarioID === usuarioID);
+      const reservasMapped = reservasFiltradas.map((reserva, index) => 
+        <li key={index} className='card'>
+          <h3>Reserva #{reserva.Reservas_id}</h3>
+          <div className='cardDetails'>
+            <h5>Cliente: {reserva.Name}</h5>
+            <h5>Fecha: {new Date(reserva.Date).toLocaleDateString()}</h5>
+            <h5>Hora de Inicio: {reserva.Hora_Inicio}</h5>
+            <h5>Hora de Final: {reserva.Hora_Final}</h5>
+            <h5>Estado: {reserva.Is_accepted ? 'Aceptada' : 'Pendiente'}</h5>
+            <h5>Mesa: {reserva.Mesa_id}</h5>
+          </div>
+        </li>
+      );
+      setReservasArray(reservasMapped);
+    }
+  }, [reservas, usuarioID]);
+
+  return (
+    <div>
+      <h2>Reservas del Restaurante</h2>
+      <ul className='reservas-list'>
+        {reservasArray}
+      </ul>
     </div>
   );
 }
-
 
 export default MostrarReservasRestaurante;
