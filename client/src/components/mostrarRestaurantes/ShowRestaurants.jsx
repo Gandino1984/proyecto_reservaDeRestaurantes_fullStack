@@ -27,10 +27,10 @@ function ShowRestaurants() {
     if (restaurantData) {
       const arrayMapped = restaurantData.map(restaurant => (
         <li key={restaurant.Restaurante_id} className='card'>
-          <h3>{restaurant.Name}</h3>
+          <p className='cardName'>{restaurant.Name}<ion-icon name="star"></ion-icon></p>
           <div className='cardSchedule'>
-            <h5>{restaurant.Hora_Apertura}</h5>
-            <h5>{restaurant.Hora_Cierre}</h5>
+            <p>Hora de apertura: {restaurant.Hora_Apertura}</p>
+            <p>Hora de cierre: {restaurant.Hora_Cierre}</p>
           </div>
         </li>
       ));
