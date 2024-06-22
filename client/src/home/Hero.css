@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content:center;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
 }
 
 .hero{
@@ -43,11 +43,12 @@
 }
 
 .text{
+    user-select: none;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: Alegreya;
-    font-size: 4rem;
+    font-size: 3.8rem;
     font-weight: 600;
     color: white;
     line-height: 4.8rem;

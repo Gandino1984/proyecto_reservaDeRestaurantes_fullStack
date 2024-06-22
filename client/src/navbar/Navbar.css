@@ -6,7 +6,7 @@
     align-items: center; 
     justify-content:space-between;
     padding: 1.5rem 7rem;
-    background: linear-gradient(to bottom, rgba(170, 241, 4, 0.253) 10%, #00000000);
+    background: linear-gradient(to bottom, rgba(170, 241, 4, 0.219) 10%, #00000000);
     transition: all 200ms ease;
 }
 
@@ -46,8 +46,8 @@
     outline: none;
     cursor: pointer;
     margin-left: 2rem;
-    padding: .5rem .7rem;
-    font-size: 1.2rem;
+    padding: .6rem 1rem;
+    font-size: 1.3rem;
     font-weight: 700;
     letter-spacing: .07rem;
     color: white;
@@ -70,10 +70,12 @@
     justify-content: center; 
     border-radius: 50%;
     padding: .2rem;
-    width: 4rem;
-    height: 4rem;
+    width: 3.5rem;
+    height: 3.5rem;
     overflow: hidden;
+    outline: 3px solid var(--purple);
     background-color: white;
+    margin-left: .5rem;
 }
 
 .logoContainerNavbar img{

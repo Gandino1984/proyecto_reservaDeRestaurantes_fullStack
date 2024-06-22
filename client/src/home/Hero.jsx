@@ -12,7 +12,7 @@ function Hero() {
         <div className='containerHero'>
                 <div className='hero'>
                             <div className='sub'>
-                                <p className='text'>¿Qué te apetece?</p>
+                                <p className='text'>¿Qué te apetece comer?</p>
                             </div>
                             <RestaurantSearchBar />
                 </div>  
