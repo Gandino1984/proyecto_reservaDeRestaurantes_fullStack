@@ -7,7 +7,7 @@ import { saveToken } from '../utils/local'
 import { getAllRestaurantes } from '../utils/restauranteFetch'
 import { getAllReservas} from  '../utils/reservaFetch'
 
-function Login({closeBtnClick}) {
+function Login() {
 
  const { setUser, 
   setLoginFormOpenHandler, 
@@ -34,6 +34,10 @@ function Login({closeBtnClick}) {
   setUserName,
   userEmail, 
   setUserEmail,
+  infoModalSuccessOpen,
+  setinfoModalSuccessOpen,
+  infoModalErrorOpen,
+  setinfoModalErrorOpen
 } = useContext(GeneralContext);
 
  const [error, setError] = useState("");
@@ -56,35 +60,31 @@ useEffect(() => {
   }
 }, [userIsClient, userActionIsRegister]);
 
- let clientIsLogin = true;
- let clientIsRegister = false;
- let restaurantIsLogin = false;
- let restaurantIsRegister = false;
    
-  if(userActionIsLogin && userIsClient){
-    clientIsLogin = true;
-    clientIsRegister = false;
-    restaurantIsLogin = false;
-    restaurantIsRegister = false;
-  }
-  if(userActionIsRegister && userIsClient){
-    clientIsLogin = true;
-    clientIsRegister = true;
-    restaurantIsLogin = false;
-    restaurantIsRegister = false;
-  }
-  if(userActionIsLogin && userIsRestaurant){
-    clientIsLogin = false;
-    clientIsRegister = false;
-    restaurantIsLogin = true;
-    restaurantIsRegister = false;
-  }
-  if(userActionIsRegister && userIsRestaurant){
-    clientIsLogin = false;
-    clientIsRegister = false;
-    restaurantIsLogin = true;
-    restaurantIsRegister = true;
-  }
+  // if(userActionIsLogin && userIsClient){
+  //   clientIsLogin = true;
+  //   clientIsRegister = false;
+  //   restaurantIsLogin = false;
+  //   restaurantIsRegister = false;
+  // }
+  // if(userActionIsRegister && userIsClient){
+  //   clientIsLogin = true;
+  //   clientIsRegister = true;
+  //   restaurantIsLogin = false;
+  //   restaurantIsRegister = false;
+  // }
+  // if(userActionIsLogin && userIsRestaurant){
+  //   clientIsLogin = false;
+  //   clientIsRegister = false;
+  //   restaurantIsLogin = true;
+  //   restaurantIsRegister = false;
+  // }
+  // if(userActionIsRegister && userIsRestaurant){
+  //   clientIsLogin = false;
+  //   clientIsRegister = false;
+  //   restaurantIsLogin = true;
+  //   restaurantIsRegister = true;
+  // }
   
   function userTypeHandler(e){
     if(e.target.value === "client"){
@@ -136,28 +136,33 @@ async function loginClickHandler(e) {
       result = await register(userData)
       if (!result.error) {
           setError("se ha registrado correctamente");
+          
           setLoginFormOpenHandler(e)
           setuserLoggedOrRegistered(true)
           setshowRestaurantsOpen(true)
+          setinfoModalSuccessOpen(true)
       } else {
         setuserLoggedOrRegistered(false)
           setError(result.error);
+          setinfoModalErrorOpen(true)
       }
   }
   if (userActionIsLogin) {
       result = await login(userData);
       if (!result.error) {
-        setError("login correcto");
+          setError("login correcto");
           setUser(result.data); 
           saveToken(result.data.token);
           setLoginFormOpenHandler(e)
           setuserLoggedOrRegistered(true)
           setshowRestaurantsOpen(true)
+          setinfoModalSuccessOpen(true)
 
         
       } else {
           setError(result.error);
           setuserLoggedOrRegistered(false)
+          setinfoModalErrorOpen(true)
       }
   }
 
@@ -200,29 +205,22 @@ const handleMisRestaurantes = async (userId) => {
         handleMisRestaurantes();
     },[]);
 
-// function submitClickHandler(e){
-//   e.preventDefault();
-// }
-
 
   return (
     <div className='containerLogin'>
       <div className='login'>
-                <form onSubmit={loginClickHandler} className='loginFormContainer'>
-                       
-                        
-                        {/* <div className='userTypeBtnContainer'>
-                              <div className='userTypeLabels'>
-                                  {userIsClient && <label  className='labelRestaurant' htmlFor="restaurantOption"><ion-icon className='chevronBack' name="chevron-back"></ion-icon>Restaurantes</label>}
-                                  {userIsRestaurant && <label  className='labelClient' htmlFor="clientOption"><ion-icon className='chevronBack' name="chevron-back"></ion-icon>Clientes</label>}
-                              </div>                   
-                              <div className='userTypeRadios' onChange={e=>userTypeHandler(e)}>
-                                    <input className='userTypeRadioOption' value="client"  id="clientOption" name='userType' type="radio" />
-                                    <input className='userTypeRadioOption' value="restaurant" id="restaurantOption" name='userType' type="radio" />
-                              </div>   
+      <div className='userTypeBtnContainer'>
+                <div className='userTypeLabels'>
+                    {userIsClient && <label  className='labelRestaurant' htmlFor="restaurantOption"><ion-icon className='chevronBack' name="chevron-back"></ion-icon>Restaurantes</label>}
+                    {userIsRestaurant && <label  className='labelClient' htmlFor="clientOption"><ion-icon className='chevronBack' name="chevron-back"></ion-icon>Clientes</label>}
+                </div>                   
+                <div className='userTypeRadios' onChange={e=>userTypeHandler(e)}>
+                      <input className='userTypeRadioOption' value="client"  id="clientOption" name='userType' type="radio" />
+                      <input className='userTypeRadioOption' value="restaurant" id="restaurantOption" name='userType' type="radio" />
+                </div>   
 
-                        </div> */}
-                        
+                </div>
+                <form  className='loginFormContainer'>
                         <div className='loginMenuContainer'>
                               <div className='userActionRadios' onChange={e=>userActionHandler(e)}>
                                     <input className='userActionRadioOption' value="login" id="loginOption" name='userAction' type="radio"  />
