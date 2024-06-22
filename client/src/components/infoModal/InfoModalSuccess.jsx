@@ -5,7 +5,10 @@ import GeneralContext from '../../context/GeneralContext';
 
 const InfoModalSuccess = ({onClose}) => {
 
-    const { setmostrarReservasRestauranteOpen } = useContext(GeneralContext);
+    const { setmostrarReservasRestauranteOpen, 
+      infoModalSuccessOpen,
+      setinfoModalSuccessOpen
+     } = useContext(GeneralContext);
 
   return (
     <div className="modal">
@@ -18,7 +21,7 @@ const InfoModalSuccess = ({onClose}) => {
           <p>éxito</p>
           {/* <p>{message}</p> */}
         </div>
-        <button className="modal-button" onClick={onClose}>OK</button>
+        <button className="modal-button" onClick={()=>setinfoModalSuccessOpen(false)}>OK</button>
       </div>
     </div>
   );
