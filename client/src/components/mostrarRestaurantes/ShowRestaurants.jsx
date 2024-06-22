@@ -34,9 +34,12 @@ function ShowRestaurants() {
       if (restaurantData) {
         const arrayMapped = restaurantData.map(restaurant => 
           <li key={restaurant.Restaurante_id} className='card'>
-            <p>{restaurant.Name}</p>
-            <p>{restaurant.Hora_Apertura}</p>
-            <p>{restaurant.Hora_Cierre}</p>
+            <h3>{restaurant.Name}</h3>
+            <div className='cardSchedule'>
+                <h5>{restaurant.Hora_Apertura}</h5>
+                <h5>{restaurant.Hora_Cierre}</h5>
+            </div>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum doloremque magnam tenetur hic quisquam iure quibusdam eos eveniet aliquid iste officia non quas.</p>
           </li>
         )
         mappedArrayhandler(arrayMapped)

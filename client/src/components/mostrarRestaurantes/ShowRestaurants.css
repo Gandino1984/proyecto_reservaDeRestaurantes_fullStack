@@ -17,10 +17,12 @@
 
 .cardGroup{
     /* border: 2px solid greenyellow; */
+    position: relative;
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     width: 100%;
     height: 50vh;
+    padding-top: 30rem;
     align-items: center;
     justify-content: center;
     background-color: transparent;
@@ -42,12 +44,28 @@
     /* border: 2px solid aqua; */
     cursor: pointer;
     background-color: rgb(255, 255, 255);
-    padding: .5rem;
+    padding: .5rem 1rem;
     font-family: Alegreya;
     font-size: 1.5rem;
     border-radius: 8px;
     transition: all 200ms ease;
 }
 
+h3, h5{
+    text-align: center;
+}
 
-  
+.card p{
+    text-align: center;
+}
+
+.cardSchedule{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;  
+}
+
+.cardSchedule p{
+    text-align: center;
+}
