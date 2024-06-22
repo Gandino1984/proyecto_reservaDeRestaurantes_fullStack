@@ -18,18 +18,30 @@
     padding: 0;
     margin: 0;
     list-style: none;
+    /* overflow: auto; */
   }
   
   .card {
+    cursor: pointer;
     font-family: Alegreya;
     display: flex;
     align-items: center;
     /* justify-content: center; */
     flex-direction: column;
     width: 15rem; /* Ajusta el tamaño según tus necesidades */
-    margin: 0 .5rem;
+    margin: 0 .7rem;
     background-color: white;
     border-radius: 8px;
+    transition: all 200ms ease;
+  }
+
+  .card:hover {
+    border-radius: 0px;
+    transform: scale(1.05);
+    color: white;
+    background-color: black;
+    box-shadow: 2px 2px 2px 1px var(--green);
+
   }
 
   .cardName{
@@ -45,7 +57,8 @@
     padding-left: .5rem;
     padding-top: .5rem;
     padding-bottom: .5rem;
-    background-color: var(--green);
+    color: white;
+    background-color: var(--purple);
     width: 100%;
     margin-bottom: .5rem;
   }

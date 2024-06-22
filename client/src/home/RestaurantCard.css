@@ -38,3 +38,8 @@
     background-color: var(--purple);
     border-radius: 8px;
 }
+
+.inputContainerSearchBar input{
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}

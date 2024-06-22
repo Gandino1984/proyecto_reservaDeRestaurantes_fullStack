@@ -29,8 +29,8 @@ function ShowRestaurants() {
         <li key={restaurant.Restaurante_id} className='card'>
           <p className='cardName'>{restaurant.Name}<ion-icon name="star"></ion-icon></p>
           <div className='cardSchedule'>
-            <p>Hora de apertura: {restaurant.Hora_Apertura}</p>
-            <p>Hora de cierre: {restaurant.Hora_Cierre}</p>
+            <p>Apertura: {restaurant.Hora_Apertura}</p>
+            <p>Cierre: {restaurant.Hora_Cierre}</p>
           </div>
         </li>
       ));
