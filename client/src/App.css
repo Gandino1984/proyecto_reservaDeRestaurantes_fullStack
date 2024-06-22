@@ -1,6 +1,6 @@
 :root{
     --purple: #8234CF;
-    --green: #c4c713;
+    --green: #d5d811;
 }
 
 .landing{
@@ -9,4 +9,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+
+input[type="text"]{
+    width: 25rem;
+    background-color: white;
+    color: var(--purple);
+    border: none;
+    outline: none;
+    appearance: none;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    font-family: Roboto Condensed;
+    font-weight: 400;
+    letter-spacing: .05rem;
+    /* border-radius: 8px; */
+}
+
+input:focus[type="text"]{
+    border: 1px solid var(--purple);
+    background-color: black;
+    color: var(--green);
 }

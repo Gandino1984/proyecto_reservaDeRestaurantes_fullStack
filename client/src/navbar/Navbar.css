@@ -3,7 +3,7 @@
     display: flex;
     align-items: center; 
     justify-content:space-between;
-    padding: 1.5rem 5rem;
+    padding: 1.5rem 7rem;
     background: linear-gradient(to bottom, rgb(0, 0, 0),#0000002f);
     transition: all 200ms ease;
 }
@@ -58,7 +58,7 @@
 
 .empezarBtn:hover{
     color: white;
-    outline: 2px solid var(--purple);
+    outline: 1px solid var(--purple);
     background-color: black;
     border-radius: 8px;
 }

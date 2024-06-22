@@ -68,6 +68,11 @@ input[type="text"]{
     /* border-radius: 8px; */
 }
 
+input:focus[type="text"]{
+    background-color: black;
+    color: var(--green);
+}
+
 input[type="password"]{
     width: 20rem;
     background-color: white;
@@ -84,10 +89,7 @@ input[type="password"]{
 }
 
 
-input:focus[type="text"]{
-    background-color: black;
-    color: var(--green);
-}
+
 
 input:focus[type="password"]{
     background-color: black;

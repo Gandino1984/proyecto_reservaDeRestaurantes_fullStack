@@ -57,9 +57,9 @@ function RestaurantSearchBar() {
 
     async function resetShowRestaurants(){
         const response = await getAllRestaurantes();
-
-        //setarrayRestaurantData(response.data);
         setrestaurantData(response.data);
+        setSearchTerm("");
+
   
     }
 
