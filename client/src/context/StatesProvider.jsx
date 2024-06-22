@@ -10,7 +10,11 @@ function StatesProvider({children}){
   const [userName, setUserName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
   
-  const [userByType, setUserByType] = useState('client')
+  const [userByType, setUserByType] = useState('client') 
+
+  const [restaurantData, setrestaurantData] = useState(null);
+  const [restauranteID, setRestauranteID] = useState(null);
+
   const [userIsClient, setuserIsClient] = useState(true);
   const [userIsRestaurant, setuserIsRestaurant] = useState(false);
   const [userActionIsLogin, setuserActionIsLogin] = useState(true);
@@ -89,7 +93,13 @@ function StatesProvider({children}){
     reservaRestauranteExitosa,
     setreservaRestauranteExitosa,
     arrayRestaurantData,
-    setarrayRestaurantData
+    setarrayRestaurantData,
+    reservasRestaurantOpen,
+    setreservasRestaurantOpen,
+    userId,
+    setUserId,
+    restauranteID,
+    setRestauranteID
   };
 
   return (

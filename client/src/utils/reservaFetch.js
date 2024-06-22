@@ -23,6 +23,11 @@ const getReservasByID = async (reservaID) => {
     return result;
 };
 
+const getReservasByRestaurante = async (reservaID) => {
+    const result = await fetchData(`/reservas/${reservaID}`, "get");
+    return result;
+};
+
 const updateReserva = async (reservaID, reservaData) => {
     const result = await fetchData(`/reservas/${reservaID}`, "put", reservaData);
     return result;
@@ -45,6 +50,7 @@ export {
     getAllReservas,
     getReservasPorDiaYSillas,
     getReservasByID,
+    getReservasByRestaurante,
     updateReserva, 
     createReserva,
     deleteReserva
