@@ -208,15 +208,10 @@ const handleMisRestaurantes = async (userId) => {
   return (
     <div className='containerLogin'>
       <div className='login'>
-                
                 <form onSubmit={loginClickHandler} className='loginFormContainer'>
-                        <div>
-                            <button type="button" className='loginCloseBtn' onClick={setLoginFormOpenHandler}>
-                                    <ion-icon name="close-circle-outline"></ion-icon>
-                            </button>
-                        </div>
+                       
                         
-                        <div className='userTypeBtnContainer'>
+                        {/* <div className='userTypeBtnContainer'>
                               <div className='userTypeLabels'>
                                   {userIsClient && <label  className='labelRestaurant' htmlFor="restaurantOption"><ion-icon className='chevronBack' name="chevron-back"></ion-icon>Restaurantes</label>}
                                   {userIsRestaurant && <label  className='labelClient' htmlFor="clientOption"><ion-icon className='chevronBack' name="chevron-back"></ion-icon>Clientes</label>}
@@ -226,7 +221,7 @@ const handleMisRestaurantes = async (userId) => {
                                     <input className='userTypeRadioOption' value="restaurant" id="restaurantOption" name='userType' type="radio" />
                               </div>   
 
-                        </div>
+                        </div> */}
                         
                         <div className='loginMenuContainer'>
                               <div className='userActionRadios' onChange={e=>userActionHandler(e)}>
@@ -237,15 +232,23 @@ const handleMisRestaurantes = async (userId) => {
                                   <label  className='labelLogin' htmlFor="loginOption">Login</label>
                                   <label  className='labelRegister' htmlFor="registerOption">Registro</label>
                               </div> 
+                              <div>
+                            <button type="button" className='loginCloseBtn' onClick={setLoginFormOpenHandler}>
+                                <ion-icon name="close-outline"></ion-icon>
+                            </button>
+                        </div>
                         </div> 
 
                         {error && <div className='error'>{error}</div>}             
-                        <input type="text" id="Name" name="Name" placeholder="¿Cuál es tu nombre de usuario?" value={userData.Name} onChange={handleUserData} />
-                        <input type="password" id="Password" name="Password" placeholder="Escribe tu contraseña aquí..." value={userData.Password} onChange={handleUserData}  />  
-                        <input type="text" id="clientEmail" name="Email" placeholder="Tu correo..." value={userData.Email} onChange={handleUserData}  />
-                        <input type="password" id="Password_repeat" name="Password_repeat" placeholder="Verifica tu contraseña..." value={userData.Password_repeat} onChange={handleUserData} />
-                              
-                        <input type='button' value="Entrar" className='entrarBtn' onClick={e=>loginClickHandler(e)} />
+                        <div className='inputContainerLogin'>
+
+                            <input type="text" id="Name" name="Name" placeholder="¿Cuál es tu nombre de usuario?" value={userData.Name} onChange={handleUserData} />
+                            <input type="password" id="Password" name="Password" placeholder="Escribe tu contraseña aquí..." value={userData.Password} onChange={handleUserData}  />  
+                            <input type="text" id="clientEmail" name="Email" placeholder="Tu correo..." value={userData.Email} onChange={handleUserData}  />
+                            <input type="password" id="Password_repeat" name="Password_repeat" placeholder="Verifica tu contraseña..." value={userData.Password_repeat} onChange={handleUserData} />
+                                  
+                            <input type='button' value="ENTRAR" className='entrarBtn' onClick={e=>loginClickHandler(e)} />
+                        </div>
                 </form>
         </div>
       </div>

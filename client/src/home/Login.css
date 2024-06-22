@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content:center;
+    padding-top: 6rem;
 }
 
 .login{
@@ -18,14 +19,13 @@
 }
      
 .loginFormContainer{
-    background-color: rgba(0, 0, 0, 0.349);
+    background-color: rgba(0, 0, 0, 0.288);
     border-radius: 8px;
     display: flex;
     outline: 1px solid var(--green);
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding:2rem 2rem 2rem 2rem;
     gap: 2rem;
     animation-name: slideUp;
     animation-duration: 300ms;
@@ -36,26 +36,32 @@
 
 .loginFormContainer:hover{
     outline: 1px solid var(--purple);
+    background-color: rgba(0, 0, 0, 0.568);
 }
 
 
 .loginCloseBtn{
+    border: none;
+    outline: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.2rem;
-    color: var(--purple);
-    padding: .1rem;
+    font-size: 1.5rem;
+    color: black;
     cursor: pointer;
     width: 2.2rem;
     height: 2.2rem;
     border-radius: 50%;
     transition: all 200ms ease;
+    background-color: var(--green);
 }
 
 .loginCloseBtn:hover{
-    color: var(--green);
+    border-radius: 8px;
     background-color: black;
+    color: white;
+    /* outline: 1px solid var(--green); */
+    /* background-color: black; */
 }
 
 .userTypeBtnContainer{
@@ -141,14 +147,17 @@
     width: 100%;    
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding-top: .5rem;
-    padding-bottom: 1rem;
+    justify-content: space-between;
+    padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     transition: all 250ms ease;
+    /* background-color: black; */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .userActionLabels{
- 
     padding-top: 1.5rem;
     user-select: none;
     display: flex;
@@ -209,6 +218,15 @@
     color: var(--green);
 }
 
+
+.inputContainerLogin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 1rem;
+}
 
 
 input[type="text"]{
@@ -287,7 +305,7 @@ input:focus[type="password"]{
 }
 
 .entrarBtn:hover{
-    color: var(--green);
+    outline: 1px solid var(--green);
     background-color: black;
     border-radius: 8px;
 }
