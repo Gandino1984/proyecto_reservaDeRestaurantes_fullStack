@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 2rem;
+    /* padding: 2rem; */
     gap: 2rem;
   
     /* background: linear-gradient(to right, #00000000, #000000ce 80%, #000000ba 90%); */
@@ -169,6 +169,14 @@
     margin-bottom: 1rem;
 }
 
+.userActionLabels span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--green);
+    font-size: 2rem;
+}
+
 .userActionRadios{
     width: 100%;
     display: flex;
@@ -225,7 +233,7 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    padding: 1rem 1rem;
+    padding: 1rem 3rem;
 }
 
 

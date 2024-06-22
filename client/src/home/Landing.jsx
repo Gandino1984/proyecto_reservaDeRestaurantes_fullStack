@@ -11,7 +11,7 @@ function Landing({children}){
 
   return (
         <div className='containerLanding'>
-                <div className='background' />
+                <div className='backgroundLanding' />
                 <Navbar />
                 <Hero />
         </div>
