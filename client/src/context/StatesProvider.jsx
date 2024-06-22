@@ -20,7 +20,7 @@ function StatesProvider({children}){
   const [userActionIsLogin, setuserActionIsLogin] = useState(true);
   const [userActionIsRegister, setuserActionIsRegister] = useState(false);
   const [userLoggedOrRegistered, setuserLoggedOrRegistered] = useState(false)
-  const [reservasRestauranteOpen, setreservasRestauranteOpen] = useState(false);
+  const [reservasRestaurantOpen, setReservasRestaurantOpen] = useState(false);
 
   //open&close states
   const [showRestaurantsOpen, setshowRestaurantsOpen] = useState(true);
@@ -94,7 +94,7 @@ function StatesProvider({children}){
     arrayRestaurantData,
     setarrayRestaurantData,
     reservasRestaurantOpen,
-    setreservasRestaurantOpen,
+    setReservasRestaurantOpen,
     userId,
     setUserId,
     restauranteID,
