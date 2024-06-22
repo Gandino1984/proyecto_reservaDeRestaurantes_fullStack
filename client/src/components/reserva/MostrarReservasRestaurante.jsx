@@ -1,7 +1,7 @@
 // mostrarReservas.jsx
 import React, { useState, useContext, useEffect } from 'react';
 import styles from "./MostrarReservasRestaurante.module.css"
-import ClientCard from '../../navbar/ClientCard'; // Ajusta la ruta del componente ClientCard si es necesario
+// import ClientCard from '../../navbar/ClientCard'; // Ajusta la ruta del componente ClientCard si es necesario
 import { getAllReservas } from '../../utils/reservaFetch'
 import { getAllRestaurantes } from '../../utils/restauranteFetch';
 import GeneralContext from '../../context/GeneralContext';
@@ -17,7 +17,6 @@ function MostrarReservasRestaurante() {
       
       return (
         <div className={styles.container}>
-      {/* <ClientCard onMisReservasClick={handleMisReservasClick} /> */}
       <div className={styles.reservasContainer}>
         <h3>Reservas:</h3>   
         <ul>

@@ -26,16 +26,13 @@ function RestaurantSearchBar() {
                 const dataArray = response.data;
                 console.log("SearchBar: DataArray= ", dataArray)
                 setrestaurantData(dataArray); 
-                // setSearchResults(dataArray);
             } else {
                 alert('La respuesta de la API no es válida: response = ', response)
                 console.error('La respuesta de la API no es válida:', response);
-                // setarrayRestaurantData([]); 
             }
         } catch(error) {
                 alert('Error al obtener las reservas! error = ', error)
                 console.error('Error al obtener las reservas:', error);
-            //   setarrayRestaurantData([]); 
         }
     };
 
@@ -44,29 +41,19 @@ function RestaurantSearchBar() {
         setloginFormOpen(false)
         const term = e.target.value;
         setSearchTerm(term);
-            searchBarra(term);
-  
+        searchBarra(term);
     };
 
     const handleResultClick = (restaurant) => {
         setSearchTerm(restaurant.Name);
         setarrayRestaurantData([]);
-        // abrir aquí el componente de login o reserva
     };
 
     const botonBusquedaHandler = (e) => {
         e.preventDefault();
-        
-            searchBarra(searchTerm);
-        
+        searchBarra(searchTerm);     
     };
 
-    // function searchBtnhandler(e) {
-    //     e.preventDefault();
-    //     if(userLoggedOrRegistered){
-    //       setcreateReservasOpen(true)
-    //     }
-    // }   
 
     async function resetShowRestaurants(){
         const response = await getAllRestaurantes();
@@ -77,30 +64,15 @@ function RestaurantSearchBar() {
     }
 
     return (
-      <div className={styles.container}>
-          {/* <button onClick={searchBtnhandler} type="submit" className={styles.btnSearch}>
-                <ion-icon name="search"></ion-icon>
-          </button> */}
-
-          <form onSubmit={botonBusquedaHandler} className={styles.form}>
-            <div className={styles.inputContainer}>
-                <input className={styles.inputSearch} type="text" name="restaurantSearch" placeholder='Buscar un restaurante' value={searchTerm} onChange={handleInputChange} />
-{/* 
-                {searchResults.length > 0 && (
-                    <div className={styles.dropdown}>
-                        {searchResults.map((restaurant) => (
-                            <div key={restaurant.Restaurante_id} className={styles.searchResultItem} onClick={() => handleResultClick(restaurant)}>
-                                <p>{restaurant.Name}</p>
-                            </div>
-                        ))}
+      <div className={styles.containerSearchBar}>
+            <form onSubmit={botonBusquedaHandler} className={styles.form}>
+                    <div className={styles.inputContainer}>
+                            <input className={styles.inputSearch} type="text" value={searchTerm} onChange={handleInputChange} name="restaurantSearch" placeholder='Busca tu restaurante'  />
                     </div>
-                )} */}
-            </div>
-          </form>
-
-          <button onClick={resetShowRestaurants} type="submit" className={styles.btnSearch}>
-                <ion-icon name="trash-outline"></ion-icon>
-          </button>
+            </form>
+            <button onClick={resetShowRestaurants} type="submit" className={styles.btnTrash}>
+                    <ion-icon name="trash-bin"></ion-icon>
+            </button>
       </div>
     );
 }

@@ -1,5 +1,4 @@
-.container {
-    position: relative;  
+.containerSearchBar{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -7,54 +6,42 @@
   }
   
   .form {
-    width: 100%;
-    max-width: 500px;
-  }
-  
-  .inputContainer {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    /* min-width: 100%; */
+  }
+  
+  .inputContainer {
+ display: flex;
+ align-items: center;
+ justify-content: center;
   }
   
   .inputSearch {
+    width: 30rem;
     appearance: none;
     outline: none;
     border: none;
-    background-color: white;
-    /* width: 100%; */
-    padding: 0.5rem 1rem;
-    font-size: 1.1rem;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 8px;
+    background-color: white;border-top-left-radius: 8px;
+    padding: 0.5rem .5rem;
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 400;
     letter-spacing: 0.05rem;
-    border-radius: 8px;
-    transition: all 200ms ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(240, 77, 77, 0.1);
+    transition: all 150ms ease;
+ 
   }
   
   .inputSearch:focus {
     outline: none;
     border: none;
     background-color: white;
+    outline: 1px solid var(--purple);
   }
-  
-  .dropdown {
-    width: 100%;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-top: none;
-    border-radius: 0 0 8px 8px;
-    overflow-y: auto;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-  }
-  
+/*   
   .searchResultItem {
     padding: 0.5rem 1rem;
     cursor: pointer;
@@ -62,26 +49,27 @@
   
   .searchResultItem:hover {
     background-color: #f0f0f0;
-  }
+  } */
   
-  .btnSearch {
-    border: none;
-    outline: none;
-    border-radius: 50%;
-    padding: 0.6rem;
+  .btnTrash{
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 2rem;
+    border: none;
+    outline: none;
+    padding: 0.45rem 1rem;
+    font-size: 1.3rem;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
     color: white;
     background-color: var(--purple);
-    transition: all 200ms ease;
+    transition: all 150ms ease;
   }
   
-  .btnSearch:hover {
-    border-radius: 30%;
-    color: var(--green);
+  .btnTrash:hover {
+    color: white;
     background-color: black;
+    outline: 2px solid var(--purple);
   }
   

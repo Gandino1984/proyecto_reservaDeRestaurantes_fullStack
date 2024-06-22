@@ -29,8 +29,11 @@ function Login({closeBtnClick}) {
   restaurantes,
   setRestaurantes,
   userId, 
-  setUserId
-
+  setUserId,
+  userName, 
+  setUserName,
+  userEmail, 
+  setUserEmail,
 } = useContext(GeneralContext);
 
  const [error, setError] = useState("");
@@ -104,32 +107,38 @@ useEffect(() => {
   }
 
   const handleUserData =(e) =>{
-    console.log("holass")
     e.preventDefault();
     const data = e.target.value;
     const key = e.target.name;
+    
     setUserData(userData => {
         return {
             ...userData,
             [key]:data
         }
     })
-}
+
+    if(key === "Name"){
+      setUserName(data)
+    }
+    if(key === "Email"){
+      setUserEmail(data)
+    }
+  }
+  
+
 
 async function loginClickHandler(e) {
-  console.log("login handler")
   e.preventDefault();
-  let result;  // Asegúrate de declarar result aquí
+  let result;
+
   if (userActionIsRegister) {
-      result = await register(userData);
-      console.log(result);
+      result = await register(userData)
       if (!result.error) {
           setError("se ha registrado correctamente");
-
           setLoginFormOpenHandler(e)
           setuserLoggedOrRegistered(true)
           setshowRestaurantsOpen(true)
-        
       } else {
         setuserLoggedOrRegistered(false)
           setError(result.error);
@@ -137,13 +146,10 @@ async function loginClickHandler(e) {
   }
   if (userActionIsLogin) {
       result = await login(userData);
-      console.log("resultado login", result)
       if (!result.error) {
-          setError("login correcto");
+        setError("login correcto");
           setUser(result.data); 
           saveToken(result.data.token);
-          console.log("user", result.data)
-
           setLoginFormOpenHandler(e)
           setuserLoggedOrRegistered(true)
           setshowRestaurantsOpen(true)
@@ -154,49 +160,49 @@ async function loginClickHandler(e) {
           setuserLoggedOrRegistered(false)
       }
   }
+
+  setUserId(result.data.user_id)
 };
 
  
 const handleMisReservas = async (userId) => {
-  try {
-    const response = await getAllReservas(userId);
-      const data = response.data;
-      console.log("handleMisReservas: ", data);
-      
-      if (Array.isArray(data)) {
-        setReservas(data);
-      } else {
-      console.error('La respuesta de la API no contiene un array:', response);
-    }
-  } catch (error) {
-    console.error('Error al obtener las reservas:', error);
-  }}
-  
-  const handleMisRestaurantes = async (userId) => {
     try {
-      alert('handleMisRestaurantes')
-      const response = await getAllRestaurantes(userId);
-      const data = response.data;
-      console.log("handleMisRestaurantes: ", data);
-      if (Array.isArray(data)) {
-        setRestaurantes(data);
-      } else {
-        alert('La respuesta de la API no contiene un array:')  
-        console.error('La respuesta de la API no contiene un array:', response);
-      }
-    } catch (error) {
-      alert('Error al obtener las reservas:')
-      console.error('Error al obtener las reservas:', error);
-    }}
+        const response = await getAllReservas(userId);
+        const data = response.data;
+        
+        if (Array.isArray(data)) {
+            setReservas(data);
+        } else {
+            alert('La respuesta de la API no contiene un array:', response)
+        }
+    }catch (error) {
+        alert('La respuesta de la API no contiene un array:', response)
+    }
+}
+  
+const handleMisRestaurantes = async (userId) => {
+    try {
+        const response = await getAllRestaurantes(userId);
+        const data = response.data;
+
+        if (Array.isArray(data)) {
+            setRestaurantes(data);
+        } else {
+            alert('La respuesta de la API no contiene un array: ', response)  
+        }
+    }catch(error) {
+        alert('Error al obtener las reservas:', error)
+    }
+}
     
     useEffect(() => {
-      handleMisReservas();
-      handleMisRestaurantes();
-    }, []);
+        handleMisReservas();
+        handleMisRestaurantes();
+    },[]);
 
-function submitClickHandler(e){
-  e.preventDefault();
-}
+// function submitClickHandler(e){
+//   e.preventDefault();
+// }
 
 
   return (
@@ -241,7 +247,6 @@ function submitClickHandler(e){
                         {restaurantIsLogin && <input type="password" id="restaurantPasssword" name="Password" placeholder="Contraseña de restaurante" value={userData.Password} onChange={handleUserData} />}
                         {restaurantIsLogin && <input type="text" id="restaurantEmail" name="Email" placeholder="Correo de restaurante..." value={userData.Email} onChange={handleUserData}  />}
                         {restaurantIsRegister && <input type="password" id="restaurantRepeatPasssword" name="Password_repeat" placeholder="Repetir contraseña de restaurante" value={userData.Password_repeat} onChange={handleUserData} />}
-                        
                         
                               
                         <input type='button' value="Entrar" className={styles.btn1} onClick={e=>loginClickHandler(e)} />

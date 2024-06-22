@@ -1,38 +1,86 @@
 .containerNavbar{
     width: 100%;
-    position: absolute;
-    z-index: 100;
-    top: 0;
-    left: 0;
     display: flex;
     align-items: center; 
     justify-content:space-between;
-    padding: 1rem 5rem;
-    /* border-bottom: 1px solid var(--green); */
-    background: linear-gradient(to bottom, #b7ba1f4c 30%, #00000000) 50%;
+    padding: 1.5rem 5rem;
+    background: linear-gradient(to bottom, rgb(0, 0, 0),#0000002f);
+    transition: all 200ms ease;
 }
 
-.containerTypewriter{
+.containerTitle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
     border-radius: 5px;
-    font-size: 5rem;
+    font-size: 2.7rem;
     font-weight: 700;
-    /* text-shadow: 3px 3px var(--purple); */
-    color: white;
+    letter-spacing: .1rem;
+    /* text-shadow: 1px 0px white; */
+    color: var(--green);
     font-family: Alegreya;
 }
 
-.activeLabel{
-    color: red;
+.and{
+    color: white;
 }
 
-.inactiveLabel{
-    color: gray;
-}
 
-.activeSelector{
+.btnContainer{
+    width: 100%;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding-top: 1.5rem;
 }
 
-.inactiveSelector{
-    display: none;
+.btn{
+    font-family: Roboto Condensed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0px solid transparent;
+    outline: none;
+    cursor: pointer;
+    margin-left: 2rem;
+    padding: .5rem .7rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: .05rem;
+    color: black;
+    /* text-shadow: 1px 1px black; */
+    background-color: var(--green);
+    border-radius: 22px;
+    transition: all 200ms ease;
 }
+
+.btn:hover{
+    color: white;
+    outline: 2px solid var(--purple);
+    background-color: black;
+    border-radius: 8px;
+}
+
+.logoContainer{  
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    border-radius: 50%;
+    /* padding: 1.5rem 1.5rem; */
+    padding: .2rem;
+    width: 4rem;
+    height: 4rem;
+    overflow: hidden;
+    background-color: white;
+}
+
+.logoContainer img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: .3rem;
+}
+
+

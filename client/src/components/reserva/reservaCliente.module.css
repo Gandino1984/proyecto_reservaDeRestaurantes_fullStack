@@ -54,7 +54,7 @@ input[type="date"]{
 }
 
 input[type="text"]{
-    width: 20rem;
+    width: 25rem;
     background-color: white;
     color: var(--purple);
     border: none;
@@ -65,7 +65,7 @@ input[type="text"]{
     font-family: Roboto Condensed;
     font-weight: 400;
     letter-spacing: .05rem;
-    border-radius: 8px;
+    /* border-radius: 8px; */
 }
 
 input[type="password"]{

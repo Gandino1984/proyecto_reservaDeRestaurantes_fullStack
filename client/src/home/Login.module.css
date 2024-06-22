@@ -227,7 +227,7 @@ input[type="text"]{
     font-family: Roboto Condensed;
     font-weight: 400;
     letter-spacing: .05rem;
-    border-radius: 8px;
+    /* border-radius: 8px; */
 }
 
 input[type="password"]{
