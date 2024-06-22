@@ -1,4 +1,4 @@
-.container{
+.containerRestaurantCard{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -6,7 +6,7 @@
     padding: 2rem;
 }
 
-.card{
+.restaurantCard{
     background-color: white;
     border-radius: 8px;
     display: flex;
@@ -17,7 +17,7 @@
     padding: 1rem;
 }
 
-.closeBtn{
+.closeBtnRestaurantCard{
     border: 0px solid transparent;
     outline: none;
     cursor: pointer;

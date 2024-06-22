@@ -1,14 +1,14 @@
 
 import React from 'react';
-import styles from './RestaurantCard.module.css';
+import './RestaurantCard.css';
 
 const RestaurantCard = ({ restaurantCardIsOpen, onCloseRestaurantCard, data }) => {
     if (!restaurantCardIsOpen || data == null) return null;
   
     return (
-      <div className={styles.container}>
-        <div className={styles.card}>
-          <button className={styles.closeBtn} value="closeRestaurantCard" onClick={(e)=>onCloseRestaurantCard(e)}>X</button>
+      <div className='containerRestaurantCard'>
+        <div className='restaurantCard'>
+          <button className='closeBtnRestaurantCard' value="closeRestaurantCard" onClick={(e)=>onCloseRestaurantCard(e)}>X</button>
           <h2>Resultados de la Búsqueda</h2>
           <ul>
             {data.map(restaurant => (

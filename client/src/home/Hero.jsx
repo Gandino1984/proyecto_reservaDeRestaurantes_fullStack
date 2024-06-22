@@ -1,27 +1,25 @@
-import styles from './Hero.module.css'
+import './Hero.css'
 import { useContext, useEffect } from 'react'
 import GeneralContext from '../context/GeneralContext'
 import RestaurantSearchBar from '../navbar/RestaurantSearchBar'
 import ShowRestaurants from '../components/mostrarRestaurantes/ShowRestaurants'
+import Login from './Login'
 
 function Hero() {
-    const { showRestaurantsOpen } = useContext(GeneralContext)
-
+    const { showRestaurantsOpen, loginFormOpen, createReservasOpen } = useContext(GeneralContext)
 
     return (
-        <div className={styles.containerHero}>
-                <div className={styles.hero1}>
-                            <div className={styles.sub}>
-                                <p className={styles.text1}>¿Qué te apetece?</p>
-                                   {/* <button className={styles.btn} onClick={e=>heroBtnClick(e)}>INICIA SESIÓN</button> */}
+        <div className='containerHero'>
+                <div className='hero1'>
+                            <div className='sub'>
+                                <p className='text1'>¿Qué te apetece?</p>
                             </div>
                             <RestaurantSearchBar />
-                            {/* <div className={styles.sub}>
-                                <p className={styles.text2}>¿O delantal?</p>
-                            </div> */}
                 </div>  
-                <div className={styles.hero2}>
-                    {showRestaurantsOpen && <ShowRestaurants />}    
+                <div className='hero2'>
+                    {showRestaurantsOpen && <ShowRestaurants />}
+                    {loginFormOpen && <Login />}   
+                    {createReservasOpen && <CreateReserva />}   
                 </div>   
         </div>
     )

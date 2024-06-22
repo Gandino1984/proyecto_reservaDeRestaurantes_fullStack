@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     justify-content:center;
-    gap: 25rem;
+    /* gap: 15rem;   */
 }
 
 .hero1{
@@ -42,7 +42,7 @@
 .text1{
     display: flex;
     align-items: center;
-    justify-content: right  ;
+    justify-content: center;
     font-family: Alegreya;
     font-size: 4.5rem;
     font-weight: 600;

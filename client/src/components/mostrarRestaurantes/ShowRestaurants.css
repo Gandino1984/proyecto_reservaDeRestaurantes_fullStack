@@ -1,4 +1,4 @@
-.container{
+.containerShowRestaurants{
     position: relative;
     display: flex;
     align-items: center;
@@ -7,8 +7,8 @@
     /* overflow-y: hidden; */
 }
 
-.background{
-    height: 80vh;
+.backgroundShowRestaurants{
+    height: 50vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,13 +17,13 @@
 
 .cardGroup{
     display: flex;
-    flex-wrap: wrap;
-    width: 30vw;
+    /* flex-wrap: wrap; */
+    width: 100%;
     height: 100%;
     align-items: center;
     justify-content: center;
     /* flex-direction: column; */
-    padding: 2rem 2rem;
+    padding: 1rem 1rem;
     background-color: transparent;
     overflow-y: scroll;
     -ms-overflow-style: none;  /* IE and Edge */
@@ -40,7 +40,6 @@
 
 .cardGroup ul li{
     margin-top: 1rem;
-    display: block;
 }
 
 .card{

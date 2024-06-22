@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import GeneralContext from '../../context/GeneralContext';
 import { getAllRestaurantes } from '../../utils/restauranteFetch'; 
-import styles from './ShowRestaurants.module.css'
+import './ShowRestaurants.css'
 import { useContext } from 'react';
 
 function ShowRestaurants() {
@@ -18,6 +18,7 @@ function ShowRestaurants() {
   async function searchRestaurants(){
     const response = await getAllRestaurantes();
     setrestaurantData(response.data);
+    console.log("response.data= ", response.data) ;
   }
   
   useEffect(() => {
@@ -32,8 +33,10 @@ function ShowRestaurants() {
     () => {
       if (restaurantData) {
         const arrayMapped = restaurantData.map(restaurant => 
-          <li key={restaurant.Restaurante_id} className={styles.card}>
+          <li key={restaurant.Restaurante_id} className='card'>
             <p>{restaurant.Name}</p>
+            <p>{restaurant.Hora_Apertura}</p>
+            <p>{restaurant.Hora_Cierre}</p>
           </li>
         )
         mappedArrayhandler(arrayMapped)
@@ -46,9 +49,9 @@ function ShowRestaurants() {
 
   
   return (
-    <div className={styles.container}>
-        <div className={styles.background}>
-          <div className={styles.cardGroup}>
+    <div className='containerShowRestaurants'>
+        <div className='backgroundShowRestaurants'>
+          <div className='cardGroup'>
               <ul>  
                       {arrayRestaurantData}
               </ul>

@@ -5,19 +5,19 @@
     /* width: 100%; */
   }
   
-  .form {
+  .formSearchBar{
     display: flex;
     align-items: center;
     justify-content: center;
   }
   
-  .inputContainer {
+  .inputContainerSearchBar {
  display: flex;
  align-items: center;
  justify-content: center;
   }
   
-  .inputSearch {
+  .inputSearchBar {
     width: 30rem;
     appearance: none;
     outline: none;

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import styles from './RestaurantSearchBar.module.css';
+import './RestaurantSearchBar.css';
 import GeneralContext from '../context/GeneralContext';
 import { barraDeBusqueda } from '../utils/restauranteFetch'; 
 import { getAllRestaurantes } from '../utils/restauranteFetch';
@@ -64,13 +64,13 @@ function RestaurantSearchBar() {
     }
 
     return (
-      <div className={styles.containerSearchBar}>
-            <form onSubmit={botonBusquedaHandler} className={styles.form}>
-                    <div className={styles.inputContainer}>
-                            <input className={styles.inputSearch} type="text" value={searchTerm} onChange={handleInputChange} name="restaurantSearch" placeholder='Busca tu restaurante'  />
+      <div className='containerSearchBar'>
+            <form onSubmit={botonBusquedaHandler} className='formSearchBar'>
+                    <div className='inputContainerSearchBar'>
+                            <input className='inputSearchBar' type="text" value={searchTerm} onChange={handleInputChange} name="restaurantSearch" placeholder='Busca tu restaurante'  />
                     </div>
             </form>
-            <button onClick={resetShowRestaurants} type="submit" className={styles.btnTrash}>
+            <button onClick={resetShowRestaurants} type="submit" className='btnTrash'>
                     <ion-icon name="trash-bin"></ion-icon>
             </button>
       </div>
