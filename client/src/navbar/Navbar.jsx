@@ -3,6 +3,7 @@ import styles from './Navbar.module.css';
 import RestaurantSearchBar from './RestaurantSearchBar';
 import UserCard from './UserCard.jsx';
 import GeneralContext from '../context/GeneralContext.jsx'
+import logoImg from './guindilla.png';
 
 function Navbar() {
   const { userLoggedOrRegistered, setLoginFormOpenHandler } = useContext(GeneralContext);
@@ -11,23 +12,22 @@ function Navbar() {
     e.preventDefault();
     if(userLoggedOrRegistered===false){
         setLoginFormOpenHandler(true)
-        setshowRestaurantsOpen(false)
-      
+        setshowRestaurantsOpen(false)    
     }else{
         alert("ya estás loggeado")
     }
- 
 }
 
 
   return (
     <div className={styles.containerNavbar}>
-      <div className={styles.containerTitle}>
-        <p className={styles.title}>Guindilla</p>
-      </div>
+        <div className={styles.containerTitle}>
+            <p className={styles.title}>jan<span className={styles.and}>&</span>eman</p>
+            <div className={styles.logoContainer}>
+                <img src={logoImg} alt="logo image" />
+            </div>
+        </div>
       { !userLoggedOrRegistered && <button className={styles.btn} onClick={e=>empezarBtnClick(e)}>EMPEZAR</button>}
-      {/* <RestaurantSearchBar /> */}
-
       { userLoggedOrRegistered && <UserCard />}
     </div>
   );
