@@ -11,6 +11,7 @@ function StatesProvider({children}){
   const [userByType, setUserByType] = useState('client') 
 
   const [restaurantData, setrestaurantData] = useState(null);
+  const [restauranteID, setRestauranteID] = useState(null);
 
   const [userIsClient, setuserIsClient] = useState(true);
   const [userIsRestaurant, setuserIsRestaurant] = useState(false);
@@ -95,7 +96,9 @@ function StatesProvider({children}){
     reservasRestaurantOpen,
     setreservasRestaurantOpen,
     userId,
-    setUserId
+    setUserId,
+    restauranteID,
+    setRestauranteID
   };
 
   return (

@@ -188,11 +188,28 @@ const handleMisReservas = async (userId) => {
       alert('Error al obtener las reservas:')
       console.error('Error al obtener las reservas:', error);
     }}
+
+/*     const handleMisReservasDeRestaurantes = async (reservaId) => {
+      try {
+        alert('handleMisReservasDeRestaurantes')
+        const response = await getAllRestaurantes(reservaId);
+        const data = response.data;
+        console.log("handleMisReservasDeRestaurantes: ", data);
+        if (Array.isArray(data)) {
+          setRestaurantes(data);
+        } else {
+          alert('La respuesta de la API no contiene un array:')  
+          console.error('La respuesta de la API no contiene un array:', response);
+        }
+      } catch (error) {
+        alert('Error al obtener las reservas:')
+        console.error('Error al obtener las reservas:', error);
+      }}
     
     useEffect(() => {
       handleMisReservas();
       handleMisRestaurantes();
-    }, []);
+    }, []); */
 
 function submitClickHandler(e){
   e.preventDefault();
