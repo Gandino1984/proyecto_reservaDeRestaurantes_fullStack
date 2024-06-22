@@ -1,7 +1,15 @@
 import React from 'react';
 import './InfoModal.css';
+import GeneralContext from '../../context/GeneralContext';
+import { useState, useContext } from 'react';
 
-const InfoModalError = ({onClose}) => {
+const InfoModalError = () => {
+
+  const { setmostrarReservasRestauranteOpen, 
+    infoModalErrorOpen,
+    setinfoModalErrorOpen
+   } = useContext(GeneralContext);
+
   return (
     <div className="modal">
       <div className="modal-content error">
@@ -13,7 +21,7 @@ const InfoModalError = ({onClose}) => {
           <p>error</p>
           {/* <p>{message}</p> */}
         </div>
-        <button className="modal-button" onClick={onClose}>OK</button>
+        <button className="modal-button" onClick={()=>setinfoModalErrorOpen(false)}>OK</button>
       </div>
     </div>
   );

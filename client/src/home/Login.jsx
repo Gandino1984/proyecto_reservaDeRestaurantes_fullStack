@@ -238,7 +238,7 @@ const handleMisRestaurantes = async (userId) => {
                         </div>
                         </div> 
 
-                        {error && <div className='error'>{error}</div>}             
+                        {/* {error && <div className='error'>{error}</div>}              */}
                         <div className='inputContainerLogin'>
 
                             <input type="text" id="Name" name="Name" placeholder="¿Cuál es tu nombre de usuario?" value={userData.Name} onChange={handleUserData} />
