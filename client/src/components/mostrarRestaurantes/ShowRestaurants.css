@@ -1,35 +1,31 @@
 .containerShowRestaurants{
-    position: relative;
+    /* border: 2px solid red; */
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content:center;
-    width: 100%;
-    /* overflow-y: hidden; */
 }
 
-.backgroundShowRestaurants{
-    height: 50vh;
+.showRestaurants{
+    /* border: 2px solid blue; */
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 3rem 3rem;
+    padding: 3rem 6rem;
 }
 
 .cardGroup{
+    /* border: 2px solid greenyellow; */
     display: flex;
-    /* flex-wrap: wrap; */
+    flex-direction: row;
     width: 100%;
-    height: 100%;
+    height: 50vh;
     align-items: center;
     justify-content: center;
-    /* flex-direction: column; */
-    padding: 1rem 1rem;
     background-color: transparent;
-    overflow-y: scroll;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
-    background-color: rgba(255, 255, 255, 0);
-    border-radius: 8px;
     overflow-y: scroll;
 }
 
@@ -43,9 +39,9 @@
 }
 
 .card{
+    /* border: 2px solid aqua; */
     cursor: pointer;
     background-color: rgb(255, 255, 255);
-    /* width: 20em; */
     padding: .5rem;
     font-family: Alegreya;
     font-size: 1.5rem;

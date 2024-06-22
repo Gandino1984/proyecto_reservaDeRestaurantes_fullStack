@@ -50,7 +50,7 @@ function ShowRestaurants() {
   
   return (
     <div className='containerShowRestaurants'>
-        <div className='backgroundShowRestaurants'>
+        <div className='showRestaurants'>
           <div className='cardGroup'>
               <ul>  
                       {arrayRestaurantData}
