@@ -32,7 +32,6 @@ function StatesProvider({children}){
   const [arrayRestaurantData, setarrayRestaurantData] = useState([]);
   const [reservas, setReservas] = useState([]);
   const [restaurantes, setRestaurantes] = useState([]);
-  const [restaurantData, setrestaurantData] = useState(null);
   const [reservaRestauranteExitosa, setreservaRestauranteExitosa] = useState(false)
 
   function setUserByTypeToggle(e){
