@@ -2,7 +2,8 @@
     --purple: #8234CF;
     --green: #c4c713;
 }
-.container{
+
+.landing{
     width: 100%;
     height: 100%;
     display: flex;

@@ -18,7 +18,7 @@
 }
      
 .loginFormContainer{
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.349);
     border-radius: 8px;
     display: flex;
     outline: 1px solid var(--green);

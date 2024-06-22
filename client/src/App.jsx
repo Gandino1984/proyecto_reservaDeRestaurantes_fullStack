@@ -7,7 +7,7 @@ function App() {
 
   return (
     <StatesProvider>
-      <Landing />
+      <Landing className='landing'/>
     </StatesProvider>
   )
 }

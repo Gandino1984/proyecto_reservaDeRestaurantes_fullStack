@@ -10,13 +10,14 @@ function Hero() {
 
     return (
         <div className='containerHero'>
-                <div className='hero1'>
+                <div className='hero'>
                             <div className='sub'>
-                                <p className='text1'>¿Qué te apetece?</p>
+                                <p className='text'>¿Qué te apetece?</p>
                             </div>
                             <RestaurantSearchBar />
                 </div>  
-                <div className='hero2'>
+                
+                <div className='heroLoadedComponents'>
                     {showRestaurantsOpen && <ShowRestaurants />}
                     {loginFormOpen && <Login />}   
                     {createReservasOpen && <CreateReserva />}   

@@ -20,7 +20,7 @@ function Navbar() {
   return (
     <div className='containerNavbar'>
         <div className='containerTitleNavbar'>
-            <p className='titleNavBar'>jan<span className='and'>&</span>eman</p>
+            <p className='titleNavBar'>jateko<span className='and'>prest</span></p>
             <div className='logoContainerNavbar'>
                 <img src={logoImg} alt="logo image" />
             </div>
