@@ -3,9 +3,18 @@ import './Navbar.css';
 import UserCard from './UserCard.jsx';
 import GeneralContext from '../context/GeneralContext.jsx'
 import logoImg from './guindilla.png';
+import InfoModalSuccess from '../components/infoModal/InfoModalSuccess.jsx';
+import InfoModalError from '../components/infoModal/InfoModalError.jsx';
 
 function Navbar() {
-  const { userLoggedOrRegistered, setLoginFormOpenHandler, setshowRestaurantsOpen } = useContext(GeneralContext);
+  const { userLoggedOrRegistered, 
+    setLoginFormOpenHandler, 
+    setshowRestaurantsOpen,
+    infoModalSuccessOpen,
+    setinfoModalSuccessOpen,
+    infoModalErrorOpen,
+    setinfoModalErrorOpen
+  } = useContext(GeneralContext);
 
   function empezarBtnClick(e) {
     e.preventDefault();
@@ -25,6 +34,8 @@ function Navbar() {
                 <img src={logoImg} alt="logo image" />
             </div>
         </div>
+        {infoModalSuccessOpen && <InfoModalSuccess />}
+        {infoModalErrorOpen && <InfoModalError />}
       { !userLoggedOrRegistered && <button className='empezarBtn' onClick={e=>empezarBtnClick(e)}>EMPEZAR</button>}
       { userLoggedOrRegistered && <UserCard />}
     </div>

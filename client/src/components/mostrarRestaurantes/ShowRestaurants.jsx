@@ -7,8 +7,6 @@ function ShowRestaurants() {
   const { restaurantData, setrestaurantData, arrayRestaurantData, setarrayRestaurantData } = useContext(GeneralContext);
   const scrollContainerRef = useRef(null);
 
-  console.log('ShowRestaurants, Context: restaurantData= ', restaurantData);
-
   async function searchRestaurants() {
     try {
       const response = await getAllRestaurantes();

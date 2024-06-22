@@ -31,6 +31,10 @@ function StatesProvider({children}){
   const [restaurantData, setrestaurantData] = useState(null);
   const [reservaRestauranteExitosa, setreservaRestauranteExitosa] = useState(false)
 
+  //info modal
+  const [infoModalSuccessOpen, setinfoModalSuccessOpen] = useState(false);
+  const [infoModalErrorOpen, setinfoModalErrorOpen] = useState(false);
+
   function setUserByTypeToggle(e){
     if(e.target,value === 'client'){
         setUserByType('restaurant')
@@ -89,7 +93,11 @@ function StatesProvider({children}){
     reservaRestauranteExitosa,
     setreservaRestauranteExitosa,
     arrayRestaurantData,
-    setarrayRestaurantData
+    setarrayRestaurantData,
+    infoModalSuccessOpen,
+    setinfoModalSuccessOpen,
+    infoModalErrorOpen,
+    setinfoModalErrorOpen
   };
 
   return (
