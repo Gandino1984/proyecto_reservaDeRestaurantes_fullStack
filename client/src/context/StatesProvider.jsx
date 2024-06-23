@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import GeneralContext from './GeneralContext';
 
 function StatesProvider({children}){
@@ -29,11 +29,23 @@ function StatesProvider({children}){
   const [reservas, setReservas] = useState([]);
   const [restaurantes, setRestaurantes] = useState([]);
   const [restaurantData, setrestaurantData] = useState(null);
+  const [restauranteData, setRestauranteData] = useState(null);
+  const [restauranteID, setRestauranteID] = useState(null);
   const [reservaRestauranteExitosa, setreservaRestauranteExitosa] = useState(false)
 
   //info modal
   const [infoModalSuccessOpen, setinfoModalSuccessOpen] = useState(false);
   const [infoModalErrorOpen, setinfoModalErrorOpen] = useState(false);
+
+
+
+/*   useEffect(() => {
+        // Inicializar el restauranteID para PRUEBAS
+    // Verificar si el usuario está logueado como restaurante
+    if (user && user.esAdmin === 1 && user.isClient === 0) {
+      setRestauranteID(1);  // Establece un ID de restaurante de ejemplo
+    }
+  }, [user]); */
 
   function setUserByTypeToggle(e){
     if(e.target,value === 'client'){
@@ -94,10 +106,14 @@ function StatesProvider({children}){
     setreservaRestauranteExitosa,
     arrayRestaurantData,
     setarrayRestaurantData,
+    restauranteID,
+    setRestauranteID,
     infoModalSuccessOpen,
     setinfoModalSuccessOpen,
     infoModalErrorOpen,
-    setinfoModalErrorOpen
+    setinfoModalErrorOpen,
+    restauranteData,
+     setRestauranteData
   };
 
   return (

@@ -11,6 +11,29 @@ const getAllReservas = async () => {
         console.error(error);
     }   
 };
+
+/* const getAllReservasRestaurante = async (restauranteID) => {
+    try {
+        const result = await fetchData(`/restaurantes/${restauranteID}/reservas`, "get");
+        return result;
+    } catch (error) {
+        console.error(error);
+    }
+}; */
+
+async function getReservasRestaurante(restauranteId) {
+    try {
+      const response = await fetch(`reservas/restaurante/${restauranteId}`);
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new TypeError("Respuesta no es JSON");
+      }
+      return await response.json();
+    } catch (error) {
+      console.error("Error al obtener las reservas del restaurante:", error);
+      throw error;
+    }
+  }
   
 
 const getReservasPorDiaYSillas = async (restauranteID, numeroSillas, dia ) => {
@@ -43,6 +66,8 @@ const deleteReserva = async(reservaID) =>{
 
 export {
     getAllReservas,
+/*     getAllReservasRestaurante, */
+    getReservasRestaurante,
     getReservasPorDiaYSillas,
     getReservasByID,
     updateReserva, 
