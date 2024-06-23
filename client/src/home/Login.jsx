@@ -244,7 +244,7 @@ const handleMisRestaurantes = async (userId) => {
                             <input type="text" id="Name" name="Name" placeholder="¿Cuál es tu nombre de usuario?" value={userData.Name} onChange={handleUserData} />
                             <input type="password" id="Password" name="Password" placeholder="Escribe tu contraseña aquí..." value={userData.Password} onChange={handleUserData}  />  
                             <input type="text" id="clientEmail" name="Email" placeholder="Tu correo..." value={userData.Email} onChange={handleUserData}  />
-                            <input type="password" id="Password_repeat" name="Password_repeat" placeholder="Verifica tu contraseña..." value={userData.Password_repeat} onChange={handleUserData} />
+                            {userActionIsRegister && <input type="password" id="Password_repeat" name="Password_repeat" placeholder="Verifica tu contraseña..." value={userData.Password_repeat} onChange={handleUserData} />}
                                   
                             <input type='button' value="ENTRAR" className='entrarBtn' onClick={e=>loginClickHandler(e)} />
                         </div>

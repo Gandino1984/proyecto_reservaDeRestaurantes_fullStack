@@ -51,13 +51,14 @@ function ShowRestaurants() {
 
   return (
     <>
-      <button className='scrollButton left' onClick={scrollLeft}><ion-icon name="chevron-back-outline"></ion-icon></button>
-      <div className='showRestaurants' ref={scrollContainerRef} >
-        <ul className='cardGroup' >
-          {arrayRestaurantData}
-        </ul>
-      </div>
-      <button className='scrollButton right' onClick={scrollRight}><ion-icon name="chevron-forward-outline"></ion-icon></button>
+        <p className='titleShowRestaurants'>Nuestros Restaurantes</p>
+        <button className='scrollButton left' onClick={scrollLeft}><ion-icon name="chevron-back-outline"></ion-icon></button>
+        <div className='showRestaurants' ref={scrollContainerRef} >
+          <ul className='cardGroup' >
+            {arrayRestaurantData}
+          </ul>
+        </div>
+        <button className='scrollButton right' onClick={scrollRight}><ion-icon name="chevron-forward-outline"></ion-icon></button>
     </>
   );
 }
