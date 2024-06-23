@@ -34,9 +34,11 @@ const CreateReserva = () => {
     e.preventDefault();
     setError(null);
 
-    if(selectedRestaurantName != null){
-      setName(selectedRestaurantName)
-    }
+    useEffect(() => {
+      if(selectedRestaurantName != null){
+        setName(selectedRestaurantName)
+      }
+    }, [selectedRestaurantName]);
     
     const datePattern = /^\d{4}-\d{2}-\d{2}$/;
     
