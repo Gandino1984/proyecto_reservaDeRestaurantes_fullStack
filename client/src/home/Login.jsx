@@ -125,7 +125,6 @@ useEffect(() => {
   }
   
 
-  loginCloseBtnClickHandler
 async function loginClickHandler(e) {
   e.preventDefault();
   let result;

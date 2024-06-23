@@ -4,7 +4,7 @@ import { getAllRestaurantes } from '../../utils/restauranteFetch';
 import './ShowRestaurants.css';
 
 function ShowRestaurants() {
-  const { restaurantData, setrestaurantData, arrayRestaurantData, setarrayRestaurantData } = useContext(GeneralContext);
+  const { selectedRestaurantName, setselectedRestaurantName, showRestaurantsOpen, setshowRestaurantsOpen, restaurantData, setrestaurantData, arrayRestaurantData, setarrayRestaurantData } = useContext(GeneralContext);
   const scrollContainerRef = useRef(null);
 
   async function searchRestaurants() {
@@ -22,9 +22,16 @@ function ShowRestaurants() {
   }, []);
 
   useEffect(() => {
+    console.log("selectedRestaurantName= ", selectedRestaurantName)
+  }, [selectedRestaurantName]);
+
+
+
+
+  useEffect(() => {
     if (restaurantData) {
       const arrayMapped = restaurantData.map(restaurant => (
-        <li key={restaurant.Restaurante_id} className='card'>
+        <li key={restaurant.Restaurante_id} className='card' onClick={() => setselectedRestaurantName(restaurant.Name)}>
           <p className='cardName'>{restaurant.Name}<ion-icon name="star"></ion-icon></p>
           <div className='cardSchedule'>
             <p>Apertura: {restaurant.Hora_Apertura}</p>
@@ -35,7 +42,7 @@ function ShowRestaurants() {
       
       setarrayRestaurantData(arrayMapped);
     }
-  }, [restaurantData, setarrayRestaurantData]);
+  }, [restaurantData]);
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {

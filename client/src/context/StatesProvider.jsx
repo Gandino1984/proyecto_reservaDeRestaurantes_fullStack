@@ -37,6 +37,9 @@ function StatesProvider({children}){
   const [infoModalSuccessOpen, setinfoModalSuccessOpen] = useState(false);
   const [infoModalErrorOpen, setinfoModalErrorOpen] = useState(false);
 
+  //selected restaurant from showRestaurants
+   const [selectedRestaurantName, setselectedRestaurantName] = useState(null) 
+
 
 
 /*   useEffect(() => {
@@ -81,7 +84,7 @@ function StatesProvider({children}){
     setLoginFormOpenHandler,
     showRestaurantsOpen,
     setshowRestaurantsOpen,
-    restaurantData,
+      restaurantData,
     setrestaurantData,
     reservasRestauranteOpenHandler,
     userIsClient,
@@ -113,7 +116,9 @@ function StatesProvider({children}){
     infoModalErrorOpen,
     setinfoModalErrorOpen,
     restauranteData,
-     setRestauranteData
+     setRestauranteData,
+     selectedRestaurantName,
+     setselectedRestaurantName
   };
 
   return (

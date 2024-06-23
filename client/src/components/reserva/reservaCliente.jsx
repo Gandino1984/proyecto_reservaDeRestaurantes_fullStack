@@ -43,7 +43,7 @@ const CreateReserva = ({ onCreate }) => {
     }
 
     const data = { name, numGuests, reservationDate, reservationTime };
-    console.log("Form data", data);
+    console.log("CreateReserva: Form data= ", data);
 
     try {
       const result = await createReserva(data);
