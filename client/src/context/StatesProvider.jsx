@@ -32,13 +32,15 @@ function StatesProvider({children}){
   const [restauranteData, setRestauranteData] = useState(null);
   const [restauranteID, setRestauranteID] = useState(null);
   const [reservaRestauranteExitosa, setreservaRestauranteExitosa] = useState(false)
+  const [selectedRestaurantName, setselectedRestaurantName] = useState(null) 
 
   //info modal
   const [infoModalSuccessOpen, setinfoModalSuccessOpen] = useState(false);
   const [infoModalErrorOpen, setinfoModalErrorOpen] = useState(false);
 
-  //selected restaurant from showRestaurants
-   const [selectedRestaurantName, setselectedRestaurantName] = useState(null) 
+  //reservaClientes component
+  const [reservaClienteOpen, setreservaClienteOpen] = useState(false);
+
 
 
 
@@ -118,7 +120,9 @@ function StatesProvider({children}){
     restauranteData,
      setRestauranteData,
      selectedRestaurantName,
-     setselectedRestaurantName
+     setselectedRestaurantName,
+     reservaClienteOpen,
+     setreservaClienteOpen
   };
 
   return (

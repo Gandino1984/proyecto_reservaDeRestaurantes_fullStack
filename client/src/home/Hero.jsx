@@ -5,13 +5,13 @@ import RestaurantSearchBar from '../navbar/RestaurantSearchBar'
 import ShowRestaurants from '../components/mostrarRestaurantes/ShowRestaurants'
 import Login from './Login'
 import CreateReserva from '../components/reserva/reservaCliente'
-import CreateReservas from '../components/reserva/reserva'
+// import ReservaCliente from '../components/reserva/reservaCliente'
 import RestaurantCard from './RestaurantCard'
 
 function Hero() {
   const { showRestaurantsOpen, 
     loginFormOpen, 
-    createReservasOpen
+    reservaClienteOpen,
   } = useContext(GeneralContext)
 
   const [selectedRestaurant, setSelectedRestaurant] = useState(null)
@@ -36,7 +36,7 @@ function Hero() {
       <div className='heroLoadedComponents'>
         {showRestaurantsOpen && !selectedRestaurant && <ShowRestaurants />}
         {loginFormOpen && <Login />}
-        {createReservasOpen && <CreateReservas />}
+        {reservaClienteOpen && <CreateReserva />}
       </div>   
     </div>
   )

@@ -3,14 +3,23 @@ import { createReserva } from "../../utils/reservaFetch";
 import styles from './reservaCliente.module.css'
 import GeneralContext from "../../context/GeneralContext";
 
-const CreateReserva = ({ onCreate }) => {
+const CreateReserva = () => {
 
   const {
-    mostrarReservasRestauranteOpen, 
+    selectedRestaurantName, 
+    showRestaurantsOpen,
+    setshowRestaurantsOpen,
     setmostrarReservasRestauranteOpen,
     reservaRestauranteExitosa,
     setreservaRestauranteExitosa 
   } = useContext(GeneralContext);
+
+  useEffect(() => {
+    if(selectedRestaurantName){
+      setshowRestaurantsOpen(false);
+    }
+    
+  }, []);
   
   const [name, setName] = useState('');
   const [numGuests, setNumGuests] = useState(1);
@@ -18,18 +27,6 @@ const CreateReserva = ({ onCreate }) => {
   const [reservationTime, setReservationTime] = useState('');
   const [error, setError] = useState(null);
   const containerRef = useRef(null); // container para despues cerrar
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
-        onCreate();  // cerrar component
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [onCreate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,7 +45,7 @@ const CreateReserva = ({ onCreate }) => {
     try {
       const result = await createReserva(data);
       console.log("result", result);
-      onCreate();
+      // onCreate();  
       setreservaRestauranteExitosa(true);
     } catch (err) {
       setreservaRestauranteExitosa(false);
@@ -70,10 +67,11 @@ const CreateReserva = ({ onCreate }) => {
   return (
     <div className={styles.container}>
       <div className={styles.containerReservaCliente} ref={containerRef}>
-        <button className={styles.closeBtn} onClick={onCreate}>X</button>
+        <button className={styles.closeBtn}>X</button>
         <form className="create-reserva" onSubmit={handleSubmit}>
           <div className={styles.containerInput}>
-            <input type="text" name="name" value={name} placeholder="Cuál es tu nombre?" onChange={(e) => setName(e.target.value)} required />
+            {selectedRestaurantName !== null && <input type="text" name="name" value={selectedRestaurantName} onChange={(e) => setName(e.target.value)} required />}
+            {selectedRestaurantName === null && <input type="text" name="name" value={name} placeholder="Cuál es tu nombre?" onChange={(e) => setName(e.target.value)} required />}
           </div>
           <div className={styles.containerInput}>
             <label htmlFor="numGuests">Guests Number</label>

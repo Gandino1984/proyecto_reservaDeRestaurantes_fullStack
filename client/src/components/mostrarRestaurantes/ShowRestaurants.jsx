@@ -4,7 +4,17 @@ import { getAllRestaurantes } from '../../utils/restauranteFetch';
 import './ShowRestaurants.css';
 
 function ShowRestaurants() {
-  const { selectedRestaurantName, setselectedRestaurantName, showRestaurantsOpen, setshowRestaurantsOpen, restaurantData, setrestaurantData, arrayRestaurantData, setarrayRestaurantData } = useContext(GeneralContext);
+  const { selectedRestaurantName, 
+    setselectedRestaurantName, 
+    showRestaurantsOpen, 
+    setshowRestaurantsOpen, 
+    restaurantData, 
+    setrestaurantData, 
+    arrayRestaurantData, 
+    setarrayRestaurantData,
+    setreservaClienteOpen 
+  } = useContext(GeneralContext);
+
   const scrollContainerRef = useRef(null);
 
   async function searchRestaurants() {
@@ -21,17 +31,22 @@ function ShowRestaurants() {
     searchRestaurants();
   }, []);
 
+
+  function cardClickHandler(restName){
+    setselectedRestaurantName(restName)
+  }
+
   useEffect(() => {
-    console.log("selectedRestaurantName= ", selectedRestaurantName)
-  }, [selectedRestaurantName]);
-
-
-
+    console.log("selectedRestaurantName= ", selectedRestaurantName);
+    if(selectedRestaurantName){
+      setreservaClienteOpen(true)
+    }
+  }, [selectedRestaurantName])
 
   useEffect(() => {
     if (restaurantData) {
       const arrayMapped = restaurantData.map(restaurant => (
-        <li key={restaurant.Restaurante_id} className='card' onClick={() => setselectedRestaurantName(restaurant.Name)}>
+        <li key={restaurant.Restaurante_id} className='card' onClick={() => cardClickHandler(restaurant.Name)}>
           <p className='cardName'>{restaurant.Name}<ion-icon name="star"></ion-icon></p>
           <div className='cardSchedule'>
             <p>Apertura: {restaurant.Hora_Apertura}</p>

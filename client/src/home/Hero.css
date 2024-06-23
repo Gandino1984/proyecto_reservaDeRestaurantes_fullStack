@@ -31,6 +31,14 @@
     justify-content:center;
 }
 
+.loaded{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-direction: column;
+}
+
 
 .sub{
     display: flex;
