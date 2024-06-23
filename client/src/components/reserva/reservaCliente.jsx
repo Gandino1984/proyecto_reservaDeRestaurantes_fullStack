@@ -15,12 +15,7 @@ const CreateReserva = () => {
     setreservaRestauranteExitosa 
   } = useContext(GeneralContext);
 
-  useEffect(() => {
-    if(selectedRestaurantName && userLoggedOrRegistered){
-      setshowRestaurantsOpen(false);
-    }
-    
-  }, []);
+
   
   const [name, setName] = useState('');
   const [numGuests, setNumGuests] = useState(1);
@@ -29,16 +24,20 @@ const CreateReserva = () => {
   const [error, setError] = useState(null);
   const containerRef = useRef(null); // container para despues cerrar
 
+  useEffect(() => {
+    if(selectedRestaurantName && userLoggedOrRegistered){
+      setshowRestaurantsOpen(false);
+    }
+    
+  }, []);
+
   const handleSubmit = async (e) => {
 
     e.preventDefault();
+    
     setError(null);
 
-    useEffect(() => {
-      if(selectedRestaurantName != null){
-        setName(selectedRestaurantName)
-      }
-    }, [selectedRestaurantName]);
+    setName(selectedRestaurantName)
     
     const datePattern = /^\d{4}-\d{2}-\d{2}$/;
     
@@ -52,8 +51,8 @@ const CreateReserva = () => {
 
     try {
       const result = await createReserva(data);
-      console.log("result", result);
-      // onCreate();  
+      console.log("!!!!!!!!!!!RESULT", result);
+      // onCreate();    
       setreservaRestauranteExitosa(true);
     } catch (err) {
       setreservaRestauranteExitosa(false);
@@ -78,7 +77,7 @@ const CreateReserva = () => {
         <button className={styles.closeBtn}>X</button>
         <form className="create-reserva" onSubmit={handleSubmit}>
           <div className={styles.containerInput}>
-            {selectedRestaurantName && <input type="text" name="name" placeholder={selectedRestaurantName} onChange={(e)=>setName(e.target.value)} required />}
+            {selectedRestaurantName && <input type="text" name="name" placeholder={name} required defaultValue={name}/>}
             {!selectedRestaurantName && <input type="text" name="name" value={name} placeholder="Cuál es tu nombre?" onChange={(e) => setName(e.target.value)} required />}
           </div>
           <div className={styles.containerInput}>
