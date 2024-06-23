@@ -11,6 +11,15 @@ const getAllReservas = async () => {
         console.error(error);
     }   
 };
+
+const getAllReservasRestaurante = async (restauranteID) => {
+    try {
+        const result = await fetchData(`/restaurantes/${restauranteID}/reservas`, "get");
+        return result;
+    } catch (error) {
+        console.error(error);
+    }
+};
   
 
 const getReservasPorDiaYSillas = async (restauranteID, numeroSillas, dia ) => {
@@ -43,6 +52,7 @@ const deleteReserva = async(reservaID) =>{
 
 export {
     getAllReservas,
+    getAllReservasRestaurante,
     getReservasPorDiaYSillas,
     getReservasByID,
     updateReserva, 

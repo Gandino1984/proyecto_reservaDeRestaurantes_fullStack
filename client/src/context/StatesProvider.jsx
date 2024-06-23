@@ -29,6 +29,7 @@ function StatesProvider({children}){
   const [reservas, setReservas] = useState([]);
   const [restaurantes, setRestaurantes] = useState([]);
   const [restaurantData, setrestaurantData] = useState(null);
+  const [restauranteID, setRestauranteID] = useState(null);
   const [reservaRestauranteExitosa, setreservaRestauranteExitosa] = useState(false)
 
   function setUserByTypeToggle(e){
@@ -89,7 +90,9 @@ function StatesProvider({children}){
     reservaRestauranteExitosa,
     setreservaRestauranteExitosa,
     arrayRestaurantData,
-    setarrayRestaurantData
+    setarrayRestaurantData,
+    restauranteID,
+    setRestauranteID
   };
 
   return (
