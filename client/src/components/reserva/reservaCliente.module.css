@@ -104,3 +104,18 @@ input:focus[type="password"]{
   ::-ms-input-placeholder{ /* Edge 12 -18 */
     color:rgb(192, 192, 192);
   }
+  
+  .containerReservaCliente {
+    position: relative; /* Add this if not already present */
+    /* Other existing styles */
+  }
+  
+  .closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+  }

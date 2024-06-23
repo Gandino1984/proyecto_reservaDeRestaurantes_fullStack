@@ -44,6 +44,10 @@ const CreateReserva = ({ onCreate }) => {
       }
   };
 
+  const handleClose = () => {
+    onCreate();  
+  }
+
   function onClickReservaClienteHandler(){
       if(reservaRestauranteExitosa){
           setmostrarReservasRestauranteOpen(true)    
@@ -58,6 +62,7 @@ const CreateReserva = ({ onCreate }) => {
   return (
     <div className={styles.container}>
       <div className={styles.containerReservaCliente}>
+{        <button className={styles.closeBtn} onClick={handleClose}>X</button>}
           <form className="create-reserva" onSubmit={handleSubmit}>
               <div className={styles.containerInput}>
                 <input type="text" name="name" value={name} placeholder="Cuál es tu nombre?" onChange={(e) => setName(e.target.value)} required />
