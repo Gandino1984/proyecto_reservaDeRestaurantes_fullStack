@@ -1,0 +1,106 @@
+.container{
+    position: absolute;
+    width: 50%;
+    height: 100vh;
+    z-index: 50;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem;
+    background: linear-gradient(to right, #00000000, #000000c7 85%, #000000b6 95%);
+}
+
+.containerReservaCliente{
+    border: 2px solid var(--green);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: rgba(95, 93, 93, 0);
+    transition: all 200ms ease;
+    color: white;
+}
+
+.containerReservaCliente:hover{
+    border: 2px solid var(--purple);
+}
+
+.containerInput{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+
+input[type="date"]{
+    width: 8rem;
+    background-color: white;
+    color: var(--purple);
+    border: none;
+    outline: none;
+    appearance: none;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    font-family: Roboto Condensed;
+    font-weight: 400;
+    letter-spacing: .05rem;
+    border-radius: 8px;
+}
+
+input[type="text"]{
+    width: 25rem;
+    background-color: white;
+    color: var(--purple);
+    border: none;
+    outline: none;
+    appearance: none;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    font-family: Roboto Condensed;
+    font-weight: 400;
+    letter-spacing: .05rem;
+    /* border-radius: 8px; */
+}
+
+input:focus[type="text"]{
+    background-color: black;
+    color: var(--green);
+}
+
+input[type="password"]{
+    width: 20rem;
+    background-color: white;
+    color: purple;
+    outline: none;
+    border: none;
+    appearance: none;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    font-family: Roboto Condensed;
+    font-weight: 400;
+    letter-spacing: .05rem;
+    border-radius: 8px;
+}
+
+
+
+
+input:focus[type="password"]{
+    background-color: black;
+    color: var(--green);
+}
+
+::placeholder {
+    color: rgb(161, 161, 161);
+    opacity: 1; /* Firefox */
+  }
+  
+  ::-ms-input-placeholder{ /* Edge 12 -18 */
+    color:rgb(192, 192, 192);
+  }

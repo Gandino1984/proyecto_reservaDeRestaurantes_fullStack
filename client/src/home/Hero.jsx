@@ -5,9 +5,10 @@ import RestaurantSearchBar from '../navbar/RestaurantSearchBar'
 import ShowRestaurants from '../components/mostrarRestaurantes/ShowRestaurants'
 import Login from './Login'
 import MostrarReservasRestaurante from '../components/reserva/MostrarReservasRestaurante'
+import ClienteReservas from '../components/reserva/clienteReservas'
 
 function Hero() {
-    const { showRestaurantsOpen, loginFormOpen, createReservasOpen } = useContext(GeneralContext)
+    const { showRestaurantsOpen, loginFormOpen, createReservasOpen, userIsClient, userIsRestaurant, user } = useContext(GeneralContext)
 
     return (
         <div className='containerHero'>
@@ -22,7 +23,8 @@ function Hero() {
                     {showRestaurantsOpen && <ShowRestaurants />}
                     {loginFormOpen && <Login />}   
                     {createReservasOpen && <CreateReserva />}
-                    <MostrarReservasRestaurante />   
+                    {userIsClient && user && <ClienteReservas /> || userIsRestaurant && user && <MostrarReservasRestaurante />}
+
                 </div>   
         </div>
     )

@@ -12,7 +12,7 @@ function MostrarReservasRestaurante() {
 
   async function getReservas() {
     try {
-      console.log("Obteniendo reservas para restauranteID:", restauranteID);
+      console.log("Obteniendo reservas para restauranteID:");
       const response = await getReservasRestaurante(restauranteID);
       console.log("Reservas obtenidas:", response);
       if (response && response.data) {
@@ -25,7 +25,7 @@ function MostrarReservasRestaurante() {
   }
   function filtrarReservas(todasLasReservas) {
     const reservasDelRestaurante = todasLasReservas.filter(reserva =>
-      reserva.User_id === user && user.Restaurante_id === restauranteID // user antes user.id
+      reserva.User_id === restauranteID && user.Restaurante_id === user // user antes user.id
     );
     setReservasFiltradas(reservasDelRestaurante);
   }
