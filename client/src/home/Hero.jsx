@@ -31,13 +31,13 @@ function Hero() {
       <div className='heroLoadedComponents'>
         {showRestaurantsOpen && !selectedRestaurant && <ShowRestaurants />}
         {loginFormOpen && <Login />}
-        {selectedRestaurant && <CreateReserva onCreate={handleCloseRestaurantCard} />}
+        {selectedRestaurant && <CreateReserva onCreate={handleCloseRestaurantCard} />}{/* 
         <RestaurantCard 
           restaurantCardIsOpen={showRestaurantsOpen} 
           onCloseRestaurantCard={handleCloseRestaurantCard} 
           data={restaurantData} 
           userIsRestaurant={userIsRestaurant} 
-          onSelectRestaurant={handleSelectRestaurant} 
+          onSelectRestaurant={handleSelectRestaurant}  */}
         />
       </div>   
     </div>
