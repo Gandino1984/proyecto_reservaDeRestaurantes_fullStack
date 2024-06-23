@@ -30,9 +30,10 @@ const CreateReserva = () => {
   const containerRef = useRef(null); // container para despues cerrar
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
     setError(null);
-
+    setName(selectedRestaurantName)
     const datePattern = /^\d{4}-\d{2}-\d{2}$/;
     
     if (!datePattern.test(reservationDate)) {
@@ -71,7 +72,7 @@ const CreateReserva = () => {
         <button className={styles.closeBtn}>X</button>
         <form className="create-reserva" onSubmit={handleSubmit}>
           <div className={styles.containerInput}>
-            {selectedRestaurantName && <input type="text" name="name" value={selectedRestaurantName} onChange={() => setName(selectedRestaurantName)} required />}
+            {selectedRestaurantName && <input type="text" name="name" value={selectedRestaurantName} onChange={(e) => setName(e.target.value)} required />}
             {selectedRestaurantName === null && <input type="text" name="name" value={name} placeholder="Cuál es tu nombre?" onChange={(e) => setName(e.target.value)} required />}
           </div>
           <div className={styles.containerInput}>
