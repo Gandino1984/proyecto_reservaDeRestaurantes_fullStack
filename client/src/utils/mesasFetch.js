@@ -29,12 +29,10 @@ const updateMesa = async (mesaID, mesaData) => {
     return result;
 };
 
-
 const createMesa = async(mesaData)=>{
     const result = await fetchData("/mesas","post",mesaData);
     return result;
     }
-    
     
 const deleteMesa = async(mesaID) =>{
     const result = await fetchData(`/mesas/${mesaID}`,"delete");

@@ -12,9 +12,6 @@ function MostrarReservasRestaurante() {
 
   const {reservas, restaurantes} = useContext(GeneralContext);
   
-  
-
-      
       return (
         <div className={styles.container}>
       <div className={styles.reservasContainer}>
