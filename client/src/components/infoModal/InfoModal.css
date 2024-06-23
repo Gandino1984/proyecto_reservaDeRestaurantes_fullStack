@@ -1,27 +1,46 @@
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
   }
   
   .modal-content {
+    color: var(--purple);
+    font-family: Roboto Condensed;
+    font-size: 1rem;
+    letter-spacing: .1rem ;
+    font-weight: 400;
     background: white;
     border-radius: 8px;
-    padding: 1.5rem;
+    padding: .7rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     animation: slideUp 300ms ease-out forwards;
   }
   
+  .logoContainerInfoModal{  
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    border-radius: 50%;
+    padding: .2rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    overflow: hidden;
+    outline: 3px solid var(--purple);
+    background-color: white;
+    margin-left: .5rem;
+}
+
+.logoContainerInfoModal img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: .3rem;
+}
+
   @keyframes slideUp {
     from {
       transform: translateY(50px);
@@ -34,11 +53,11 @@
   }
   
   .success {
-    border: 2px solid #b7e4c7;
+    border: 2px solid var(--green);
   }
   
   .error {
-    border: 2px solid #f4c2c2;
+    border: 2px solid red;
   }
   
   .modal-icon {
@@ -69,17 +88,18 @@
   }
   
   .modal-button {
-    background-color: #4285f4;
+    background-color: var(--green);
     color: white;
     border: none;
     border-radius: 5px;
     padding: 0.5rem 1rem;
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 200ms ease;
+    transition: all 250ms ease;
   }
   
   .modal-button:hover {
-    background-color: #357ae8;
+    outline: 1px solid var(--purple);
+    background-color: black;
   }
   

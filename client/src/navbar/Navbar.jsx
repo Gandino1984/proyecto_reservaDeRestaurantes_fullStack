@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import './Navbar.css'; 
 import UserCard from './UserCard.jsx';
 import GeneralContext from '../context/GeneralContext.jsx'
-import logoImg from './guindilla.png';
+import logoImg from '../images/guindilla.png';
 import InfoModalSuccess from '../components/infoModal/InfoModalSuccess.jsx';
 import InfoModalError from '../components/infoModal/InfoModalError.jsx';
 

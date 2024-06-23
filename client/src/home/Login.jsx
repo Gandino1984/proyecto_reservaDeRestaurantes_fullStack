@@ -34,9 +34,7 @@ function Login() {
   setUserName,
   userEmail, 
   setUserEmail,
-  infoModalSuccessOpen,
   setinfoModalSuccessOpen,
-  infoModalErrorOpen,
   setinfoModalErrorOpen
 } = useContext(GeneralContext);
 
@@ -127,7 +125,7 @@ useEffect(() => {
   }
   
 
-
+  loginCloseBtnClickHandler
 async function loginClickHandler(e) {
   e.preventDefault();
   let result;
@@ -206,6 +204,12 @@ const handleMisRestaurantes = async (userId) => {
     },[]);
 
 
+    function loginCloseBtnClickHandler(){
+        setLoginFormOpenHandler(false);
+        setshowRestaurantsOpen(true);
+    }
+
+
   return (
     <div className='containerLogin'>
       <div className='login'>
@@ -232,20 +236,17 @@ const handleMisRestaurantes = async (userId) => {
                                   <label  className='labelRegister' htmlFor="registerOption">Registro</label>
                               </div> 
                               <div>
-                            <button type="button" className='loginCloseBtn' onClick={setLoginFormOpenHandler}>
+                            <button type="button" className='loginCloseBtn' onClick={loginCloseBtnClickHandler}>
                                 <ion-icon name="close-outline"></ion-icon>
                             </button>
                         </div>
                         </div> 
 
-                        {/* {error && <div className='error'>{error}</div>}              */}
                         <div className='inputContainerLogin'>
-
                             <input type="text" id="Name" name="Name" placeholder="¿Cuál es tu nombre de usuario?" value={userData.Name} onChange={handleUserData} />
                             <input type="password" id="Password" name="Password" placeholder="Escribe tu contraseña aquí..." value={userData.Password} onChange={handleUserData}  />  
                             <input type="text" id="clientEmail" name="Email" placeholder="Tu correo..." value={userData.Email} onChange={handleUserData}  />
-                            <input type="password" id="Password_repeat" name="Password_repeat" placeholder="Verifica tu contraseña..." value={userData.Password_repeat} onChange={handleUserData} />
-                                  
+                            {userActionIsRegister && <input type="password" id="Password_repeat" name="Password_repeat" placeholder="Verifica tu contraseña..." value={userData.Password_repeat} onChange={handleUserData} />}
                             <input type='button' value="ENTRAR" className='entrarBtn' onClick={e=>loginClickHandler(e)} />
                         </div>
                 </form>

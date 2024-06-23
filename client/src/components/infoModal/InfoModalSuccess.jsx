@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useContext } from 'react';
 import './InfoModal.css';
 import GeneralContext from '../../context/GeneralContext';
+import logoImg from '../../images/guindilla.png';
 
 const InfoModalSuccess = ({onClose}) => {
 
@@ -10,19 +11,21 @@ const InfoModalSuccess = ({onClose}) => {
       setinfoModalSuccessOpen
      } = useContext(GeneralContext);
 
+     setTimeout(() => {
+      setinfoModalSuccessOpen(false);
+      }, "3500");
+    
+
   return (
     <div className="modal">
-      <div className="modal-content success">
-        <div className="modal-icon success-icon">
-          <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <div className="modal-content success">
+            <div className='logoContainerInfoModal'>
+                  <img src={logoImg} alt="logo image" />
+            </div>
+            <div className="modal-text">    
+                <h2>¡Bienvenida!</h2>
+            </div>
         </div>
-        <div className="modal-text">    
-          <h3>¡Vamos!</h3>
-          <p>éxito</p>
-          {/* <p>{message}</p> */}
-        </div>
-        <button className="modal-button" onClick={()=>setinfoModalSuccessOpen(false)}>OK</button>
-      </div>
     </div>
   );
 };
