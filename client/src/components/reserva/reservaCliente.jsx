@@ -71,7 +71,7 @@ const CreateReserva = () => {
         <button className={styles.closeBtn}>X</button>
         <form className="create-reserva" onSubmit={handleSubmit}>
           <div className={styles.containerInput}>
-            {selectedRestaurantName !== null && <input type="text" name="name" value={selectedRestaurantName} onChange={(e) => setName(e.target.value)} required />}
+            {selectedRestaurantName && <input type="text" name="name" value={selectedRestaurantName} onChange={() => setName(selectedRestaurantName)} required />}
             {selectedRestaurantName === null && <input type="text" name="name" value={name} placeholder="Cuál es tu nombre?" onChange={(e) => setName(e.target.value)} required />}
           </div>
           <div className={styles.containerInput}>
