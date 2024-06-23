@@ -1,35 +1,77 @@
-// mostrarReservas.jsx
-import React, { useState, useContext, useEffect } from 'react';
-import styles from "./MostrarReservasRestaurante.module.css"
-// import ClientCard from '../../navbar/ClientCard'; // Ajusta la ruta del componente ClientCard si es necesario
-import { getAllReservas } from '../../utils/reservaFetch'
-import { getAllRestaurantes } from '../../utils/restauranteFetch';
+import React, { useState, useEffect, useContext } from 'react';
 import GeneralContext from '../../context/GeneralContext';
-
-
+import { getReservasRestaurante } from '../../utils/reservaFetch';
 
 function MostrarReservasRestaurante() {
+  const { restauranteID, setReservas, user, setRestauranteID , userIsRestaurant} = useContext(GeneralContext);
+  const [reservasFiltradas, setReservasFiltradas] = useState([]);
 
-  const {reservas, restaurantes} = useContext(GeneralContext);
-  
-  
+  console.log("Componente renderizado");
+  console.log("Contexto restauranteID:", restauranteID);
+  console.log("Contexto user:", user);
 
-      
-      return (
-        <div className={styles.container}>
-      <div className={styles.reservasContainer}>
-        <h3>Reservas:</h3>   
-        <ul>
-          {reservas.map((reserva) => (
-            <li key={reserva.Reservas_id}>
-              {reserva.Name} - {reserva.Date} - {reserva.Hora_Inicio} a {reserva.Hora_Final}, estado: {reserva.Is_accepted}
-            </li>
-          ))}
-        </ul>
-      </div>
+  async function getReservas() {
+    try {
+      console.log("Obteniendo reservas para restauranteID:", restauranteID);
+      const response = await getReservasRestaurante(restauranteID);
+      console.log("Reservas obtenidas:", response);
+      if (response && response.data) {
+        setReservas(response.data);
+        filtrarReservas(response.data);
+      }
+    } catch (error) {
+      console.error("Error al mostrar reservas:", error);
+    }
+  }
+  function filtrarReservas(todasLasReservas) {
+    const reservasDelRestaurante = todasLasReservas.filter(reserva =>
+      reserva.User_id === user && user.Restaurante_id === restauranteID // user antes user.id
+    );
+    setReservasFiltradas(reservasDelRestaurante);
+  }
+
+  useEffect(() => {
+    if (restauranteID && user) {
+      getReservas();
+    }
+  }, [restauranteID, user]);
+
+
+  useEffect(() => {
+    // Inicializar el restauranteID para PRUEBAS
+    if (userIsRestaurant) {
+      setRestauranteID(user);  // Establece el ID del restaurante igual al ID de usuario
+    }
+  }, [user, userIsRestaurant]);
+
+  if (!restauranteID) {
+    console.log("restauranteID no está definido");
+  }
+
+  if (!user) {
+    console.log("user no está definido");
+  }
+
+  return (
+    <div>
+      <h2>Reservas Restaurante</h2>
+      <ul className='reservas-list'>
+        {reservasFiltradas.map(reserva => (
+          <li key={reserva.Reservas_id} className='card'>
+            <h3>Reserva #{reserva.Reservas_id}</h3>
+            <div className='cardDetails'>
+              <h5>Cliente: {reserva.Name}</h5>
+              <h5>Fecha: {new Date(reserva.Date).toLocaleDateString()}</h5>
+              <h5>Hora de Inicio: {reserva.Hora_Inicio}</h5>
+              <h5>Hora de Final: {reserva.Hora_Final}</h5>
+              <h5>Estado: {reserva.Is_accepted ? 'Aceptada' : 'Pendiente'}</h5>
+              <h5>Mesa: {reserva.Mesa_id}</h5>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
-
 
 export default MostrarReservasRestaurante;

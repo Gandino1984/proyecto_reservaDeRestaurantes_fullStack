@@ -4,6 +4,7 @@ import GeneralContext from '../context/GeneralContext'
 import RestaurantSearchBar from '../navbar/RestaurantSearchBar'
 import ShowRestaurants from '../components/mostrarRestaurantes/ShowRestaurants'
 import Login from './Login'
+import MostrarReservasRestaurante from '../components/reserva/MostrarReservasRestaurante'
 
 function Hero() {
     const { showRestaurantsOpen, loginFormOpen, createReservasOpen } = useContext(GeneralContext)
@@ -20,7 +21,8 @@ function Hero() {
                 <div className='heroLoadedComponents'>
                     {showRestaurantsOpen && <ShowRestaurants />}
                     {loginFormOpen && <Login />}   
-                    {createReservasOpen && <CreateReserva />}   
+                    {createReservasOpen && <CreateReserva />}
+                    <MostrarReservasRestaurante />   
                 </div>   
         </div>
     )
