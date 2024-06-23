@@ -24,7 +24,6 @@ function Hero() {
                     {showRestaurantsOpen && <ShowRestaurants />}
                     {loginFormOpen && <Login />}   
                     {createReservasOpen && <CreateReserva />}
-                    {userIsRestaurant && user && <MostrarReservasRestaurante />}
                     
 
                 </div>   

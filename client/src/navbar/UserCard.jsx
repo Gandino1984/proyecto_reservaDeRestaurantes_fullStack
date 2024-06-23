@@ -3,9 +3,10 @@ import styles from './UserCard.module.css';
 import userImg from './user.png';
 import GeneralContext from '../context/GeneralContext';
 import ClienteReservas from '../components/reserva/clienteReservas';
+import MostrarReservasRestaurante from '../components/reserva/MostrarReservasRestaurante';
 
 function UserCard() {
-  const { userName, userEmail } = useContext(GeneralContext);
+  const { userName, userEmail, userIsRestaurant, user } = useContext(GeneralContext);
   const [showReservas, setShowReservas] = useState(false);
 
   const toggleReservas = () => {
@@ -27,7 +28,7 @@ function UserCard() {
         </div>
       </div>
       <div className={`${styles.reservasContainer} ${showReservas ? styles.show : ''}`}>
-        {showReservas && <ClienteReservas />}
+        {showReservas && <ClienteReservas /> || userIsRestaurant && user && <MostrarReservasRestaurante />}
       </div>
     </div>
   );
