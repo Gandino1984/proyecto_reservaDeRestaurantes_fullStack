@@ -5,10 +5,12 @@ import GeneralContext from '../context/GeneralContext.jsx'
 import logoImg from '../images/guindilla.png';
 import InfoModalSuccess from '../components/infoModal/InfoModalSuccess.jsx';
 import InfoModalError from '../components/infoModal/InfoModalError.jsx';
+import InfoModalErrorReserva from '../components/infoModal/InfoModalErrorReserva.jsx';
 
 function Navbar() {
   const { userLoggedOrRegistered, 
     setLoginFormOpenHandler, 
+    infoModalErrorReservaOpen,
     setshowRestaurantsOpen,
     infoModalSuccessOpen,
     setinfoModalSuccessOpen,
@@ -36,6 +38,8 @@ function Navbar() {
         </div>
         {infoModalSuccessOpen && <InfoModalSuccess />}
         {infoModalErrorOpen && <InfoModalError />}
+        {infoModalErrorReservaOpen && <InfoModalErrorReserva />}
+        
       { !userLoggedOrRegistered && <button className='empezarBtn' onClick={e=>empezarBtnClick(e)}>EMPEZAR</button>}
       { userLoggedOrRegistered && <UserCard />}
     </div>

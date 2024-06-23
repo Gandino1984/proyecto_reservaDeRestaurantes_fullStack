@@ -37,6 +37,9 @@ function StatesProvider({children}){
   //info modal
   const [infoModalSuccessOpen, setinfoModalSuccessOpen] = useState(false);
   const [infoModalErrorOpen, setinfoModalErrorOpen] = useState(false);
+  const [infoModalErrorReservaOpen, setinfoModalErrorReservaOpen] = useState(false);
+  
+
 
   //reservaClientes component
   const [reservaClienteOpen, setreservaClienteOpen] = useState(false);
@@ -122,7 +125,9 @@ function StatesProvider({children}){
      selectedRestaurantName,
      setselectedRestaurantName,
      reservaClienteOpen,
-     setreservaClienteOpen
+     setreservaClienteOpen,
+     infoModalErrorReservaOpen,
+     setinfoModalErrorReservaOpen
   };
 
   return (

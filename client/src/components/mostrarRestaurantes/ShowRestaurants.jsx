@@ -4,8 +4,11 @@ import { getAllRestaurantes } from '../../utils/restauranteFetch';
 import './ShowRestaurants.css';
 
 function ShowRestaurants() {
-  const { selectedRestaurantName, 
+  const { 
+    setinfoModalErrorReservaOpen,
+    selectedRestaurantName, 
     setselectedRestaurantName, 
+    userLoggedOrRegistered,
     showRestaurantsOpen, 
     setshowRestaurantsOpen, 
     restaurantData, 
@@ -34,11 +37,15 @@ function ShowRestaurants() {
 
   function cardClickHandler(restName){
     setselectedRestaurantName(restName)
+    if(!userLoggedOrRegistered){
+      setinfoModalErrorReservaOpen(true)
+    }
+ 
   }
 
   useEffect(() => {
     console.log("selectedRestaurantName= ", selectedRestaurantName);
-    if(selectedRestaurantName){
+    if(selectedRestaurantName && userLoggedOrRegistered){
       setreservaClienteOpen(true)
     }
   }, [selectedRestaurantName])

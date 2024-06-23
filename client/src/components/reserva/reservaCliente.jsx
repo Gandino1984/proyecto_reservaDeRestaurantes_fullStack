@@ -7,6 +7,7 @@ const CreateReserva = () => {
 
   const {
     selectedRestaurantName, 
+    userLoggedOrRegistered,
     showRestaurantsOpen,
     setshowRestaurantsOpen,
     setmostrarReservasRestauranteOpen,
@@ -15,7 +16,7 @@ const CreateReserva = () => {
   } = useContext(GeneralContext);
 
   useEffect(() => {
-    if(selectedRestaurantName){
+    if(selectedRestaurantName && userLoggedOrRegistered){
       setshowRestaurantsOpen(false);
     }
     

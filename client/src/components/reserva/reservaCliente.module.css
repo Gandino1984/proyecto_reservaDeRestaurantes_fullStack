@@ -1,10 +1,5 @@
 .container{
-    /* position: absolute; */
     width: 50%;
-    /* height: 100vh; */
-    /* z-index: 50;
-    top: 0;
-    right: 0; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,7 +7,8 @@
     /* background: linear-gradient(to right, #00000000, #000000c7 85%, #000000b6 95%); */
 }
 
-.containerReservaCliente{
+.containerReservaCliente{position: absolute;
+    z-index: 51 ;
     border: 2px solid var(--green);
     display: flex;
     flex-direction: column;

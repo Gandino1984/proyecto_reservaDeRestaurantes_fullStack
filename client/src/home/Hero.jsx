@@ -34,7 +34,7 @@ function Hero() {
       </div>  
 
       <div className='heroLoadedComponents'>
-        {showRestaurantsOpen && !selectedRestaurant && <ShowRestaurants />}
+        {showRestaurantsOpen && <ShowRestaurants />}  
         {loginFormOpen && <Login />}
         {reservaClienteOpen && <CreateReserva />}
       </div>   
