@@ -1,10 +1,9 @@
 import { useState, useContext, useRef, useEffect } from "react";
 import { createReserva } from "../../utils/reservaFetch";
-import styles from './reservaCliente.module.css'
+import styles from './reservaCliente.module.css';
 import GeneralContext from "../../context/GeneralContext";
 
 const CreateReserva = () => {
-
   const {
     selectedRestaurantName, 
     userLoggedOrRegistered,
@@ -12,64 +11,69 @@ const CreateReserva = () => {
     setshowRestaurantsOpen,
     setmostrarReservasRestauranteOpen,
     reservaRestauranteExitosa,
-    setreservaRestauranteExitosa 
+    setreservaRestauranteExitosa,
   } = useContext(GeneralContext);
 
-
-  
-  const [name, setName] = useState('');
+  const [Name, setName] = useState('');
   const [numGuests, setNumGuests] = useState(1);
-  const [reservationDate, setReservationDate] = useState('');
-  const [reservationTime, setReservationTime] = useState('');
+  const [Date, setReservationDate] = useState('');
+  const [Hora_Inicio, setReservationStartTime] = useState('');
+  const [Hora_Final, setReservationEndTime] = useState('');
   const [error, setError] = useState(null);
-  const containerRef = useRef(null); // container para despues cerrar
+  const containerRef = useRef(null);
 
+  // Función para guardar en localStorage
+  const saveToLocalStorage = () => {
+    const reservaData = {
+      Name,
+      numGuests,
+      Date,
+      Hora_Inicio,
+      Hora_Final,
+    };
+    localStorage.setItem('reservaData', JSON.stringify(reservaData));
+  };
+
+  // Función para cargar desde localStorage al montar el componente
   useEffect(() => {
-    if(selectedRestaurantName && userLoggedOrRegistered){
-      setshowRestaurantsOpen(false);
+    const storedData = localStorage.getItem('reservaData');
+    if (storedData) {
+      const parsedData = JSON.parse(storedData);
+      setName(parsedData.Name);
+      setNumGuests(parsedData.numGuests);
+      setReservationDate(parsedData.Date);
+      setReservationStartTime(parsedData.Hora_Inicio);
+      setReservationEndTime(parsedData.Hora_Final);
     }
-    
   }, []);
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
-    
     setError(null);
 
-    setName(selectedRestaurantName)
-    
-    const datePattern = /^\d{4}-\d{2}-\d{2}$/;
-    
-    if (!datePattern.test(reservationDate)) {
-      setError('La fecha debe estar en formato YYYY-MM-DD');
+    if (!Date || !Hora_Inicio || !Hora_Final || !Name) {
+      setError('Todos los campos son obligatorios!');
       return;
     }
 
-    const data = { name, numGuests, reservationDate, reservationTime };
-    console.log("CreateReserva: Form data= ", data);
-
     try {
+      const data = {
+        Name,
+        Date,
+        Hora_Inicio,
+        Hora_Final,
+        NumGuests: numGuests
+      };
       const result = await createReserva(data);
-      console.log("!!!!!!!!!!!RESULT", result);
-      // onCreate();    
+      console.log("Resultado de la creación de reserva:", result);
       setreservaRestauranteExitosa(true);
+      localStorage.removeItem('reservaData'); // Limpiar localStorage después de enviar la reserva
     } catch (err) {
       setreservaRestauranteExitosa(false);
-      console.error('Error creating reservation:', err);
-      setError('Failed to create reservation. Please try again.');
+      console.error('Error al crear la reserva:', err);
+      setError('No se pudo crear la reserva. Por favor, inténtalo de nuevo.');
     }
   };
-
-  function onClickReservaClienteHandler() {
-    if (reservaRestauranteExitosa) {
-      setmostrarReservasRestauranteOpen(true);    
-      alert("reserva exitosa. mostrarReservasRestauranteOpen=true");
-    } else {
-      alert("reserva fallida. mostrarReservasRestauranteOpen=false");
-      setmostrarReservasRestauranteOpen(false);
-    }
-  }
 
   return (
     <div className={styles.container}>
@@ -77,22 +81,24 @@ const CreateReserva = () => {
         <button className={styles.closeBtn}>X</button>
         <form className="create-reserva" onSubmit={handleSubmit}>
           <div className={styles.containerInput}>
-            {selectedRestaurantName && <input type="text" name="name" placeholder={name} required defaultValue={name}/>}
-            {!selectedRestaurantName && <input type="text" name="name" value={name} placeholder="Cuál es tu nombre?" onChange={(e) => setName(e.target.value)} required />}
+            <label htmlFor="Date">Fecha de Reserva</label>
+            <input type="date" name="Date" value={Date} onChange={(e) => { setReservationDate(e.target.value); saveToLocalStorage(); }} required />
           </div>
           <div className={styles.containerInput}>
-            <label htmlFor="numGuests">Guests Number</label>
-            <input type="number" name="numGuests" value={numGuests} onChange={(e) => setNumGuests(e.target.value)} min="1" required />
+            <label htmlFor="Hora_Inicio">Hora de Inicio</label>
+            <input type="time" name="Hora_Inicio" value={Hora_Inicio} onChange={(e) => { setReservationStartTime(e.target.value); saveToLocalStorage(); }} required />
           </div>
           <div className={styles.containerInput}>
-            <label htmlFor="reservationDate">Reservation Date</label>
-            <input type="date" name="reservationDate" value={reservationDate} onChange={(e) => setReservationDate(e.target.value)} required />
+            <label htmlFor="Hora_Final">Hora Final</label>
+            <input type="time" name="Hora_Final" value={Hora_Final} onChange={(e) => { setReservationEndTime(e.target.value); saveToLocalStorage(); }} required />
           </div>
           <div className={styles.containerInput}>
-            <label htmlFor="reservationTime">Hour</label>
-            <input type="time" name="reservationTime" value={reservationTime} onChange={(e) => setReservationTime(e.target.value)} required />
+          <label htmlFor="Name">
+            {selectedRestaurantName && <input type="text" name="Name" placeholder={Name} required defaultValue={Name} />}
+            {!selectedRestaurantName && <input type="text" name="Name" value={Name} placeholder="Cuál es tu nombre?" onChange={(e) => { setName(e.target.value); saveToLocalStorage(); }} required />}
+            </label>
           </div>
-          <button onClick={onClickReservaClienteHandler} type="submit">Create</button>
+          <button type="submit">Crear</button>
           {error && <p className="error">{error}</p>}
         </form>
       </div> 
