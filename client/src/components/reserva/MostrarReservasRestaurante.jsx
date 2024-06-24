@@ -6,10 +6,6 @@ function MostrarReservasRestaurante() {
   const { restauranteID, setReservas, user, setRestauranteID , userIsRestaurant} = useContext(GeneralContext);
   const [reservasFiltradas, setReservasFiltradas] = useState([]);
 
-  console.log("Componente renderizado");
-  console.log("Contexto restauranteID:", restauranteID);
-  console.log("Contexto user:", user);
-
   async function getReservas() {
     try {
       console.log("Obteniendo reservas para restauranteID:");

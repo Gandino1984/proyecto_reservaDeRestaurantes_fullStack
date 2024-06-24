@@ -38,11 +38,11 @@ function StatesProvider({children}){
   const [infoModalSuccessOpen, setinfoModalSuccessOpen] = useState(false);
   const [infoModalErrorOpen, setinfoModalErrorOpen] = useState(false);
   const [infoModalErrorReservaOpen, setinfoModalErrorReservaOpen] = useState(false);
-  
-
 
   //reservaClientes component
   const [reservaClienteOpen, setreservaClienteOpen] = useState(false);
+
+  const [reservasFalsas, setreservasFalsas] = useState([]);
 
 
 
@@ -127,7 +127,9 @@ function StatesProvider({children}){
      reservaClienteOpen,
      setreservaClienteOpen,
      infoModalErrorReservaOpen,
-     setinfoModalErrorReservaOpen
+     setinfoModalErrorReservaOpen,
+     reservasFalsas,
+     setreservasFalsas
   };
 
   return (
